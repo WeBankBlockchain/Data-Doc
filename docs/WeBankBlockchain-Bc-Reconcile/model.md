@@ -1,8 +1,11 @@
+# 组件设计
+
 # **1.** 整体架构
 
 区块链对账组件整体架构如下图所示。主要包括：基础模块、对账数据传输模块、对账消息模块、对账执行模块。
 
-​            ![img](https://qqadapt.qpic.cn/txdocpic/0/40db06a4df764d466d4509b592de0321/0?w=1570&h=1026)            
+
+​            ![整体架构](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_framework.png)            
 
 
 
@@ -17,13 +20,13 @@
 
 流程图如下图所示，业务方将对账文件发送给对账方，对账方可以通过定时任务或者主动调用的方式开启对账任务，其中主动调用分两种方式：一种是对账方手动调用，另一种是业务方发送对账请求。任务首先会先从文件资源中心（如FTP）拉取业务方对账文件，然后将链上数据导出为文件，进行对账，并将对账结果生成文件推送给业务方，任务完成。
 
-​            ![img](https://qqadapt.qpic.cn/txdocpic/0/62cc00283ffd0428d54551e4d0c65528/0?w=933&h=1302)            
+​            ![业务流程](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_process.png)            
 
 
 
 对账方和业务方关系如下，该组件服务为对账方。
 
-​            ![img](https://qqadapt.qpic.cn/txdocpic/0/0bcaab5d2853ddee1b5d7f5ff28f30e8/0?w=2646&h=1450)            
+​            ![img](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_deployment.png)            
 
 # **3. 模块设计**
 
@@ -33,13 +36,13 @@
 
 接口关系如下：
 
-​            ![img](https://qqadapt.qpic.cn/txdocpic/0/183d31763074a59c5cf0ba63d1dd70ae/0?w=2222&h=1388)            
+​            ![img](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_interface.png)            
 
 
 
 调用时序如下：
 
-​            ![img](https://qqadapt.qpic.cn/txdocpic/0/e1bedad8c867ac593902d41d543cacd5/0?w=1789&h=1053)            
+​            ![img](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_call.png)            
 
 
 
@@ -370,13 +373,13 @@ public class TaskCompensate {
 
 失败状态的补偿流程如下：
 
-​            ![img](https://qqadapt.qpic.cn/txdocpic/0/57551e8be8e61883d9e42beba60fc300/0?w=1374&h=1125)            
+​            ![img](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_taskcomp.png)            
 
 
 
 执行中任务的补偿如下：
 
-​            ![img](https://qqadapt.qpic.cn/txdocpic/0/b67846dd8abd0a0b0d27bd66f0c4cdda/0?w=924&h=626)            
+​            ![img](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_taskcomp2.png)            
 
 
 
@@ -619,7 +622,7 @@ public class ReconcileExecuteHandler implements Handler {
 
 并发解析两方对账文件，并调用数据提取的接口，获得数据。文件解析接口关系图如下：
 
-​            ![img](https://qqadapt.qpic.cn/txdocpic/0/35e7b463789cfcd89399b0199b482627/0?w=793&h=412)            
+​            ![img](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_fileinterface.png)            
 
 
 
