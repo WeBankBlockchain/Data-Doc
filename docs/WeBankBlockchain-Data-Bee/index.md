@@ -1,4 +1,4 @@
-# 数据导出子系统
+# 数据导出系统
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Gitter](https://badges.gitter.im/WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee.svg)](https://gitter.im/WeBankBlockchain-Data-Bee/community)
