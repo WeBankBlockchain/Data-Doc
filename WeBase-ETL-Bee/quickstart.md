@@ -136,7 +136,6 @@ dist
 │   WeBASE-ETL-Bee.jar
 └───config
 │   │   application.properties
-│   │   logback.xml
 └───lib
     │   ...
 ```
