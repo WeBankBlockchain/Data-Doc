@@ -2,7 +2,7 @@
 
 ## 1. 整体架构
 
-![arch](picture/architecture.png)（图需要优化）
+![arch](./picture/architecture.png)（图需要优化）
 
 整个体系分为如下部分：
 

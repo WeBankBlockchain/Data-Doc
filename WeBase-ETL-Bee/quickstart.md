@@ -108,7 +108,7 @@ nginx配置文件位于/usr/local/nginx/conf/nginx.conf。需要在http模块内
 
 这些操作完成后，可以通过浏览器访问该端口，出现类似下述响应即表示成功：
 
-![nginx——success](picture/nginx_success.png)
+![nginx——success](./picture/nginx_success.png)
 
 ## 3. 运行全量数据服务
 
