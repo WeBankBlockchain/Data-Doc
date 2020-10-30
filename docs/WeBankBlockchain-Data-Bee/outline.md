@@ -74,7 +74,7 @@ WeBankBlockchain-Data-Bee还集成了Swagger组件，提供了可视化的文档
 
 支持丰富的Restful API数据查询接口
 
-#### 3.6提供可视化的互动API控制台
+#### 3.6 提供可视化的互动API控制台
 
 集成swagger插件，提供可视化互动API控制台
 
