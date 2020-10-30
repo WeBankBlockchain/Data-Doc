@@ -5,7 +5,7 @@ FISCO BCOS允许各节点将状态变更记录到binlog日志中。WeBASE-ETL-Be
 主要特性：
 
 ```eval_rst
-   .. admonition:: **主要特性**
+.. admonition:: **主要特性**
 
     - 提供binlog日志的下载、解析
     - 多重binlog校验手段
@@ -14,8 +14,7 @@ FISCO BCOS允许各节点将状态变更记录到binlog日志中。WeBASE-ETL-Be
     - 轻量级接入
 ```
 ```eval_rst
-   .. toctree::
-   
+.. toctree::   
    :maxdepth: 4
 
    quickstart.md
