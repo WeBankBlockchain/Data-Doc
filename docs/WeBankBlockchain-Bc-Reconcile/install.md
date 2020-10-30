@@ -11,7 +11,7 @@
 | Java       | \>= JDK[1.8]                                                 |      |
 | Git        | 下载的安装包使用Git                                          |      |
 | MySQL      | \>= mysql-community-server[5.7]                              |      |
-| FTP        |                                                              |      |
+| FTP        | 需要时安装                                                     |      |
 
 ## 二. 项目准备
 
@@ -30,14 +30,14 @@ gradle build
 
 项目jar包在当前目录下的位置如下：
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0720/144740_e4656149_7418696.png "屏幕截图.png")
+![输入图片说明](../../images/WeBankBlockchain-Bc-Reconcile/configfile.png)
 
 
 ### 3. 项目配置
 
 配置文件位于dist/config目录下，如下图所示。
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0723/120628_5322d244_7418696.png "屏幕截图.png")
+![输入图片说明](../../images/WeBankBlockchain-Bc-Reconcile/jarpath.png)
 
 #### 3.1 数据库配置
 
@@ -239,7 +239,7 @@ cd dist && bash start.sh
 
  启动成功日志如下：
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0720/144803_eaafc395_7418696.png "屏幕截图.png")
+![输入图片说明](../../images/WeBankBlockchain-Bc-Reconcile/runsuccess.png)
 
 
 
@@ -247,12 +247,12 @@ cd dist && bash start.sh
 
 执行日志如下：
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0720/144825_377f895e_7418696.png "屏幕截图.png")
+![输入图片说明](../../images/WeBankBlockchain-Bc-Reconcile/log.png)
 
 
 执行结果本地保存在/dist/out/result目录中：
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0720/144843_ccf4a429_7418696.png "屏幕截图.png")
+![输入图片说明](../../images/WeBankBlockchain-Bc-Reconcile/resultpath.png)
 
 执行日志保存在logs目录下
 
@@ -262,7 +262,7 @@ cd dist && bash start.sh
 
 支持业务根据自身需求对组件进行扩展，组件核心流程位于handler目录下，如下：
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0720/144859_a6d2c763_7418696.png "屏幕截图.png")
+![输入图片说明](../../images/WeBankBlockchain-Bc-Reconcile/processpath.png)
 
 对账流程默认分为四步：
 

@@ -7,7 +7,7 @@
 
 ```eval_rst
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 5
 
    install.md
    model.md
