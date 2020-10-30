@@ -2,7 +2,7 @@
 
 ## 1. 整体架构
 
-![arch](picture/architecture.png)（图需要优化）
+![](./picture/architecture.png)
 
 整个体系分为如下部分：
 
@@ -20,7 +20,7 @@
 Fisco Bcos采用了BinLog内部记录了每个区块导致哪些系统表被改变。数据的变动按照表(table)-行(entry)-列（fields）的结构组织。。
 BinLog的结构如下：
 
-![binlog](picture/binlog.png)
+![](picture/binlog.png)
 
 
 ## 3. 存储模型
