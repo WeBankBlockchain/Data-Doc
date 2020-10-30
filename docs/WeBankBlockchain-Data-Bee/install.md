@@ -18,51 +18,94 @@
 
 ### 2 部署步骤
 
-#### 2.1 获取安装包
+#### 2.1 获取工程
 
-##### 2.1.1 下载安装包
+##### 2.1.1 代码拉取
 
 ```shell
-#下载安装包
-curl -LO https://github.com/WeBankFinTech/WeBackBlockchain-Data-Bee/raw/master/src/main/install_scripts.tar.gz
-#解压安装包
-tar -zxf install_scripts.tar.gz 
-cd install_scripts
+git clone https://github.com/WeBankBlockchain/Data-Bee.git
+
 ```
+
+得到工程代码，WeBankBlockchain-Data-Bee的工程使用gradle进行构建，是一个使用gradle进行多工程构建的SpringBoot工程。
+
+```
+├── ChangeLog.md
+├── LICENSE
+├── README.md
+├── tools
+├── WeBankBlockchain-Data-Bee-codegen
+├── WeBankBlockchain-Data-Bee-common
+├── WeBankBlockchain-Data-Bee-core
+├── WeBankBlockchain-Data-Bee-db
+├── WeBankBlockchain-Data-Bee-extractor
+├── WeBankBlockchain-Data-Bee-parser
+├── build.gradle
+├── gradle
+├── gradlew
+├── gradlew.bat
+├── libs
+├── settings.gradle
+└── src
+
+```
+
+其中各个子工程的说明如下：
+
+WeBankBlockchain-Data-Bee-codegen 数据导出代码生成功能
+
+WeBankBlockchain-Data-Bee-core是运行任务的主工程。
+
+WeBankBlockchain-Data-Bee-common 公共类库。
+
+WeBankBlockchain-Data-Bee-db 数据库相关的功能。
+
+WeBankBlockchain-Data-Bee-extractor 区块抽取相关的功能。
+
+WeBankBlockchain-Data-Bee-parser 区块解析相关的功能。
+
+
+其中build.gradle为gradle的构建文件，tools/config/contract目录存放了合约编译为Java的文件，tools/config/resources下面存放了配置文件
+
 
 ##### 2.1.2 进入安装路径
 
-进入解压后的install_scripts文件夹目录，获得如下的目录结构，其中Evidence.java为合约示例。
+```shell
+cd Data-Bee/tools
 
 ```
-├── install_scripts
+
+tools目录如下：
+```
+├── tools
 │   ├── config
 │   │   ├── contract
 │   │   │   └── HelloWorld.java
 │   │   └── resources
 │   │       └── application.properties
 │   │       └── web3j.def
-│   └── generate_bee.sh
+│   └── build_bee.sh
 ```
 
-#### 2.2 配置安装包
+#### 2.2 配置工程
 
 ##### 2.2.1 配置合约文件
 
-找到你的业务工程（你要导出数据的那条区块链中，往区块链写数据的工程），复制合约产生的Java文件：请将Java文件**复制到./config/contract目录**下（请先删除目录结构中的合约示例HelloWorld.java文件）。
+找到你的业务工程（你要导出数据的那条区块链中，往区块链写数据的工程），复制合约产生的Java文件：请将Java文件**复制到./tools/config/contract目录**下（请先删除目录结构中的合约示例HelloWorld.java文件）。
 
 如果你的业务工程并非Java工程，那就先找到你所有的合约代码。不清楚如何将Solidity合约生成为Java文件，请参考： [利用控制台将合约代码转换为java代码](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/console.html)
 
 
 ##### 2.2.2 配置证书文件
 
-将节点sdk目录下的相关的证书文件：请将你的配置文件**复制到./config/resources目录**下。配置文件包括：
+将节点sdk目录下的相关的证书文件：请将你的配置文件**复制到./tools/config/resources目录**下。配置文件包括：
 
 -     ca.crt
 -     node.crt
 -     node.key
 -     sdk.crt
 -     sdk.key
+-     sdk.publickey
 
 ##### 2.2.3 配置应用
 
@@ -84,35 +127,38 @@ system.dbPassword=[password]
 
 # 合约Java文件的包名
 system.contractPackName=[编译Solidity合约时指定的包名]
+
+# elastic serach 配置（如果需要的话可进行配置）
+es.enabled=false
+es.clusterName=my-application
+es.ip=[ip]
+es.port=9300
 ```
 
-更多配置详情可参考[附录1：配置参数](appendix.html#id1)。
 
-#### 2.3 生成代码并运行程序
+#### 2.3 运行程序
 
 ##### 2.3.1 选择一：直接在本机运行
 
 ```
-chmod +x generate_bee.sh
-bash generate_bee.sh
+chmod +x build_bee.sh
+bash build_bee.sh
 ## 还可以指定数据导出程序的版本，例如
-## ./generate_bee.sh -v 1.3.0
+## ./build_bee.sh -v 1.3.0
 ```
-
-当前目录下会生成[WeBankBlockchain-Data-Bee](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)工程代码。数据导出组件将直接启动，对应的执行日志会打印到终端上。
 
 请注意:请务必按照以上命令操作，**切莫使用sudo命令来操作**，否则会导致Gradlew没有权限，导致depot数据失败。
 
 ##### 2.3.2 选择二：本机编译，复制执行包到其他服务器上运行
 
 ```
-chmod +x generate_bee.sh
-bash generate_bee.sh -e build
+chmod +x build_bee.sh
+bash build_bee.sh
 ## 还可以指定数据导出程序的版本，例如
-## ./generate_bee.sh -e build -v 1.3.0
+## ./build_bee.sh -e build -v 1.3.0
 ```
 
-当前目录下会生成[WeBankBlockchain-Data-Bee](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)工程代码。请将此生成工程下的./WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core/dist文件夹复制到其他服务器上，并执行：
+请将此工程下的./WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core/dist文件夹复制到其他服务器上，并执行：
 
 ```
 chmod +x *.sh
@@ -134,13 +180,13 @@ supervisor还提供了一个功能，可以为supervisord或者每个子进程�
 ##### 2.4.1 检查程序进程是否正常运行
 
 ```
-ps -ef |grep WeBankBlockchain-Data-Bee
+ps -ef |grep Data-Bee
 ```
 
 如果看到如下信息，则代表进程执行正常：
 
 ```
-app   21980 24843  0 15:23 pts/3    00:00:44 java -jar WeBankBlockchain-Data-Bee0.3.0-SNAPSHOT.jar
+app   21980 24843  0 15:23 pts/3    00:00:44 java -jar WeBankBlockchain-Data-Bee-core1.3.1.jar
 ```
 
 ##### 2.4.2 检查程序是否已经正常执行
@@ -303,63 +349,11 @@ button.swagger=on
 ![[查收结果]](../../images/WeBankBlockchain-Data-Bee/swag_test3.png)
 
 
+### 5.配置工程(更多高级配置)
 
+执行完上述步骤2后，主要的基础配置都将会在配置中自动生成，无需额外配置。但是，基于已生成的配置文件，你可以继续按照需求进行深入的个性化高级配置，例如配置集群部署、分库分表、读写分离等等。
 
-### 5. 工程代码
-
-
-#### 5.1 获得工程代码
-
-
-WeBankBlockchain-Data-Bee的工程使用gradle进行构建，是一个使用gradle进行多工程构建的SpringBoot工程。
-
-```
-├── ChangeLog.md
-├── LICENSE
-├── README.md
-├── WeBankBlockchain-Data-Bee-codegen
-├── WeBankBlockchain-Data-Bee-common
-├── WeBankBlockchain-Data-Bee-core
-├── WeBankBlockchain-Data-Bee-db
-├── WeBankBlockchain-Data-Bee-extractor
-├── WeBankBlockchain-Data-Bee-parser
-├── build.gradle
-├── gradle
-├── gradlew
-├── gradlew.bat
-├── libs
-├── settings.gradle
-└── src
-
-```
-
-其中各个子工程的说明如下：
-
-WeBankBlockchain-Data-Bee-codegen 数据导出代码生成功能
-
-WeBankBlockchain-Data-Bee-core是运行任务的主工程。
-
-WeBankBlockchain-Data-Bee-common 公共类库。
-
-WeBankBlockchain-Data-Bee-db 数据库相关的功能。
-
-WeBankBlockchain-Data-Bee-extractor 区块抽取相关的功能。
-
-WeBankBlockchain-Data-Bee-parser 区块解析相关的功能。
-
-
-
-其中build.gradle为gradle的构建文件，config/contract目录存放了合约编译为Java的文件，src/main/resources下面存放了配置文件，dist是项目编译后生成的目录。
-
-自动生成的Java代码一般位于src/main/java/com/webank/blockchain/data/bee/*/generated；而合约编译后的文件除了会被存放到config/contract文件夹下以外，还会按照原有的package名称放入到src/main/java的路径下。
-
-
-#### 5.2 配置工程(更多高级配置)
-
-当完整地按照上述步骤2进行操作获得 WeBankBlockchain-Data-Bee工程后，会得到WeBankBlockchain-Data-Bee工程，主要的基础配置都将会在配置中自动生成，无需额外配置。但是，基于已生成的配置文件，你可以继续按照需求进行深入的个性化高级配置，例如配置集群部署、分库分表、读写分离等等。
-
-
-在得到WeBankBlockchain-Data-Bee工程后，进入WeBankBlockchain-Data-Bee-core的目录：
+进入WeBankBlockchain-Data-Bee-core的目录：
 
 ```
 cd WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core
@@ -568,4 +562,5 @@ spring.shardingsphere.sharding.tables.activity_activity.table-strategy.inline.al
 
 
 ```
+
 
