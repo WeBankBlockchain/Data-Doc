@@ -20,11 +20,11 @@
 
 流程图如下图所示，业务方将对账文件发送给对账方，对账方可以通过定时任务或者主动调用的方式开启对账任务，其中主动调用分两种方式：一种是对账方手动调用，另一种是业务方发送对账请求。任务首先会先从文件资源中心（如FTP）拉取业务方对账文件，然后将链上数据导出为文件，进行对账，并将对账结果生成文件推送给业务方，任务完成。
 
-​            ![业务流程](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_deployment.jpg)          
+​            ![业务流程](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_process.png)          
 
 
 
-对账方和业务方关系如下，该组件服务为对账方。
+对账方和业务方关系如下，该组件服务为对账方使用。
 
 ​            ![部署关系](../../images/WeBankBlockchain-Bc-Reconcile/reconcile_deployment.jpg)            
 
