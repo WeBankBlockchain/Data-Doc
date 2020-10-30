@@ -151,7 +151,7 @@ ftp.workDir=/reconcile
 
 本地测试使用ftp，可在本地安装FTP环境，推荐QuickFTP Server，方便快捷开启FTP
 
-远程可自行搭建，推荐vsftp，参考链接：https://blog.csdn.net/u011921996/article/details/93380573
+远程可自行搭建，推荐vsftp，参考链接：[ftp安装](https://blog.csdn.net/u011921996/article/details/93380573)
 
 #### 3.4 对账数据准备
 
@@ -222,7 +222,7 @@ boolean append)
 
 ##### 3.4.2 链上数据导出
 
-区块链数据需要借助数据导出组件对链上数据进行导出，数据导出链接：https://webasedoc.readthedocs.io/zh_CN/latest/docs/WeBASE-Codegen-Monkey/install.html
+链上数据需要借助数据导出组件WeBankBlockchain-Data-Bee对链上数据进行导出，数据导出组件使用：[WeBankBlockchain-Data-Bee](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Bc-Reconcile/install.html)
 
 
 
