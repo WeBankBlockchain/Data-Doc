@@ -16,9 +16,9 @@
 
 
 ## 2. Binlog结构
-一个BinLog记录了各区块对数据的信息。bBinLog文件会包含起始区块高度，例如"4.binlog"表示该日志的首个区块为4。
-Fisco Bcos采用了BinLog内部记录了每个区块导致哪些系统表被改变。数据的变动按照表(table)-行(entry)-列（fields）的结构组织。。
-BinLog的结构如下：
+一个Binlog记录了各区块对数据的信息。Binlog文件会包含起始区块高度，例如"4.binlog"表示该日志的首个区块为4。
+FISCO BCOS采用了Binlog内部记录了每个区块导致哪些系统表被改变。数据的变动按照表(table)-行(entry)-列（fields）的结构组织。
+Binlog的结构如下：
 
 ![](picture/binlog.png)
 
