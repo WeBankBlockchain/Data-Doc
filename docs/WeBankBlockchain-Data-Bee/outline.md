@@ -4,17 +4,15 @@
 
 WeBankBlockchain-Data-Bee 是一个基于[FISCO-BCOS](https://github.com/FISCO-BCOS/FISCO-BCOS)平台的数据导出工具。
 
-数据导出组件WeBankBlockchain-Data-Bee的目的在于降低获取区块链数据的开发门槛，提升研发效率。研发人员几乎不需要编写任何代码，只需要进行简单配置，就可以把数据导出到Mysql数据库。
+数据导出组件WeBankBlockchain-Data-Bee的目的在于降低获取区块链数据的开发门槛，提升研发效率。研发人员几乎不需要编写任何代码，只需要进行简单配置，就可以把数据导出到Mysql或ES等数据库。
 
-WeBankBlockchain-Data-Bee可以导出区块链上的基础数据，如当前块高、交易总量等。如果正确配置了FISCO-BCOS上运行的所有合约，WeBankBlockchain-Data-Bee可以导出区块链上这些合约的业务数据，包括event、构造函数、合约地址、执行函数的信息等。
+WeBankBlockchain-Data-Bee可以导出区块链上的基础数据，如当前块高、交易总量等。如果正确配置了FISCO-BCOS上运行的所有合约，也可以导出区块链上这些合约的业务数据，包括event、构造函数、合约地址、执行函数的信息等。
 
-数据导出组件支持多数据源、分库分表、读写分离、分布式部署。
+数据导出组件支持多数据源、分库分表、读写分离、分布式部署，支持ES存储。
 
 WeBankBlockchain-Data-Bee提供了基于Restful的API，支持通过http的方式调用这些接口。
 
 WeBankBlockchain-Data-Bee还集成了Swagger组件，提供了可视化的文档和测试控制台。
-
-你可以通过模块[WeBankBlockchain-Data-Bee-codegen](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)中脚本来自动生成本工程，只需要在一个配置文件中进行少量简单的配置，同时按照要求提供相关的智能合约信息；我们推荐这种方式。
 
 ### 2. 使用场景和解决方案
 
@@ -28,7 +26,7 @@ WeBankBlockchain-Data-Bee还集成了Swagger组件，提供了可视化的文档
 
 - 解决方案
 
-该公司使用了[WeBankBlockchain-Data-Bee](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)，并根据实际需求进行了定制化开发，在一天之内投入到线上使用。导出到db的数据接入到了该公司的统一监控平台，该公司PM可以在业务后台系统上获得该业务的实时进展，该公司运维人员可以在公司运维监控室的大屏幕实时监控业务系统的状态。
+该公司使用了[WeBankBlockchain-Data-Bee](https://github.com/WeBankBlockchain/Data-Bee/tree/master)，并根据实际需求进行了定制化开发，在一天之内投入到线上使用。导出到db的数据接入到了该公司的统一监控平台，该公司PM可以在业务后台系统上获得该业务的实时进展，该公司运维人员可以在公司运维监控室的大屏幕实时监控业务系统的状态。
 
 #### 2.2 案例 区块链业务数据对账系统
 
@@ -38,7 +36,7 @@ WeBankBlockchain-Data-Bee还集成了Swagger组件，提供了可视化的文档
 
 - 解决方案
 
-该公司使用[WeBankBlockchain-Data-Bee](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)，并根据实际需求进行了定制化开发。通过在智能合约中设计的各类event，相关的业务数据都被导出到数据库中；从而实现轻松对账的需求。
+该公司使用[WeBankBlockchain-Data-Bee](https://github.com/WeBankBlockchain/Data-Bee/tree/master)，并根据实际需求进行了定制化开发。通过在智能合约中设计的各类event，相关的业务数据都被导出到数据库中；从而实现轻松对账的需求。
 
 #### 2.3 案例 区块链业务数据查询系统
 
@@ -48,7 +46,7 @@ WeBankBlockchain-Data-Bee还集成了Swagger组件，提供了可视化的文档
 
 - 解决方案
 
-该公司使用[WeBankBlockchain-Data-Bee](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)，并根据实际需求进行了定制化开发，区块链上的数据可以实时导出到数据库中。利用[WeBankBlockchain-Data-Bee](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)自带的Restful API，该公司的报表系统实现了和区块链数据的对接，可以获得准实时的各类业务报表。
+该公司使用[WeBankBlockchain-Data-Bee](https://github.com/WeBankBlockchain/Data-Bee/tree/master)，并根据实际需求进行了定制化开发，区块链上的数据可以实时导出到数据库中。利用[WeBankBlockchain-Data-Bee](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)自带的Restful API，该公司的报表系统实现了和区块链数据的对接，可以获得准实时的各类业务报表。
 
 ### 3. 特性介绍
 
