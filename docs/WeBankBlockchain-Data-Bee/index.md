@@ -16,4 +16,7 @@
    outline.md
    install.md
    model.md
+   question.md
+   appendix.md
+   tech.md
 ```

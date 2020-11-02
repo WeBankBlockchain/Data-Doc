@@ -252,7 +252,44 @@ bash stop.sh
 
 恭喜您，到以上步骤，您已经完成了数据导出组件的安装和部署。如果您还需要额外获得可视化的监控页面，请参考3.3章节。
 
-#### 2.4.5 注意事项
+
+#### 2.5 支持多群组数据导出
+首先，请配置FISCO BCOS的多群组，详情可参考[FISCO BCOS多群组部署](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/group_use_cases.html?highlight=%E5%A4%9A%E7%BE%A4%E7%BB%84#)
+
+其次，修改修改application.properties文件。多个群组使用,分隔。例如，假如存在1和2两个群组。
+```
+system.groupId=1,2
+```
+无需其他更多的配置，其他和群组相关的配置会自动生成。例如：
+- server.port，系统服务监听端口，根据配置，按照群组自动累加
+- logging.file，日志文件名称，根据群组名，自动拼装，如群组1的日志文件名为databee-core-1.log
+- system.dbUrl，数据库名。数据库名按照配置的数据库名，自动组装拼接。例如配置的database名称为bee，则群组1的数据库名自动为bee_g1.
+
+再次，按照之前的步骤启动build程序。
+```
+./build_bee.sh -e build
+```
+在dist目录下，会自动构建运行的程序和配置。同时，会自动生成start_all_groups.sh的脚本。
+
+在启动服务之前，请按照之前application.properties的配置中的system.dbUrl，创建对应的数据库。数据库名为所配置的数据库名加上群组名。
+假如所配置的数据库名为bee，群组为1和2，则需要手动创建好数据库bee_g1和bee_g2.
+```
+sql_admin > 
+create database bee_g1;
+create database bee_g2;
+```
+
+启动所有群组：
+```
+./start_all_groups.sh
+```
+
+关闭所有群组的服务：
+```
+./stop.sh
+```
+
+#### 2.6 注意事项
 
 在生成的工程中，我们使用了Hibernate auto-ddl 的特性来自动创建数据库表，该特性仅供提供快速的演示，但请勿使用该特性上线；否则可能会造成生产系统的安全隐患。
 
