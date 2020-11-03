@@ -8,11 +8,11 @@
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| server.port | N | 启动WeBankBlockchain-Data-Bee组件实例的服务端口 | 8082 | 5200 |
+| server.port | N | 启动WeBankBlockchain-Data-Export组件实例的服务端口 | 8082 | 5200 |
 
 #### 1.2 FISCO-BCOS节点配置
 
-FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankBlockchain-Data-Bee服务能够访问连接节点，并通过该节点获取区块链网络上的数据。
+FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankBlockchain-Data-Export服务能够访问连接节点，并通过该节点获取区块链网络上的数据。
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
@@ -41,7 +41,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 其中**sysTableName**对应区块数据表和账户数据表，详情见 **数据存储模型** 章节。
 
-#### 1.4 WeBankBlockchain-Data-Bee工程配置
+#### 1.4 WeBankBlockchain-Data-Export工程配置
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
@@ -249,8 +249,8 @@ files = supervisord.d/*.ini
 在/etc/supervisord.d目录下配置以下启动配置文件databee_config1.ini（请注意配置文件里需要包含databee，否则会导致关闭任务命令失效），注意修改相关的路径。
 ```shell
 [program:supervisor_databee]
-directory =【你的程序路径】/WeBankBlockchain-Data-Bee-core/dist ; 程序的启动目录
-command = nohup java -jar 【你的安装包名，如WeBankBlockchain-Data-Bee-core0.3.0-SNAPSHOT.jar】 & ; 启动命令，与命令行启动的命令是一样的
+directory =【你的程序路径】/WeBankBlockchain-Data-Export-core/dist ; 程序的启动目录
+command = nohup java -jar 【你的安装包名，如WeBankBlockchain-Data-Export-core0.3.0-SNAPSHOT.jar】 & ; 启动命令，与命令行启动的命令是一样的
 autostart = true     ; 在 supervisord 启动的时候也自动启动
 startsecs = 15        ; 启动 15 秒后没有异常退出，就当作已经正常启动了
 autorestart = true   ; 程序异常退出后自动重启
@@ -259,8 +259,8 @@ user = app          ; 用哪个用户启动
 redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
 stdout_logfile_maxbytes = 150MB  ; stdout 日志文件大小，默认 50MB
 stdout_logfile_backups = 20     ; stdout 日志文件备份数
-stderr_logfile=【你的日志路径】/WeBankBlockchain-Data-Bee-core/dist/log/data_bee_error.log
-stdout_logfile = 【你的日志路径】/WeBankBlockchain-Data-Bee-core/dist/log/data_bee_out.log  ;日志统一放在log目录下
+stderr_logfile=【你的日志路径】/WeBankBlockchain-Data-Export-core/dist/log/data_bee_error.log
+stdout_logfile = 【你的日志路径】/WeBankBlockchain-Data-Export-core/dist/log/data_bee_out.log  ;日志统一放在log目录下
 [supervisord]
 ```
 
@@ -275,7 +275,7 @@ supervisord -c /etc/supervisord.d/databee_config1.ini
 ##### 关闭任务
 ```shell
 ps -ef|grep supervisord|grep databee| awk '{print $2}'|xargs kill -9
-ps -ef|grep WeBankBlockchain-Data-Bee|grep -v grep| awk '{print $2}'|xargs kill -9
+ps -ef|grep WeBankBlockchain-Data-Export|grep -v grep| awk '{print $2}'|xargs kill -9
 ```
 
 ### 7. 常见问题

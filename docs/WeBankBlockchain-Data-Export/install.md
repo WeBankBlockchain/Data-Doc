@@ -23,23 +23,23 @@
 ##### 2.1.1 代码拉取
 
 ```shell
-git clone https://github.com/WeBankBlockchain/Data-Bee.git
+git clone https://github.com/WeBankBlockchain/Data-Export.git
 
 ```
 
-得到工程代码，WeBankBlockchain-Data-Bee的工程使用gradle进行构建，是一个使用gradle进行多工程构建的SpringBoot工程。
+得到工程代码，WeBankBlockchain-Data-Export的工程使用gradle进行构建，是一个使用gradle进行多工程构建的SpringBoot工程。
 
 ```
 ├── ChangeLog.md
 ├── LICENSE
 ├── README.md
 ├── tools
-├── WeBankBlockchain-Data-Bee-codegen
-├── WeBankBlockchain-Data-Bee-common
-├── WeBankBlockchain-Data-Bee-core
-├── WeBankBlockchain-Data-Bee-db
-├── WeBankBlockchain-Data-Bee-extractor
-├── WeBankBlockchain-Data-Bee-parser
+├── WeBankBlockchain-Data-Export-codegen
+├── WeBankBlockchain-Data-Export-common
+├── WeBankBlockchain-Data-Export-core
+├── WeBankBlockchain-Data-Export-db
+├── WeBankBlockchain-Data-Export-extractor
+├── WeBankBlockchain-Data-Export-parser
 ├── build.gradle
 ├── gradle
 ├── gradlew
@@ -52,17 +52,17 @@ git clone https://github.com/WeBankBlockchain/Data-Bee.git
 
 其中各个子工程的说明如下：
 
-WeBankBlockchain-Data-Bee-codegen 数据导出代码生成功能
+WeBankBlockchain-Data-Export-codegen 数据导出代码生成功能
 
-WeBankBlockchain-Data-Bee-core是运行任务的主工程。
+WeBankBlockchain-Data-Export-core是运行任务的主工程。
 
-WeBankBlockchain-Data-Bee-common 公共类库。
+WeBankBlockchain-Data-Export-common 公共类库。
 
-WeBankBlockchain-Data-Bee-db 数据库相关的功能。
+WeBankBlockchain-Data-Export-db 数据库相关的功能。
 
-WeBankBlockchain-Data-Bee-extractor 区块抽取相关的功能。
+WeBankBlockchain-Data-Export-extractor 区块抽取相关的功能。
 
-WeBankBlockchain-Data-Bee-parser 区块解析相关的功能。
+WeBankBlockchain-Data-Export-parser 区块解析相关的功能。
 
 
 其中build.gradle为gradle的构建文件，tools/config/contract目录存放了合约编译为Java的文件，tools/config/resources下面存放了配置文件
@@ -71,7 +71,7 @@ WeBankBlockchain-Data-Bee-parser 区块解析相关的功能。
 ##### 2.1.2 进入安装路径
 
 ```shell
-cd Data-Bee/tools
+cd Data-Export/tools
 
 ```
 
@@ -158,7 +158,7 @@ bash build_bee.sh
 ## ./build_bee.sh -e build -v 1.3.0
 ```
 
-请将此工程下的./WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core/dist文件夹复制到其他服务器上，并执行：
+请将此工程下的./WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/dist文件夹复制到其他服务器上，并执行：
 
 ```
 chmod +x *.sh
@@ -180,13 +180,13 @@ supervisor还提供了一个功能，可以为supervisord或者每个子进程�
 ##### 2.4.1 检查程序进程是否正常运行
 
 ```
-ps -ef |grep Data-Bee
+ps -ef |grep Data-Export
 ```
 
 如果看到如下信息，则代表进程执行正常：
 
 ```
-app   21980 24843  0 15:23 pts/3    00:00:44 java -jar WeBankBlockchain-Data-Bee-core1.3.1.jar
+app   21980 24843  0 15:23 pts/3    00:00:44 java -jar WeBankBlockchain-Data-Export-core1.3.1.jar
 ```
 
 ##### 2.4.2 检查程序是否已经正常执行
@@ -293,7 +293,7 @@ create database bee_g2;
 
 在生成的工程中，我们使用了Hibernate auto-ddl 的特性来自动创建数据库表，该特性仅供提供快速的演示，但请勿使用该特性上线；否则可能会造成生产系统的安全隐患。
 
-你可以修改WeBankBlockchain-Data-Bee-core/src/main/resources/appliction.properties:
+你可以修改WeBankBlockchain-Data-Export-core/src/main/resources/appliction.properties:
 
 ```
 
@@ -334,13 +334,13 @@ grafana将自动绑定3000端口并自动安装时钟和Json的插件。
 
 在正常登录成功后，如图所示，选择左边栏设置按钮，点击『Data Sources』，选择『MySQL』数据源，随后按照提示的页面，配置 Host， Database， User 和 Password等。
 
-![[添加步骤]](../../images/WeBankBlockchain-Data-Bee/add_datasource.png)
+![[添加步骤]](../../images/WeBankBlockchain-Data-Export/add_datasource.png)
 
 #### 3.5 导入Dashboard模板
 
-WeBankBlockchain-Data-Bee-codegen会自动生成数据的dashboard模板，数据的路径位于：WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core/src/main/scripts/grafana/default_dashboard.json，请点击左边栏『+』，选择『import』，点击绿色按钮『Upload.json File』,选择刚才的WeBankBlockchain-Data-Bee/src/main/scripts/grafana/default_dashboard.json文件，最后，点击『import』按钮。
+WeBankBlockchain-Data-Export-codegen会自动生成数据的dashboard模板，数据的路径位于：WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/scripts/grafana/default_dashboard.json，请点击左边栏『+』，选择『import』，点击绿色按钮『Upload.json File』,选择刚才的WeBankBlockchain-Data-Export/src/main/scripts/grafana/default_dashboard.json文件，最后，点击『import』按钮。
 
-![[导入步骤]](../../images/WeBankBlockchain-Data-Bee/import_json.png)
+![[导入步骤]](../../images/WeBankBlockchain-Data-Export/import_json.png)
 
 如果导入成功，dashboards下面会出现『FISCO-BCOS区块链监控视图』，您可以选择右上方的时间按钮来选择和设置时间范围及刷新时间等。您也可以选中具体的页面组件进行编辑，自由地移除或挪动组件的位置，达到更好的使用体验。
 
@@ -348,9 +348,9 @@ WeBankBlockchain-Data-Bee-codegen会自动生成数据的dashboard模板，数�
 
 ### 4. 开启可视化的API文档和功能性测试
 
-[WeBankBlockchain-Data-Bee](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)默认集成了swagger的插件，支持通过可视化的控制台来发送交易、生成报文、查看结果、调试交易等。
+[WeBankBlockchain-Data-Export](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Export/tree/master)默认集成了swagger的插件，支持通过可视化的控制台来发送交易、生成报文、查看结果、调试交易等。
 
-![[swagger控制台]](../../images/WeBankBlockchain-Data-Bee/swagger.png)
+![[swagger控制台]](../../images/WeBankBlockchain-Data-Export/swagger.png)
 
 **请注意，swagger插件仅推荐在开发或测试环境调试使用，在正式上生产环境时，请关闭此插件。 **
 
@@ -370,7 +370,7 @@ button.swagger=on
 
 > http://your_ip:port/swagger-ui.html
 
-例如，当你在本机运行了[WeBankBlockchain-Data-Bee](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Bee/tree/master)，且未修改默认的5200端口，则可以访问此地址：
+例如，当你在本机运行了[WeBankBlockchain-Data-Export](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Export/tree/master)，且未修改默认的5200端口，则可以访问此地址：
 
 > http://localhost:5200/swagger-ui.html
 
@@ -381,19 +381,19 @@ button.swagger=on
 选择点击对应的http请求集，可以点开相关的http请求。此时，你可以选择点击“try it out”，手动修改发送的Json报文，点击“Excute”按钮，即可发送并查收结果。
 
 我们以查询区块信息为例，如下列图所示：
-![[选择请求]](../../images/WeBankBlockchain-Data-Bee/swag_test1.png)
-![[编辑报文]](../../images/WeBankBlockchain-Data-Bee/swag_test2.png)
-![[查收结果]](../../images/WeBankBlockchain-Data-Bee/swag_test3.png)
+![[选择请求]](../../images/WeBankBlockchain-Data-Export/swag_test1.png)
+![[编辑报文]](../../images/WeBankBlockchain-Data-Export/swag_test2.png)
+![[查收结果]](../../images/WeBankBlockchain-Data-Export/swag_test3.png)
 
 
 ### 5.配置工程(更多高级配置)
 
 执行完上述步骤2后，主要的基础配置都将会在配置中自动生成，无需额外配置。但是，基于已生成的配置文件，你可以继续按照需求进行深入的个性化高级配置，例如配置集群部署、分库分表、读写分离等等。
 
-进入WeBankBlockchain-Data-Bee-core的目录：
+进入WeBankBlockchain-Data-Export-core的目录：
 
 ```
-cd WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core
+cd WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core
 
 ```
 
@@ -408,7 +408,7 @@ bash gradlew clean bootJar
 
 ##### 导出数据范围的配置
 
-配置文件位于 WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core/src/main/resources/application.properties
+配置文件位于 WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
@@ -418,7 +418,7 @@ bash gradlew clean bootJar
 ##### 单节点部署的配置
 
 在选择单节点配置后，以下配置会自动生成。
-单节点任务调度的配置，分布式任务调度的配置默认位于 WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core/src/main/resources/application.properties
+单节点任务调度的配置，分布式任务调度的配置默认位于 WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
 
 ```
 #### 当此参数为false时，进入单节点任务模式
@@ -430,7 +430,7 @@ system.crawlBatchUnit=100
 
 ##### 集群部署的配置
 
-多节点任务调度的配置，分布式任务调度的配置默认位于 WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core/src/main/resources/application.properties
+多节点任务调度的配置，分布式任务调度的配置默认位于 WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
 
 ```
 #### 当此参数为true时，进入多节点任务模式
@@ -457,7 +457,7 @@ dataflowJob.shardingTotalCount=3
 dataflowJob.shardingItemParameters=0=A,1=B,2=C
 ```
 
-数据库配置解析，数据库的配置默认位于 WeBankBlockchain-Data-Bee/WeBankBlockchain-Data-Bee-core/src/main/resources/application-sharding-tables.properties
+数据库配置解析，数据库的配置默认位于 WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application-sharding-tables.properties
 
 ##### 分库分表的配置
 
