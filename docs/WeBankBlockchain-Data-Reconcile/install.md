@@ -1,6 +1,6 @@
 # 快速开始
 
-## 一. 环境准备
+## 1. 环境准备
 
 在使用本组件前，请确认系统环境已安装相关依赖软件，清单如下：
 
@@ -13,15 +13,15 @@
 | MySQL      | \>= mysql-community-server[5.7]                              |      |
 | FTP        | 需要时安装                                                     |      |
 
-## 二. 项目准备
+## 2. 项目准备
 
-### 1.下载代码：
+### 2.1 下载代码：
 
 ```
-git clone https://github.com/WeBankBlockchain/bc-reconcile.git
+git clone https://github.com/WeBankBlockchain/Data-Reconcile.git
 git checkout dev
 ```
-### 2. 项目打包
+### 2.2 项目打包
 
 ```
 cd bc-reconcile
@@ -30,16 +30,16 @@ gradle build
 
 项目jar包在当前目录下的位置如下：
 
-![](../../images/WeBankBlockchain-Bc-Reconcile/configfile.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/configfile.png)
 
 
-### 3. 项目配置
+### 2.3 项目配置
 
 配置文件位于dist/config目录下，如下图所示。
 
-![](../../images/WeBankBlockchain-Bc-Reconcile/jarpath.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/jarpath.png)
 
-#### 3.1 数据库配置
+#### 2.3.1 数据库配置
 
 关于数据库的连接配置在datasource.properties下，将数据导出的数据库参数配置到这里
 
@@ -79,7 +79,7 @@ CREATE TABLE `task_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-#### 3.2.对账配置
+#### 2.3.2 对账配置
 
 对账的配置reconcile.properties
 
@@ -136,7 +136,7 @@ reconcile.fieldMapping._amount=amount
 
 开启默认对账后，对账字段映射规则字段为必配，业务对账文件中字段名和数据导出的字段名要对应。
 
-#### 3.3 FTP配置
+#### 2.3.3 FTP配置
 
 ftp配置在ftp.properties中，基本配置项如下：
 
@@ -153,9 +153,9 @@ ftp.workDir=/reconcile
 
 远程可自行搭建，推荐vsftp，参考链接：[ftp安装](https://blog.csdn.net/u011921996/article/details/93380573)
 
-#### 3.4 对账数据准备
+#### 2.3.4 对账数据准备
 
-##### 3.4.1 业务方数据准备
+##### 2.3.4.1 业务方数据准备
 
 需要预先将业务数据文件放到ftp配置目录下
 
@@ -220,13 +220,13 @@ boolean append)
 
 
 
-##### 3.4.2 链上数据导出
+##### 2.3.4.2 链上数据导出
 
-链上数据需要借助数据导出组件WeBankBlockchain-Data-Bee对链上数据进行导出，数据导出组件使用：[WeBankBlockchain-Data-Bee](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Bc-Reconcile/install.html)
+链上数据需要借助数据导出组件WeBankBlockchain-Data-Export对链上数据进行导出，数据导出组件使用：[WeBankBlockchain-Data-Export](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/install.html)
 
 
 
-## 三.  项目启动
+## 3.  项目启动
 
 
 
@@ -239,7 +239,7 @@ cd dist && bash start.sh
 
  启动成功日志如下：
 
-![](../../images/WeBankBlockchain-Bc-Reconcile/runsuccess.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/runsuccess.png)
 
 
 
@@ -247,22 +247,22 @@ cd dist && bash start.sh
 
 执行日志如下：
 
-![](../../images/WeBankBlockchain-Bc-Reconcile/log.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/log.png)
 
 
 执行结果本地保存在/dist/out/result目录中：
 
-![](../../images/WeBankBlockchain-Bc-Reconcile/resultpath.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/resultpath.png)
 
 执行日志保存在logs目录下
 
 
 
-## 四. 项目扩展
+## 4. 项目扩展
 
 支持业务根据自身需求对组件进行扩展，组件核心流程位于handler目录下，如下：
 
-![](../../images/WeBankBlockchain-Bc-Reconcile/processpath.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/processpath.png)
 
 对账流程默认分为四步：
 
