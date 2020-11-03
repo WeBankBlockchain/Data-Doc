@@ -27,7 +27,7 @@
 
 **7. 是否支持多群组的数据导出？**
 
-> A：数据导出是基于单个群组的导出所设计的。如果有多群组数据导出的需求，建议部署多个实例并将数据导出到多个数据库实例中。
-> 如果群组数量较多，或觉得操作太繁琐的话，可以参考FISCO BCOS社区开发者提供的开源解决方案,通过使用脚本方便多群组操作： [Fisco-Data-Loader-Bootstrap](https://github.com/huahuayu/Fisco-Data-Loader-Bootstrap)
+> A：支持
+> 操作方法： [多群组数据导出](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Export/install.html#id19)
 
 
