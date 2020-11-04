@@ -1,8 +1,12 @@
 # 全量数据服务 
 
-FISCO BCOS允许各节点将状态变更记录到binlog日志中。Data-Stash是基于FISCO-BCOS的全量数据服务，通过解析节点的binlog日志，生成该节点状态的全量备份，从而使节点能够实现冷热数据分离和数据裁剪。目前支持FISCO BCOS 2.6+。
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-主要特性：
+```eval_rst
+.. admonition:: **简介**
+
+    Data-Stash是基于FISCO-BCOS的全量数据服务，通过解析节点的binlog日志，生成该节点状态的全量备份，从而使节点能够实现冷热数据分离和数据裁剪。FISCO BCOS允许各节点将状态变更记录到binlog日志中以及从binlog文件中恢复数据。
+```
 
 ```eval_rst
 .. admonition:: **主要特性**
