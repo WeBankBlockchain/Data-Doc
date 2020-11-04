@@ -8,7 +8,7 @@ WeBankBlockchain-Data-Reconcile是一款基于区块链的对账组件，提供�
 
 ```eval_rst
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 3
 
    outline.md
    install.md
