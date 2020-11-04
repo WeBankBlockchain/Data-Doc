@@ -34,6 +34,7 @@ WeBankBlockchain-Data 技术文档
     灵活配置、无需开发，支持自定义对账数据和对账格式，支持定时对账和触发对账，对账处理模块可插拔可扩展。请参考 `文档 <./docs/WeBankBlockchain-Bc-Reconcile/index.html>`_
 
 .. admonition:: 总体设计
+
     下图是各个组件互相配合的场景。
 
 .. image:: images/overview/data-comp-design.png
