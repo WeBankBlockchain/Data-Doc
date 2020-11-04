@@ -39,8 +39,6 @@ WeBankBlockchain-Data 技术文档
 ![](./images/overview/data-comp-design.png)
 
 
-
-
 .. toctree::
    :maxdepth: 3
 
