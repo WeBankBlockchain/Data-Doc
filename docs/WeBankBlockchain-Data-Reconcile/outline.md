@@ -22,6 +22,8 @@ WeBankBlockchain-Data-Reconcile是一款基于区块链的对账组件，提供�
 
 ### 3. 特性介绍
 
+ WeBankBlockchain-Data-Reconcile是一个具备轻量化，高性能，强扩展性的功能性中间件，配置方便，并从技术层面确保性能，如文件读写的异步处理、多线程处理等，并在处理流程中提供多接口，用于功能扩展，可插拔，同时支持外部集成封装，可根据不同场景定制开发。WeBankBlockchain-Data-Reconcile具备以下关键特性
+
 #### 3.1 支持自定义对账数据结构
 
 对账数据格式可根据需求进行自定义设置
