@@ -9,6 +9,8 @@
 .. toctree::
    :maxdepth: 5
 
+   outline.md
    install.md
    model.md
+   appendix.md
 ```
