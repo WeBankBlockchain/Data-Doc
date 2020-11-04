@@ -36,7 +36,7 @@ WeBankBlockchain-Data 技术文档
 .. admonition:: 总体设计
     下图是各个组件互相配合的场景。
 
-![](images/overview/data-comp-design.png)
+.. image:: images/overview/data-comp-design.png
 
 
 .. toctree::
