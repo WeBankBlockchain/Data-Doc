@@ -15,6 +15,7 @@
 
    outline.md
    install.md
+   expertconfig.md
    model.md
    question.md
    appendix.md

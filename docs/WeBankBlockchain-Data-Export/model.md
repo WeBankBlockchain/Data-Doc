@@ -80,20 +80,8 @@
 
 区块数据存储模型包括三个数据存储模型，分别为区块基本数据存储模型、区块详细数据存储模型及区块交易数据存储模型。
 
-#### 2.1 区块下载任务明细表 block_task_pool
 
-存储了所有区块的状态信息和下载情况，对应数据库表名称为**block_task_pool**,如下所示:
-
-| 字段 | 类型 | 字段设置 | 默认值 | 说明 |
-| --- | --- | --- | --- | --- |
-| pk_id | bigint(20) | Primary key & NOT NULL | 自增 | 主键Id |
-| block_height | bigint(20) |  |  | 块高 |
-| certainty   |  int(11)        | 是否可能分叉 | 0- 是； 1-否 |
-| handle_item | int(11) |  |  | 处理分片序号，默认为0 |
-| sync_status | int |  | 2 | 0-待处理；1-处理中；2-已成功；3-处理失败；4-超时 |
-| depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |
-
-#### 2.2 区块详细数据存储模型 block_detail_info
+#### 2.1 区块详细数据存储模型 block_detail_info
 
 区块详细数据存储模型用于存储每个区块的详细数据，包括区块哈希、块高、出块时间、块上交易量，对应的数据库表名为**block_detail_info**，如下表所示。
 
@@ -107,7 +95,7 @@
 | depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |
 | status | int(11) |  |  | 区块状态 0-初始化 1-成功 2-失败 |
 
-#### 2.3 区块交易数据存储模型 block_tx_detail_info
+#### 2.2 区块交易数据存储模型 block_tx_detail_info
 
 区块交易数据存储模型用于存储每个区块中每个交易的基本信息，包括区块哈希、块高、出块时间、合约名称、方法名称、交易哈希、交易发起方地址、交易接收方地址，对应的数据库表名为**block_tx_detail_info**。如下表所示。
 
@@ -247,3 +235,18 @@ contract UserInfo {
 | --- | --- | --- | --- | --- |
 | user_name | varchar(255) |  |  | 用户名 |
 | sex | int |  |  | 性别 |
+
+### 5. 导出任务控制
+
+#### 5.1 区块下载任务明细表 block_task_pool
+
+存储了所有区块的状态信息和下载情况，对应数据库表名称为**block_task_pool**,如下所示:
+
+| 字段 | 类型 | 字段设置 | 默认值 | 说明 |
+| --- | --- | --- | --- | --- |
+| pk_id | bigint(20) | Primary key & NOT NULL | 自增 | 主键Id |
+| block_height | bigint(20) |  |  | 块高 |
+| certainty   |  int(11)        | 是否可能分叉 | 0- 是； 1-否 |
+| handle_item | int(11) |  |  | 处理分片序号，默认为0 |
+| sync_status | int |  | 2 | 0-待处理；1-处理中；2-已成功；3-处理失败；4-超时 |
+| depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |

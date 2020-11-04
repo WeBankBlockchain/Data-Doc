@@ -151,7 +151,7 @@ ftp.workDir=/reconcile
 
 本地测试使用ftp，可在本地安装FTP环境，推荐QuickFTP Server，方便快捷开启FTP
 
-远程可自行搭建，推荐vsftp，参考链接：[ftp安装](https://blog.csdn.net/u011921996/article/details/93380573)
+远程可自行搭建，推荐vsftp，参考链接：[ftp安装](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/appendix.html#ftp)
 
 #### 2.3.4 对账数据准备
 
