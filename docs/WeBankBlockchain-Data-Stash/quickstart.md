@@ -117,14 +117,14 @@ nginx配置文件位于/usr/local/nginx/conf/nginx.conf。需要在http模块内
 通过git 下载源码.
 
 ```
-git clone https://github.com/WeBankBlockchain/Data-Elephant.git
+git clone https://github.com/WeBankBlockchain/Data-Stash.git
 
 ```
 
 ### 3.2. 编译源码
 
 ```
-cd Data-Elephant
+cd Data-Stash
 ./gradlew clean bootJar
 ```
 
@@ -133,7 +133,7 @@ cd Data-Elephant
 dist
 │   start.sh
 │   stop.sh
-│   WeBASE-ETL-Bee.jar
+│   Data-Stash.jar
 └───config
 │   │   application.properties
 └───lib
@@ -172,19 +172,19 @@ bash start.sh
 ```
 也可以直接通过jar包启动：
 ```
-java -jar WeBASE-ETL-Bee.jar
+java -jar Data-Stash.jar
 ```
 
 如果日志出现下述字样，则表示运行成功：
 
 ```
-2020-10-29 17:42:34.404  INFO 15044 --- [main] com.webank.etl.WeBaseEtlBeeApplication   : Starting WeBaseEtlBeeApplication on aaronchu-nb with PID 15044 (E:\gitee\WeBASE-ETL-Bee\dist\WeBASE-ETL-Bee.jar started by aaronchu in E:\gitee\WeBASE-ETL-Bee\dist)
-2020-10-29 17:42:34.411  INFO 15044 --- [main] com.webank.etl.WeBaseEtlBeeApplication   : No active profile set, falling back to default profiles: default
+2020-10-29 17:42:34.404  INFO 15044 --- [main] com.webank.etl.DataStashApplication   : Starting DataStashApplication on aaronchu-nb with PID 15044 (E:\gitee\WeBASE-ETL-Bee\dist\WeBASE-ETL-Bee.jar started by aaronchu in E:\gitee\WeBASE-ETL-Bee\dist)
+2020-10-29 17:42:34.411  INFO 15044 --- [main] com.webank.etl.DataStashApplication   : No active profile set, falling back to default profiles: default
 2020-10-29 17:42:36.984  INFO 15044 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2020-10-29 17:42:36.992  WARN 15044 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
 2020-10-29 17:42:37.645  INFO 15044 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
 2020-10-29 17:42:41.420  INFO 15044 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-10-29 17:42:41.473  INFO 15044 --- [main] com.webank.etl.WeBaseEtlBeeApplication   : Started WeBaseEtlBeeApplication in 7.489 seconds (JVM running for 8.368)
+2020-10-29 17:42:41.473  INFO 15044 --- [main] com.webank.etl.DataStashApplication   : Started DataStashApplication in 7.489 seconds (JVM running for 8.368)
 2020-10-29 17:42:41.901  INFO 15044 --- [main] com.webank.etl.manager.DownloadManager   : Scan remote item 0, size: 1
 2020-10-29 17:42:41.944  INFO 15044 --- [main] com.webank.etl.manager.DownloadManager   : Download start from last task: 0
 ........

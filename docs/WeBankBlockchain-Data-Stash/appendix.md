@@ -116,8 +116,8 @@ mysql -utest -p123456 -h localhost -P 3306
 - 创建数据库
 
 ```sql
-mysql > create database webasebee;
-mysql > use webasebee;
+mysql > create database datastash;
+mysql > use datastash;
 
 ```
 
