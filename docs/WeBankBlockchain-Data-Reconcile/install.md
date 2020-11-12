@@ -234,7 +234,7 @@ boolean append)
 
 执行dist/目录下的start脚本
 ```
-cd dist && java -jar 
+cd dist && bash start.sh
 ```
 
  启动成功日志如下：
