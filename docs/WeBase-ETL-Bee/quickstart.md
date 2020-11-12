@@ -117,14 +117,14 @@ nginx配置文件位于/usr/local/nginx/conf/nginx.conf。需要在http模块内
 通过git 下载源码.
 
 ```
-git clone https://github.com/WeBankBlockchain/Data-Elephant.git
+git clone https://github.com/WeBankBlockchain/Data-Stash.git
 
 ```
 
 ### 3.2. 编译源码
 
 ```
-cd Data-Elephant
+cd Data-Stash
 ./gradlew clean bootJar
 ```
 
@@ -172,7 +172,7 @@ bash start.sh
 ```
 也可以直接通过jar包启动：
 ```
-java -jar WeBASE-ETL-Bee.jar
+java -jar Data-Stash.jar
 ```
 
 如果日志出现下述字样，则表示运行成功：
