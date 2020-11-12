@@ -18,13 +18,13 @@
 ### 2.1 下载代码：
 
 ```
-git clone https://github.com/WeBankBlockchain/Data-Reconcile.git
+git clone https://github.com/WeBankBlockchain/WeBankBlockchain-Data-Reconcile.git
 git checkout dev
 ```
 ### 2.2 项目打包
 
 ```
-cd bc-reconcile
+cd WeBankBlockchain-Data-Reconcile
 gradle build
 ```
 
@@ -234,7 +234,7 @@ boolean append)
 
 执行dist/目录下的start脚本
 ```
-cd dist && bash start.sh
+cd dist && java -jar 
 ```
 
  启动成功日志如下：
