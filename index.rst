@@ -23,17 +23,17 @@ WeBankBlockchain-Data 技术文档
 
 .. admonition:: 组件简介
 
-    - **Data-Export  数据导出组件** 
+    - **WeBankBlockchain-Data-Export  数据导出组件** 
     支持将链上数据导出到MySQL等结构化存储中，解决区块链数据复杂查询、分析和处理的问题。
     只需简单配置、无需开发、即可实时导出个性化的业务数据，实现将裸数据转化为标准化、结构化、有序化、可视化的高价值数据。请参考 `文档 <./docs/WeBankBlockchain-Data-Export/index.html>`_
     
-    - **Data-Stash  全量数据服务** 
+    - **WeBankBlockchain-Data-Stash  全量数据服务** 
     提供FISCO BCOS节点数据扩容、备份和裁剪的能力。
-    可基于binlog协议同步区块链底层节点数据，支持断点续传，数据可信验证，并提供快速同步机制。请参考 `文档 <./docs/WeBase-ETL-Bee/index.html>`_ 
+    可基于binlog协议同步区块链底层节点数据，支持断点续传，数据可信验证，并提供快速同步机制。请参考 `文档 <./docs/WeBankBlockchain-Data-Stash/index.html>`_ 
     
-    - **Data-Reconcile  数据对账组件**
+    - **WeBankBlockchain-Data-Reconcile  数据对账组件**
     提供区块链数据的对账解决方案。
-    灵活配置、无需开发，支持自定义对账数据和对账格式，支持定时对账和触发对账，对账处理模块可插拔可扩展。请参考 `文档 <./docs/WeBankBlockchain-Bc-Reconcile/index.html>`_
+    灵活配置、无需开发，支持自定义对账数据和对账格式，支持定时对账和触发对账，对账处理模块可插拔可扩展。请参考 `文档 <./docs/WeBankBlockchain-Data-Reconcile/index.html>`_
 
 .. admonition:: 总体设计
 
@@ -45,7 +45,7 @@ WeBankBlockchain-Data 技术文档
 .. toctree::
    :maxdepth: 3
 
-   ./docs/WeBase-ETL-Bee/index.md
+   ./docs/WeBankBlockchain-Data-Stash/index.md
    ./docs/WeBankBlockchain-Data-Export/index.md
    ./docs/WeBankBlockchain-Data-Reconcile/index.md
 .. 
