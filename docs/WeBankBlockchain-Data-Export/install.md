@@ -121,6 +121,7 @@ system.groupId=[GROUP_ID]
 system.encryptType=0
 
 # 数据库的信息，暂时只支持mysql； serverTimezone 用来设置时区
+## 请确保在运行前创建对应的database
 system.dbUrl=jdbc:mysql://[IP]:[PORT]/[database]?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
 system.dbUser=[user_name]
 system.dbPassword=[password]
@@ -135,8 +136,34 @@ es.ip=[ip]
 es.port=9300
 ```
 
+##### 2.2.4 创建数据库
+
+连接MysQL数据库，创建对应的数据库，参考的命令行命令如下，请把中括号的值替换为实际值。
+
+```shell
+$ mysql -u[user_name] -h[IP] -p
+Enter password: [password]
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 164
+Server version: 5.7.28-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database [database];
+Query OK, 1 row affected (0.04 sec)
+
+mysql> 
+```
+只有创建成功database后，导出程序才能正常连接数据库。
 
 #### 2.3 运行程序
+
 
 ##### 2.3.1 选择一：直接在本机运行
 
