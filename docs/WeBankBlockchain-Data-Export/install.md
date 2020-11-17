@@ -113,8 +113,8 @@ tools目录如下：
 
 ```
 # 节点的IP及通讯端口、组号。 
-## NODE_NAME可以是任意字符和数字的组合，IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200。
-system.nodeStr=[NODE_NAME]@[IP]:[PORT]
+##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200。
+system.nodeStr=[IP]:[PORT]
 ## GROUP_ID必须与FISCO-BCOS中配置的groupId一致。
 system.groupId=[GROUP_ID]
 ### 加密类型，根据FISCO BCOS链的加密类型配置，0-ECC, 1-gm。默认为非国密类型。
