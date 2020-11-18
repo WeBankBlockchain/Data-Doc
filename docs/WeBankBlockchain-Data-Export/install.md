@@ -71,7 +71,7 @@ WeBankBlockchain-Data-Export-parser 区块解析相关的功能。
 ##### 2.1.2 进入安装路径
 
 ```shell
-cd Data-Export/tools
+cd WeBankBlockchain-Data-Export/tools
 
 ```
 
