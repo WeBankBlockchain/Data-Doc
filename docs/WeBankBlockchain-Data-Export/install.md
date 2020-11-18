@@ -84,7 +84,7 @@ tools目录如下：
 │   │   └── resources
 │   │       └── application.properties
 │   │       └── web3j.def
-│   └── build_bee.sh
+│   └── build_export.sh
 ```
 
 #### 2.2 配置工程
@@ -168,10 +168,10 @@ mysql>
 ##### 2.3.1 选择一：直接在本机运行
 
 ```
-chmod +x build_bee.sh
-bash build_bee.sh
+chmod +x build_export.sh
+bash build_export.sh
 ## 还可以指定数据导出程序的版本，例如
-## ./build_bee.sh -v 1.3.0
+## ./build_export.sh -v 1.3.0
 ```
 
 请注意:请务必按照以上命令操作，**切莫使用sudo命令来操作**，否则会导致Gradlew没有权限，导致depot数据失败。
@@ -179,10 +179,10 @@ bash build_bee.sh
 ##### 2.3.2 选择二：本机编译，复制执行包到其他服务器上运行
 
 ```
-chmod +x build_bee.sh
-bash build_bee.sh
+chmod +x build_export.sh
+bash build_export.sh
 ## 还可以指定数据导出程序的版本，例如
-## ./build_bee.sh -e build -v 1.3.0
+## ./build_export.sh -e build -v 1.3.0
 ```
 
 请将此工程下的./WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/dist文件夹复制到其他服务器上，并执行：
@@ -229,13 +229,13 @@ Hibernate: select blockheigh0_.pk_id as pk_id1_2_, blockheigh0_.block_height as 
 还可以通过以下命令来查看区块的同步状态：
 
 ```
-tail -f databee-core.log| grep "sync block"
+tail -f dataexport-core.log| grep "sync block"
 ```
 
 当看到以下滚动的日志时，则代表区块同步状态正常，开始执行下载任务。
 
 ```
- $ tail -f databee-core.log| grep "sync block"
+ $ tail -f dataexport-core.log| grep "sync block"
 2019-05-05 14:41:07.348  INFO 60538 --- [main] c.w.w.c.service.CommonCrawlerService     : Try to sync block number 0 to 90 of 90
 2019-05-05 14:41:07.358  INFO 60538 --- [main] c.w.w.c.service.BlockTaskPoolService     : Begin to prepare sync blocks from 0 to 90
 2019-05-05 14:41:17.142  INFO 60538 --- [main] c.w.w.crawler.service.BlockSyncService   : Block 0 of 90 sync block succeed.
@@ -289,12 +289,12 @@ system.groupId=1,2
 ```
 无需其他更多的配置，其他和群组相关的配置会自动生成。例如：
 - server.port，系统服务监听端口，根据配置，按照群组自动累加
-- logging.file，日志文件名称，根据群组名，自动拼装，如群组1的日志文件名为databee-core-1.log
+- logging.file，日志文件名称，根据群组名，自动拼装，如群组1的日志文件名为dataexport-core-1.log
 - system.dbUrl，数据库名。数据库名按照配置的数据库名，自动组装拼接。例如配置的database名称为bee，则群组1的数据库名自动为bee_g1.
 
 再次，按照之前的步骤启动build程序。
 ```
-./build_bee.sh -e build
+./build_export.sh -e build
 ```
 在dist目录下，会自动构建运行的程序和配置。同时，会自动生成start_all_groups.sh的脚本。
 
