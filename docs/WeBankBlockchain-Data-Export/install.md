@@ -23,7 +23,7 @@
 ##### 2.1.1 代码拉取
 
 ```shell
-git clone https://github.com/WeBankBlockchain/Data-Export.git
+git clone https://github.com/WeBankBlockchain/WeBankBlockchain-Data-Export.git
 
 ```
 
