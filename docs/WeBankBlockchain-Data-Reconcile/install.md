@@ -28,16 +28,16 @@ git checkout dev
 ./gradlew build
 ```
 
-项目jar包在当前目录下的位置如下：
+项目jar包在dist目录下，位置如下：
 
-![](../../images/WeBankBlockchain-Data-Reconcile/configfile.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/jarpath.png)
 
 
 ### 2.3 项目配置
 
-配置文件位于dist/config目录下，如下图所示。
+配置文件位于dist/config目录下，位置如下：
 
-![](../../images/WeBankBlockchain-Data-Reconcile/jarpath.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/configfile.png)
 
 #### 2.3.1 数据库配置
 
