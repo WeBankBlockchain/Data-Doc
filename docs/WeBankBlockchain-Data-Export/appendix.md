@@ -69,12 +69,13 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | regcenter.namespace | N | 注册中心命名空间 | wecredit_bee | - |
 
 #### 1.7 elastic search配置
+
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | es.enabled | Y | 启动ES开关 | true | false |
 | es.clusterName | N | 集群名称 | my-application | my-application |
-| es.ip | N | es节点ip | 127.0.0.1 | - |
-| es.port | N | es节点端口 | 9300 | - |
+| es.ip | N | es节点ip | 127.0.0.1 |  |
+| es.port | N | es节点端口 | 9300 |  |
 
 #### 1.8 其他高级配置
 
@@ -222,14 +223,20 @@ mysql > use databee;
 
   **以上语句仅适用于开发环境，不能直接在实际生产中使用！！！以上设置会使数据库在所有网络上都可以访问，请按具体的网络拓扑和权限控制情况，设置网络和权限帐号**
   
-### 5. zookeeper 安装
+  
+  
+### 5. Elasticsearch 安装
+
+[ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
+  
+### 6. zookeeper 安装
 zookeeper 支持单机和集群部署，推荐使用集群部署的方式，请参考zookeeper官网的说明：
 
 [集群部署](https://zookeeper.apache.org/doc/r3.4.13/zookeeperAdmin.html#sc_zkMulitServerSetup)
 
 [单机部署](https://zookeeper.apache.org/doc/r3.4.13/zookeeperAdmin.html#sc_singleAndDevSetup)
 
-### 6. supervisor安装与部署
+### 7. supervisor安装与部署
 
 ##### 安装脚本
 > sudo yum -y install supervisor
@@ -278,9 +285,9 @@ ps -ef|grep supervisord|grep databee| awk '{print $2}'|xargs kill -9
 ps -ef|grep WeBankBlockchain-Data-Export|grep -v grep| awk '{print $2}'|xargs kill -9
 ```
 
-### 7. 常见问题
+### 8. 常见问题
 
-#### 7.1 脚本没权限
+#### 8.1 脚本没权限
 
 - 执行shell脚本报错误"permission denied"或格式错误
 

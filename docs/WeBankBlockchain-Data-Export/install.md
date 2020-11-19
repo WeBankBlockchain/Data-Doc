@@ -130,7 +130,9 @@ system.dbPassword=[password]
 system.contractPackName=[编译Solidity合约时指定的包名]
 
 # elastic serach 配置（如果需要的话可进行配置）
+##是否开启ES存储
 es.enabled=false
+##ES集群名称
 es.clusterName=my-application
 es.ip=[ip]
 es.port=9300
@@ -161,6 +163,10 @@ Query OK, 1 row affected (0.04 sec)
 mysql> 
 ```
 只有创建成功database后，导出程序才能正常连接数据库。
+
+##### 2.2.5 创建Elasticsearch
+
+需要ES存储时，需先安装ES, 参考[ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
 
 #### 2.3 运行程序
 
