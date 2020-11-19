@@ -41,7 +41,7 @@ git checkout dev
 
 #### 2.3.1 数据库配置
 
-关于数据库的连接配置在datasource.properties下，将数据导出的数据库参数配置到这里
+关于数据库的连接配置在datasource.properties下，将链上导出数据所在的数据库参数配置到这里，链上数据需要借助数据导出组件WeBankBlockchain-Data-Export对链上数据进行导出，数据导出组件使用：[WeBankBlockchain-Data-Export](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/install.html)
 
 必配项如下：
 
