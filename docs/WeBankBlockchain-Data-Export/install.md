@@ -106,6 +106,8 @@ tools目录如下：
 -     sdk.crt
 -     sdk.key
 -     sdk.publickey
+其中sdk.publickey为FISCO-BCOS 2.6之后版本提供，版本< 2.6 无需复制该文件
+
 
 ##### 2.2.3 配置应用
 
