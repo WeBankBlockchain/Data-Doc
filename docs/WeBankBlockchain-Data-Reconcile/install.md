@@ -25,7 +25,7 @@ git checkout dev
 
 ```
 cd WeBankBlockchain-Data-Reconcile
-gradle build
+./gradlew build
 ```
 
 项目jar包在当前目录下的位置如下：
