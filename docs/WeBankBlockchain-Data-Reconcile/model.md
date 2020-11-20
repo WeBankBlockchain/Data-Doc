@@ -26,7 +26,7 @@
 
 对账方和业务方关系如下，该组件服务为对账方使用。
 
-​            ![](../../images/WeBankBlockchain-Data-Reconcile/reconcile_deployment.jpg)            
+​            ![](../../images/WeBankBlockchain-Data-Reconcile/reconcile_deployment.png)            
 
 ## 3. 模块设计
 
