@@ -36,6 +36,8 @@ git checkout dev
 ### 2.3 项目配置
 
 配置文件位于dist/config目录下，位置如下：
+<img src="../../images/WeBankBlockchain-Data-Reconcile/configfile.png" width=30% height=30%/>
+
 
 ![](../../images/WeBankBlockchain-Data-Reconcile/configfile.png)
 
@@ -176,7 +178,8 @@ block_height#_#tx_from#_#tx_to#_#
 ```
 格式说明：首行不可为空行，首行为对账字段，要与对账配置reconcile.properties中reconcile.fieldMapping设置字段对应，字段分隔符为#_#。
 
-同时，也可自行通过代码定义字段和数据，对账组件提供了txt格式文件的生成方法，在src/mian/java/com/webank/blockchain/data/reconcile/utils/FileUtills工具类中，如下：
+同时，也可自行通过代码定义字段和数据，组件提供txt格式文件的生成方法，在src/mian/java/com/webank/blockchain/data/reconcile/utils/FileUtills工具类中，
+如下：
 ```
 //数据写入新文件中
 public static <T> File exportDataByTxtFormat(List<T> dataList, String filePath)
