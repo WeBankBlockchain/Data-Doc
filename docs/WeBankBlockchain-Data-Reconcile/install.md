@@ -88,9 +88,9 @@ CREATE TABLE `task_info` (
 ```
 #定时对账开关
 reconcile.task.timer.enable=true
-#定时对账数据时间范围（单位：天）
-reconcile.task.time.range.days=0
-#定时对账时间规则
+#定时对账数据时间范围（单位：天），如设置为1天，则对账数据时间范围为对账任务触发时间起过去一天数据
+reconcile.task.time.range.days=1
+#定时对账时间规则（对账时间点设置）
 #Online build/parse: http://cron.qqe2.com/
 #Commonly used: second, minute, hour, day, month, year
 reconcile.task.time.rule=0 0 1 * * ?
@@ -110,10 +110,12 @@ reconcile.failed.compensate.rule=0 0/1 * * * ?
 reconcile.business.name=webank
 
 ##数据导出sql配置，包含查询sql和时间参数字段配置 (Must)
-#data query sql，format：select * from table where ... and 1=1（There is no need to add a data time range and paging criteria）
-reconcile.bc.reconcileQuerySql=select * from asset_transfer_event_event where 1=1
-#The time field name of the data export table， If multiple table operations are involved,
-#please indicate which table it belongs to, that is, add the field prefix, such as table.timeField (Must)
+#链上数据导出库表查询语句,格式：select * from table where ... and 1=1（不需要添加数据时间范围和分页条件）
+#以数据导出库表block_tx_detail_info为例：select block_height,tx_from,tx_to from block_tx_detail_info where 1=1
+reconcile.bc.reconcileQuerySql=select [field...] from [table] where 1=1
+
+#数据导出库表数据查询时间范围字段 (Must)
+#数据导出表的时间字段名，如果涉及多个表操作，请指出该字段属于哪个表，即添加字段前缀，如block_tx_detail_info.block_timestamp
 reconcile.bc.QueryTimeField=block_timestamp
 
 ##默认对账模式配置:
@@ -125,13 +127,11 @@ reconcile.file.type=txt
 reconcile.field.business.uniqueColumn=orderId
 #BC数据唯一键，与业务唯一键对应 (Must)
 reconcile.field.bc.uniqueColumn=pk_id
-#两方数据字段匹配规则，格式如下 (Must)
-#reconcile.fieldMapping.busId=bcId
-#reconcile.fieldMapping.busName=bcName
-#reconcile.fieldMapping.busAccount=bcAccount
-reconcile.fieldMapping._from_account=fromAccount
-reconcile.fieldMapping._to_account=toAccount
-reconcile.fieldMapping._amount=amount
+#两方数据字段匹配规则 (Must)
+#格式以reconcile.fieldMapping作为前缀，reconcile.fieldMapping.业务方字段名=数据导出表字段名,如下
+#reconcile.fieldMapping.busId=block_height
+#reconcile.fieldMapping.busFrom=tx_from
+#reconcile.fieldMapping.busTo=tx_to
 ```
 
 开启默认对账后，对账字段映射规则字段为必配，业务对账文件中字段名和数据导出的字段名要对应。
@@ -157,23 +157,25 @@ ftp.workDir=/home/upload
 
 ##### 2.3.4.1 业务方数据准备
 
-需要预先将业务数据文件放到ftp配置目录下
+需要预先将业务数据文件推送至ftp.properties中配置的工作目录下（ftp.workDir配置目录）
 
-**txt文件格式要求如下：**
+业务对账文件命名规则为：业务数据提供方机构名_对账数据查询起始日期（如：webank_2020-11-19），机构名为对账配置reconcile.properties中的机构名，如webank。
+
+测试时，为简化操作，可自建对账文件，文件名根据reconcile.properties配置中reconcile.task.time.range.days天数计算得到，如当前日期为2020-11-20，reconcile.task.time.range.days配置为1，则对账文件命名为：webank_2020-11-19
+
+业务对账文件支持txt和json格式
+
+**txt文件格式如下：**
 
 ```
-pk_id#_#block_height#_#certainty#_#
-5330#_#12329#_#1#_#
-5329#_#12328#_#1#_#
-328#_#12327#_#1#_#
+block_height#_#tx_from#_#tx_to#_#
+1#_#..#_#...#_#
+2#_#..#_#...#_#
+3#_#..#_#...#_#
 ```
+格式说明：首行不可为空行，首行为对账字段，要与对账配置reconcile.properties中reconcile.fieldMapping设置字段对应，字段分隔符为#_#。
 
-首行不可为空行，首行为对账数据字段，要与对账配置中字段对应，分隔符#_#。
-
-文件命名规则为：业务数据提供方机构名_对账数据起始日期，机构名为对账配置中的机构名。
-
-对账数据的导出提供了统一的工具方法，在utils/FileUtills工具类中，如下：
-
+同时，也可自行通过代码定义字段和数据，对账组件提供了txt格式文件的生成方法，在src/mian/java/com/webank/blockchain/data/reconcile/utils/FileUtills工具类中，如下：
 ```
 //数据写入新文件中
 public static <T> File exportDataByTxtFormat(List<T> dataList, String filePath)
@@ -183,27 +185,27 @@ public static <T> File exportDataByTxtFormat(List<T> dataList, String filePath,
 boolean append) 
 ```
 
-对应调用方式如下，定义数据对象，其属性对象应实现toString()方法
+可以根据不同需求通过上述工具方法，定义业务对账文件字段和数据，并导出为文件，同时定义数据对象时，应实现toString()方法
 
+以数据导出库表block_tx_detail_info为例，业务数据字段可定义如下：
 ```
- 	@Test
     public void exportDataUtilTest() throws Exception {
         List<ExportData> dataList = new ArrayList<>();
-        ExportData data1 = new ExportData(1, "wew", 2);
-        ExportData data2 = new ExportData(2, "ds", 4);
+        ExportData data1 = new ExportData(1, "..", "...");
+        ExportData data2 = new ExportData(2, "..", "...");
         dataList.add(data1);
         dataList.add(data2);
         FileUtils.exportDataByTxtFormat(dataList,"out/export.txt");
     }
-	//例子
+
     static class ExportData{
-        long amount;
-        String name;
-        int age;
-        public ExportData(long amount, String name, int age) {
-            this.amount = amount;
-            this.name = name;
-            this.age = age;
+        long busId;
+        String busFrom;
+        String busTo;
+        public ExportData(long busId, String busFrom, String busTo) {
+            this.busId = busId;
+            this.busFrom = busFrom;
+            this.busTo = busTo;
         }
     }
 ```
@@ -213,21 +215,15 @@ boolean append)
 **json格式文件如下：**
 
 ```
-[{"orderId":"2","amount":"10","fromAccount":"sjj","toAccount":"wy"},{"orderId":"3","amount":"10","fromAccount":"sjj","toAccount":"wy"}]
+[{"busId":"2","busFrom":"10","busTo":"sjj"},{"busId":"3","busFrom":"10","busTo":"sjj"}]
 ```
+格式说明：json采用通过格式，可通过Jackson等工具包生成，这里不再赘述。
 
 以上为业务方数据准备。
 
 
 
-##### 2.3.4.2 链上数据导出
-
-链上数据需要借助数据导出组件WeBankBlockchain-Data-Export对链上数据进行导出，数据导出组件使用：[WeBankBlockchain-Data-Export](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/install.html)
-
-
-
 ## 3.  项目启动
-
 
 
 ### 项目启动
