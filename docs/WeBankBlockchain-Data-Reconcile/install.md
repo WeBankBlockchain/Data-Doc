@@ -144,9 +144,9 @@ ftp配置在ftp.properties中，基本配置项如下：
 ftp.enabled=true
 ftp.host=127.0.0.1
 ftp.port=21
-ftp.userName=root
-ftp.passWord=root
-ftp.workDir=/reconcile
+ftp.userName=ftptest
+ftp.passWord=123456
+ftp.workDir=/home/upload
 ```
 
 本地测试使用ftp，可在本地安装FTP环境，推荐QuickFTP Server，方便快捷开启FTP
