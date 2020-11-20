@@ -168,6 +168,8 @@ mysql>
 
 需要ES存储时，需先安装ES, 参考[ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
 
+ES查询数据，参考[ES数据查询](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/search-your-data.html)
+
 #### 2.3 运行程序
 
 
