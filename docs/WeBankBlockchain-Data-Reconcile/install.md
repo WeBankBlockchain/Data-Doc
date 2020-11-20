@@ -28,18 +28,30 @@ git checkout dev
 ./gradlew build
 ```
 
-项目jar包在dist目录下，位置如下：
-
-![](../../images/WeBankBlockchain-Data-Reconcile/jarpath.png)
-
+项目jar包在dist目录下，dist目录如下：
+```
+├── dist
+│   ├── config
+│   │   ├── application.properties
+│   │   └── datasource.properties
+│   │   └── ftp.properties
+│   │   └── reconcile.properties
+│   ├── start.sh
+│   ├── stop.sh
+│   └── WeBankBlockchain-Data-Reconcile-0.0.1-SNAPSHOT.jar
+```
 
 ### 2.3 项目配置
 
-配置文件位于dist/config目录下，位置如下：
-<img src="../../images/WeBankBlockchain-Data-Reconcile/configfile.png" width=30% height=30%/>
-
-
-![](../../images/WeBankBlockchain-Data-Reconcile/configfile.png)
+配置文件位于dist/config目录下
+```
+├── dist
+│   ├── config
+│   │   ├── application.properties
+│   │   └── datasource.properties
+│   │   └── ftp.properties
+│   │   └── reconcile.properties
+```
 
 #### 2.3.1 数据库配置
 
