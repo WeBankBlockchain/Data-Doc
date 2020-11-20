@@ -124,9 +124,10 @@ reconcile.general.enabled=true
 #业务数据文件格式, json or txt
 reconcile.file.type=txt
 #业务数据唯一键 (Must)
-reconcile.field.business.uniqueColumn=orderId
-#BC数据唯一键，与业务唯一键对应 (Must)
-reconcile.field.bc.uniqueColumn=pk_id
+#唯一键用来匹配数据
+reconcile.field.business.uniqueColumn=busId
+#数据导出数据唯一键，与业务唯一键对应 (Must)
+reconcile.field.bc.uniqueColumn=block_height
 #两方数据字段匹配规则 (Must)
 #格式以reconcile.fieldMapping作为前缀，reconcile.fieldMapping.业务方字段名=数据导出表字段名,如下
 #reconcile.fieldMapping.busId=block_height
