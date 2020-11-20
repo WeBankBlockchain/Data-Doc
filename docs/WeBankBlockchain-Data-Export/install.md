@@ -98,16 +98,11 @@ tools目录如下：
 
 ##### 2.2.2 配置证书文件
 
-将节点sdk目录下的相关的证书文件：请将你的配置文件**复制到./tools/config/resources目录**下。配置文件包括：
-
--     ca.crt
--     node.crt
--     node.key
--     sdk.crt
--     sdk.key
--     sdk.publickey
-其中sdk.publickey为FISCO-BCOS 2.6之后版本提供，版本< 2.6 无需复制该文件
-
+将SDK证书拷贝到 **./tools/config/resources目录**下，SDK证书目录位于nodes/${ip}/sdk/目录下
+```
+# 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
+cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/resources
+```
 
 ##### 2.2.3 配置应用
 
