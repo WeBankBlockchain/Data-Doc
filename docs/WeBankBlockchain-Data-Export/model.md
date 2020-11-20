@@ -1,6 +1,6 @@
 ## 存储模型
 
-数据导出中间件会自动将数据导出到存储介质中，每一类数据都有特定的存储格式和模型，以MySQL为例。包括四类数据：区块数据、账户数据、事件数据和交易数据。
+数据导出中间件会自动将数据导出到存储介质中，每一类数据都有特定的存储格式和模型，包括四类数据：区块数据、账户数据、事件数据和交易数据，Mysql和ES存储采用类似的存储模型
 
 ### 1. 区块数据存储模型
 区块原始数据模型包括三个数据存储模型，分别为区块原始数据模型、交易原始数据模型、交易回执数据模型
@@ -29,6 +29,9 @@
 | transactionList | longtext |  |  | 交易列表 |
 | depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |
 
+对应ES索引名为 **blockrawdata**
+
+
 #### 1.2 交易原始数据表 tx_raw_data
 区块原始数据表⽤于存储每个区块的详细信息。⼀般通过RPC接⼝调⽤getBlockByNumber或 getBlockByHash接⼝来获得相应的区块数据。
 
@@ -49,6 +52,7 @@
 | value | longtext |  |  | 转移的值 |
 | depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |
 
+对应ES索引名为 **txrawdata**
 
 #### 1.3 交易回执原始数据表 tx_receipt_raw_data
 交易原始数据表⽤于存储每笔交易的回执数据。⼀般通过RPC接⼝调⽤getTransactionReceipt等接⼝来 获得相应的交易数据。
@@ -75,6 +79,7 @@
 | tx_index | varchar(255) |  |  | 交易序号 |
 | depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |
 
+对应ES索引名为 **txreceiptrawdata**
 
 ### 2. 解析后的区块数据存储模型
 
@@ -95,6 +100,8 @@
 | depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |
 | status | int(11) |  |  | 区块状态 0-初始化 1-成功 2-失败 |
 
+对应ES索引名为 **blockdetailinfo**
+
 #### 2.2 区块交易数据存储模型 block_tx_detail_info
 
 区块交易数据存储模型用于存储每个区块中每个交易的基本信息，包括区块哈希、块高、出块时间、合约名称、方法名称、交易哈希、交易发起方地址、交易接收方地址，对应的数据库表名为**block_tx_detail_info**。如下表所示。
@@ -112,6 +119,8 @@
 | tx_to | varchar(255) |  |  | 交易接收方地址 |
 | depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |
 
+对应ES索引名为 **blocktxdetailinfo**
+
 ### 3. 合约信息存储模型
 
 #### 3.1 合约信息表 contract_info
@@ -128,6 +137,8 @@
 | version | varchar(255) |  |  | 版本号 |
 | depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |
 
+对应ES索引名为 **contractinfo**
+
 #### 3.2 已部署合约详情信息表 deployed_account_info
 已部署账户数据存储模型⽤于存储区块链⽹络中所有账户信息，包括账户创建时所在块⾼、账户所在块的 出块时间、账户地址（合约地址）、合约名称。对应的数据库表名为deployed_account_info。如下表所 示。
 
@@ -141,6 +152,7 @@
 | block_timestamp | datetime |  |  | 出块时间 |
 | depot_updatetime | datetime |  | 系统时间 | 记录插入/更新时间 |
 
+对应ES索引名为 **deployaccountinfo**
 
 ### 4. 事件数据存储模型
 
@@ -173,7 +185,9 @@ contract UserInfo {
 
 ##### 4.1.1 事件表命名规则
 
-事件表命名规则为：合约名称_事件名称，并将合约名称和事件名称中的驼峰命名转化为小写加下划线方式。比如上述合约中合约名称为UserInfo，事件名称为modifyUserNameEvent，则表名称为user_info_modify_user_name_event。
+mysql事件表命名规则为：合约名称_事件名称，并将合约名称和事件名称中的驼峰命名转化为小写加下划线方式。比如上述合约中合约名称为UserInfo，事件名称为modifyUserNameEvent，则表名称为user_info_modify_user_name_event。
+
+ES事件索引命名规则：合约名称+事件名称+event
 
 ##### 4.1.2 事件字段命名规则
 
@@ -209,7 +223,9 @@ contract UserInfo {
 
 ##### 5.1.1 交易表命名规则
 
-交易表命名规则为：合约名称_方法名称，并将合约名称和方法名称中的驼峰命名转化为小写加下划线方式。比如上述合约中合约名称为UserInfo，方法名称为modifyUserName，则表名称为user_info_modify_user_name_method；构造方法名称为UserInfo，那么对应的表名为user_info_user_info_method。
+mysql交易表命名规则为：合约名称_方法名称，并将合约名称和方法名称中的驼峰命名转化为小写加下划线方式。比如上述合约中合约名称为UserInfo，方法名称为modifyUserName，则表名称为user_info_modify_user_name_method；构造方法名称为UserInfo，那么对应的表名为user_info_user_info_method。
+ES事件索引命名规则：合约名称+方法名称+method
+
 
 ##### 5.1.2 交易字段命名规则
 
