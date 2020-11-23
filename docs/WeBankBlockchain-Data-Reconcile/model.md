@@ -66,9 +66,9 @@ DB配置位于resource目录下datasource.properties文件，用于数据库的�
 
 ```
 ## data export DB config
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8
-spring.datasource.username=root
-spring.datasource.password=123456
+spring.datasource.url=jdbc:mysql://[IP]:[PORT]/[database]?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+spring.datasource.username=[user_name]
+spring.datasource.password=[password]
 ```
 
 
@@ -138,10 +138,12 @@ reconcile.failed.compensate.rule=0 0/1 * * * ?
 reconcile.business.name=webank
 
 ##数据导出sql配置，包含查询sql和时间参数字段配置 (Must)
-#data query sql，format：select * from table where ... and 1=1（There is no need to add a data time range and paging criteria）
-reconcile.bc.reconcileQuerySql=select * from asset_transfer_event_event where 1=1
-#The time field name of the data export table， If multiple table operations are involved,
-#please indicate which table it belongs to, that is, add the field prefix, such as table.timeField (Must)
+#链上数据导出库表查询语句,格式：select * from table where ... and 1=1（不需要添加数据时间范围和分页条件）
+#以数据导出库表block_tx_detail_info为例：select block_height,tx_from,tx_to from block_tx_detail_info where 1=1
+reconcile.bc.reconcileQuerySql=select [field...] from [table] where 1=1
+
+#数据导出库表数据查询时间范围字段 (Must)
+#数据导出表的时间字段名，如果涉及多个表操作，请指出该字段属于哪个表，即添加字段前缀，如block_tx_detail_info.block_timestamp
 reconcile.bc.QueryTimeField=block_timestamp
 
 ##默认对账模式配置:
@@ -150,16 +152,15 @@ reconcile.general.enabled=true
 #业务数据文件格式, json or txt
 reconcile.file.type=txt
 #业务数据唯一键 (Must)
-reconcile.field.business.uniqueColumn=orderId
-#BC数据唯一键，与业务唯一键对应 (Must)
-reconcile.field.bc.uniqueColumn=pk_id
-#两方数据字段匹配规则，格式如下 (Must)
-#reconcile.fieldMapping.busId=bcId
-#reconcile.fieldMapping.busName=bcName
-#reconcile.fieldMapping.busAccount=bcAccount
-reconcile.fieldMapping._from_account=fromAccount
-reconcile.fieldMapping._to_account=toAccount
-reconcile.fieldMapping._amount=amount
+#唯一键用来匹配数据
+reconcile.field.business.uniqueColumn=busId
+#数据导出数据唯一键，与业务唯一键对应 (Must)
+reconcile.field.bc.uniqueColumn=block_height
+#两方数据字段匹配规则 (Must)
+#格式以reconcile.fieldMapping作为前缀，reconcile.fieldMapping.业务方字段名=数据导出表字段名,如下
+#reconcile.fieldMapping.busId=block_height
+#reconcile.fieldMapping.busFrom=tx_from
+#reconcile.fieldMapping.busTo=tx_to
 ```
 
 

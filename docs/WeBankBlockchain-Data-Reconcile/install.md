@@ -61,9 +61,9 @@ git checkout dev
 
 ```
 ## data export DB config
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8
-spring.datasource.username=root
-spring.datasource.password=123456
+spring.datasource.url=jdbc:mysql://[IP]:[PORT]/[database]?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+spring.datasource.username=[user_name]
+spring.datasource.password=[password]
 
 ##生产环境下需关闭以下自动建表配置，手动建表
 spring.jpa.hibernate.ddl-auto=update
@@ -150,6 +150,10 @@ reconcile.field.bc.uniqueColumn=block_height
 ```
 
 开启默认对账后，对账字段映射规则字段为必配，业务对账文件中字段名和数据导出的字段名要对应。
+
+上述配置中对账任务相关参考基础模块中[任务管理](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
+
+配置介绍参考[配置介绍](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
 
 #### 2.3.3 FTP配置
 

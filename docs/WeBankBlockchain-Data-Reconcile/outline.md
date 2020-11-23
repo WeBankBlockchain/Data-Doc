@@ -11,7 +11,12 @@ WeBankBlockchain-Data-Reconcile是一款基于区块链的对账组件，提供�
 
 企业A和企业B之间作为合作者，存在转账交易等数据交互行为，两者通过FISCO-BCOS搭建了区块链，并将各自的交易数据上传到链上，在结算时，A企业定期将自身业务系统交易数据导出为对账文件，发送至与文件资源托管中心，B企业并通过数据导出组件WeBankBlockchain-Data-Export导出链上数据至数据库中，并借助WeBankBlockchain-Data-Reconcile对账组件定期拉取A企业对账文件，与导出的链上数据进行对账处理，同时通过扩展接口对组件进行定制化开发，以满足不同对账需求。企业之间通过使用WeBankBlockchain-Data-Reconcile在保证对账结果可信的同时提升了对账的效率。
 
+<div width="300" height="200">
+
 ![](../../images/WeBankBlockchain-Data-Reconcile/companyrec.png)
+
+</div>
+
 
 
 #### 2.2 案例 企业内部对账
