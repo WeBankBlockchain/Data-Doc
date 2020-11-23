@@ -20,7 +20,6 @@
 ```
 git clone https://github.com/WeBankBlockchain/WeBankBlockchain-Data-Reconcile.git
 cd WeBankBlockchain-Data-Reconcile
-git checkout dev
 ```
 ### 2.2 项目打包
 
