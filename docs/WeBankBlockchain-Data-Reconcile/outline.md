@@ -14,7 +14,7 @@ WeBankBlockchain-Data-Reconcile是一款基于区块链的对账组件，提供�
 
 <div width:200 height:100 xmlns:width="http://www.w3.org/1999/xhtml" xmlns:height="http://www.w3.org/1999/xhtml">
 
-![](../../images/WeBankBlockchain-Data-Reconcile/companyrec.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/out_reconcile.png)
 
 </div>
 
@@ -24,7 +24,7 @@ WeBankBlockchain-Data-Reconcile是一款基于区块链的对账组件，提供�
 
 企业内部通过FISCO-BCOS搭建了区块链，业务数据不仅保存在业务系统内部，同时也上传到链上，保证数据的不可篡改，由于业务系统可能存在人为篡改或数据故障等情况出现，需定期对业务系统数据进行核算检查，借助WeBankBlockchain-Data-Reconcile将业务系统数据和链上数据进行核算比对，保证企业内部业务系统数据的可靠和运行安全。
 
-![](../../images/WeBankBlockchain-Data-Reconcile/interrecon.png)
+![](../../images/WeBankBlockchain-Data-Reconcile/in_reconcile.png)
 
 
 ### 3. 特性介绍
