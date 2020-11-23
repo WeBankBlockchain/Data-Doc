@@ -95,9 +95,11 @@ CREATE TABLE `task_info` (
 
 #### 2.3.2 对账配置
 
-对账的配置reconcile.properties
+对账配置reconcile.properties，包括对账任务相关配置和对账数据规则配置
 
-配置项如下，其中必配项做了标记(Must)
+##### 2.3.2.1 对账配置
+
+对账任务配置及说明如下，配置项如下，其中必配项做了标记(Must)，可采用默认配置
 
 ```
 #定时对账开关
@@ -120,6 +122,15 @@ reconcile.executing.compensate.rule=0 0/1 * * * ?
 #对账状态补偿时间规则（失败）
 reconcile.failed.compensate.rule=0 0/1 * * * ?
 
+```
+对账任务相关详情参考基础模块中[任务管理](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
+
+
+##### 2.3.2.2 对账数据规则配置
+
+对账数据规则配置及说明如下，配置项如下，其中必配项做了标记(Must)
+
+```
 #业务数据提供方机构名 (Must)
 reconcile.business.name=webank
 
@@ -151,9 +162,7 @@ reconcile.field.bc.uniqueColumn=block_height
 
 开启默认对账后，对账字段映射规则字段为必配，业务对账文件中字段名和数据导出的字段名要对应。
 
-上述配置中对账任务相关参考基础模块中[任务管理](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
-
-配置介绍参考[配置介绍](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
+对账配置更多说明参考[配置介绍](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
 
 #### 2.3.3 FTP配置
 
@@ -168,9 +177,7 @@ ftp.passWord=123456
 ftp.workDir=/home/upload
 ```
 
-本地测试使用ftp，可在本地安装FTP环境，推荐QuickFTP Server，方便快捷开启FTP
-
-远程可自行搭建，推荐vsftp，参考链接：[ftp安装](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/appendix.html#ftp)
+需自行搭建，推荐vsftp，参考链接：[ftp安装](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/appendix.html#ftp)
 
 #### 2.3.4 对账数据准备
 
