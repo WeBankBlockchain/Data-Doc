@@ -274,7 +274,15 @@ cd dist && bash start.sh
 
 执行结果本地保存在/dist/out/result目录中：
 
-![](../../images/WeBankBlockchain-Data-Reconcile/resultpath.png)
+```
+├── out
+│   ├── bc
+│   │   ├── BC_yyyy-MM-dd.txt
+│   ├── business
+│   │   ├── company_yyyy-MM-dd.txt
+│   ├── result
+│   │   ├── result_company_yyyy-MM-dd.txt
+```
 
 执行日志保存在logs目录下
 
@@ -282,9 +290,25 @@ cd dist && bash start.sh
 
 ## 4. 项目扩展
 
-支持业务根据自身需求对组件进行扩展，组件核心流程位于handler目录下，如下：
+支持业务根据自身需求对组件进行扩展，组件核心流程位于src/main/java/com/webank/blockchain/data/reconcile/handler目录下，如下：
 
-![](../../images/WeBankBlockchain-Data-Reconcile/processpath.png)
+```
+├── handler
+│   ├── executor
+│   │   ├── DefaultReconcileExecuteHandler.java
+│   │   └── ReconcileExecuteHandler.java
+│   ├── filesource
+│   │   ├── DefaultReconcileFileObtainHandler.java
+│   │   └── ReconcileFileObtainHandler.java
+│   ├── finish
+│   │   ├── DefaultReconcileResultHandler.java
+│   │   └── ReconcileResultHandler.java
+│   ├── task
+│   │   └── ReconcileTaskHandler.java
+│   ├── Handler.java
+│   ├── InvocationHandler.java
+│   └── ReconcileHandlerFactory.java
+```
 
 对账流程默认分为四步：
 
