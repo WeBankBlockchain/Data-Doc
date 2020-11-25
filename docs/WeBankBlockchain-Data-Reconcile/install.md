@@ -18,7 +18,7 @@
 ### 2.1 下载代码：
 
 ```
-git clone https://github.com/WeBankBlockchain/WeBankBlockchain-Data-Reconcile.git
+git clone https://github.com/WeBankBlockchain/Data-Reconcile.git
 cd WeBankBlockchain-Data-Reconcile
 ```
 ### 2.2 项目打包
