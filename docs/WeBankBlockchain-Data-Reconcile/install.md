@@ -18,8 +18,8 @@
 ### 2.1 下载代码：
 
 ```
-git clone https://github.com/WeBankBlockchain/WeBankBlockchain-Data-Reconcile.git
-cd WeBankBlockchain-Data-Reconcile
+git clone https://github.com/WeBankBlockchain/Data-Reconcile.git
+cd Data-Reconcile
 ```
 ### 2.2 项目打包
 
@@ -37,7 +37,7 @@ cd WeBankBlockchain-Data-Reconcile
 │   │   └── reconcile.properties
 │   ├── start.sh
 │   ├── stop.sh
-│   └── WeBankBlockchain-Data-Reconcile-0.0.1-SNAPSHOT.jar
+│   └── Data-Reconcile-1.0.0-SNAPSHOT.jar
 ```
 
 ### 2.3 项目配置
