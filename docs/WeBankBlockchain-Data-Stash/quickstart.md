@@ -18,7 +18,7 @@
 
 ### 2.1. FISCO BCOS节点配置
 
-由于全量数据服务用于生成节点的全量备份，所以要求节点拥有包括第一个区块在内的完整binlog日志，故需要确保该节点加入FISCO BCOS网络前就开启binlog生成选项。如果您的节点已经在运行中，请先停止该节点，并删除对应群组（以group1为例）的数据。例如：
+由于数据仓库组件用于生成节点的全量备份，所以要求节点拥有包括第一个区块在内的完整binlog日志，故需要确保该节点加入FISCO BCOS网络前就开启binlog生成选项。如果您的节点已经在运行中，请先停止该节点，并删除对应群组（以group1为例）的数据。例如：
 
 ```
 [work@instance-zw7wgjv0 node0]$ bash stop.sh
@@ -110,7 +110,7 @@ nginx配置文件位于/usr/local/nginx/conf/nginx.conf。需要在http模块内
 
 ![](./picture/nginx_success.png)
 
-## 3. 运行全量数据服务
+## 3. 运行数据仓库组件
 
 ### 3.1. 下载源码
 

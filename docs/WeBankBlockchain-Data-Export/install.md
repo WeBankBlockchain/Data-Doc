@@ -23,7 +23,7 @@
 ##### 2.1.1 代码拉取
 
 ```shell
-git clone https://github.com/WeBankBlockchain/WeBankBlockchain-Data-Export.git
+git clone https://github.com/WeBankBlockchain/Data-Export.git
 
 ```
 
@@ -71,7 +71,7 @@ WeBankBlockchain-Data-Export-parser 区块解析相关的功能。
 ##### 2.1.2 进入安装路径
 
 ```shell
-cd WeBankBlockchain-Data-Export/tools
+cd Data-Export/tools
 
 ```
 
