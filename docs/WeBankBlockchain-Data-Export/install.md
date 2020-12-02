@@ -110,7 +110,7 @@ cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/resources
 
 ```
 # 节点的IP及通讯端口、组号。 
-##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200。
+##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200，多节点以;分隔
 system.nodeStr=[IP]:[PORT]
 ## GROUP_ID必须与FISCO-BCOS中配置的groupId一致。
 system.groupId=[GROUP_ID]
