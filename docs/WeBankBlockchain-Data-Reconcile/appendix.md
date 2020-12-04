@@ -190,6 +190,7 @@ systemctl status vsftpd
 chkconfig vsftpd on
 ```
 4.5 安装问题
+
 安装完成后可通过以下命令测试ftp是否可以正常登录
 ```
 ftp localhost
