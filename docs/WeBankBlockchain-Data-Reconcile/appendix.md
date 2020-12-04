@@ -180,7 +180,7 @@ firewall-cmd --permanent --zone=public --add-service=ftp
 firewall-cmd --reload
 ```
 
-4.3 修改firewall使之允许ftp功能
+4.4 修改firewall使之允许ftp功能
 ```
 # 启动ftp
 systemctl start vsftpd
@@ -189,3 +189,10 @@ systemctl status vsftpd
 # 设置开机自启动
 chkconfig vsftpd on
 ```
+4.5 安装问题
+安装完成后可通过以下命令测试ftp是否可以正常登录
+```
+ftp localhost
+```
+如果无法登录，可在/etc/shells文件中，增加配置：/sbin/nologin
+保存后重启ftp，尝试登录
