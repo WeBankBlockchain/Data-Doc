@@ -57,10 +57,13 @@ mysql > GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GR
 mysql > flush PRIVILEGES;
 ```
 
+```eval_rst
+.. important::
   **安全温馨提示：**
 
 - 例子中给出的数据库密码（123456）仅为样例，强烈建议设置成复杂密码
 - 例子中root用户的远程授权设置会使数据库在所有网络上都可以访问，请按具体的网络拓扑和权限控制情况，设置网络和权限帐号
+```
 
 （5）创建test用户并授权本地访问
 
