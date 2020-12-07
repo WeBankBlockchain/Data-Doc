@@ -12,7 +12,7 @@
     WeBankBlockchain-Data-Export的前身是WeBASE-Codegen-Monkey和WeBASE-Collect-Bee，迄今已知在十多家公司数十个生产系统中稳定、安全运行。作为区块链数据治理的关键一环，WeBankBlockchain-Data-Export基于此进行了整合和优化，并作为WeBankBlockchain-Data重要组件正式发布。后续的社区和支持会转移到WeBankBlockchain-Data-Bee。欢迎大家一起多多反馈并参与到建设中来。
 
 ```
-
+.. image:: ../images/overview/Data-Export.png
 
 ```eval_rst
 .. admonition:: **主要特性**
