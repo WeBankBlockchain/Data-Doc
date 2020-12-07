@@ -10,6 +10,7 @@
     WeBankBlockchain-Data-Reconcile是一款基于区块链的对账组件，提供基于区块链智能合约账本的通用化数据对账解决方案，并提供了一套可动态扩展的对账框架，支持定制化开发。
 ```
 
+.. image:: ../images/overview/Data-Reconcile.png
 
 ```eval_rst
 .. admonition:: **主要特性**
