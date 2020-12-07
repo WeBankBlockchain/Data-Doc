@@ -159,10 +159,12 @@ reconcile.field.bc.uniqueColumn=block_height
 #reconcile.fieldMapping.busFrom=tx_from
 #reconcile.fieldMapping.busTo=tx_to
 ```
-
-开启默认对账后，对账字段映射规则字段为必配，业务对账文件中字段名和数据导出的字段名要对应。
-
+```eval_rst
+.. important::
+   开启默认对账后，对账字段映射规则字段为必配，业务对账文件中字段名和数据导出的字段名要对应。
+```
 对账配置更多说明参考[配置介绍](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
+
 
 #### 2.3.3 FTP配置
 
