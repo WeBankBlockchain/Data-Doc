@@ -70,8 +70,10 @@ spring.jpa.hibernate.ddl-auto=update
 ```
 ```eval_rst
 .. important::
-  上述自动建表配置关闭时，需将下述sql在以上配置的数据库中执行，否则默认开启自动建表，无需执行该sql。
-  对账任务表记录了对账任务的生命周期和流转状态
+   上述自动建表配置关闭时，需将下述sql在以上配置的数据库中执行，否则默认开启自动建表，无需执行该sql。
+   对账任务表记录了对账任务的生命周期和流转状态
+```
+
 ```
 CREATE TABLE `task_info` (
   `pk_id` bigint(20) NOT NULL AUTO_INCREMENT,
