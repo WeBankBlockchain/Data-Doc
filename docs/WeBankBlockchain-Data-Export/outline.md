@@ -46,7 +46,7 @@ WeBankBlockchain-Data-Export还集成了Swagger组件，提供了可视化的文
 
 - 解决方案
 
-该公司使用[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export/tree/master)，并根据实际需求进行了定制化开发，区块链上的数据可以实时导出到数据库中。利用[WeBankBlockchain-Data-Export](https://github.com/WeBankFinTech/WeBankBlockchain-Data-Export/tree/master)自带的Restful API，该公司的报表系统实现了和区块链数据的对接，可以获得准实时的各类业务报表。
+该公司使用[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export/tree/master)，并根据实际需求进行了定制化开发，区块链上的数据可以实时导出到数据库中。利用[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export)自带的Restful API，该公司的报表系统实现了和区块链数据的对接，可以获得准实时的各类业务报表。
 
 ### 3. 特性介绍
 
