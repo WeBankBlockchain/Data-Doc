@@ -104,7 +104,7 @@ spring.shardingsphere.sharding.tables.block_detail_info.key-generator-column-nam
 spring.shardingsphere.datasource.names=ds,ds0,ds1
 
 # 设置默认的数据源
-spring.shardingsphere.sharding.default-datasource-name=ds
+spring.shardingsphere.sharding.default-datasource-name=ds0
 
 # 定义数据源ds
 spring.shardingsphere.datasource.ds.type=com.zaxxer.hikari.HikariDataSource
