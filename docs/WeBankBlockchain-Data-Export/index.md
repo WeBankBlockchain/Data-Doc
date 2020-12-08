@@ -13,6 +13,9 @@
 
 ```
 
+```eval_rst
+.. image:: ../../images/overview/Data-Export.png
+```
 
 ```eval_rst
 .. admonition:: **主要特性**
@@ -38,5 +41,4 @@
    model.md
    question.md
    appendix.md
-   tech.md
 ```

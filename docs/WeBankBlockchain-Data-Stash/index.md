@@ -9,6 +9,10 @@
 ```
 
 ```eval_rst
+.. image:: ../../images/overview/Data-Stash.png
+```
+
+```eval_rst
 .. admonition:: **主要特性**
 
     - 提供binlog日志的下载、解析
