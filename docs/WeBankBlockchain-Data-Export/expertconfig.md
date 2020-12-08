@@ -7,7 +7,7 @@
 进入WeBankBlockchain-Data-Export-core的目录：
 
 ```
-cd WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core
+cd Data-Export/WeBankBlockchain-Data-Export-core
 
 ```
 
