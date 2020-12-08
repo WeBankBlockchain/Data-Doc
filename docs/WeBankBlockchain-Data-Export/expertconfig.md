@@ -22,7 +22,7 @@ bash gradlew clean bootJar
 
 ##### 导出数据范围的配置
 
-配置文件位于 WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
+配置文件位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
@@ -32,7 +32,7 @@ bash gradlew clean bootJar
 ##### 单节点部署的配置
 
 在选择单节点配置后，以下配置会自动生成。
-单节点任务调度的配置，分布式任务调度的配置默认位于 WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
+单节点任务调度的配置，分布式任务调度的配置默认位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
 
 ```
 #### 当此参数为false时，进入单节点任务模式
@@ -44,7 +44,7 @@ system.crawlBatchUnit=100
 
 ##### 集群部署的配置
 
-多节点任务调度的配置，分布式任务调度的配置默认位于 WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
+多节点任务调度的配置，分布式任务调度的配置默认位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
 
 ```
 #### 当此参数为true时，进入多节点任务模式
@@ -71,7 +71,7 @@ dataflowJob.shardingTotalCount=3
 dataflowJob.shardingItemParameters=0=A,1=B,2=C
 ```
 
-数据库配置解析，数据库的配置默认位于 WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application-sharding-tables.properties
+数据库配置解析，数据库的配置默认位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application-sharding-tables.properties
 
 ##### 分库分表的配置
 
