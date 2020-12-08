@@ -20,8 +20,12 @@
 ```
 git clone https://github.com/WeBankBlockchain/Data-Reconcile.git
 cd Data-Reconcile
-
 ```
+```eval_rst
+.. note::
+    - 如果因为网络问题导致长时间无法下载，请尝试：git clone https://gitee.com/WeBankBlockchain/Data-Reconcile.git
+```
+
 ### 2.2 项目打包
 
 ```

@@ -120,6 +120,10 @@ nginx配置文件位于/usr/local/nginx/conf/nginx.conf。需要在http模块内
 git clone https://github.com/WeBankBlockchain/Data-Stash.git
 
 ```
+```eval_rst
+.. note::
+    - 如果因为网络问题导致长时间无法下载，请尝试：git clone https://gitee.com/WeBankBlockchain/Data-Stash.git
+```
 
 ### 3.2. 编译源码
 
