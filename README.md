@@ -1,5 +1,5 @@
 # Data-Doc
-WeBankBlockchain-Data数据治理通用组件文档
+WeBankBlockchain-Data数据治理通用组件[文档](https://data-doc.readthedocs.io/zh_CN/dev/index.html)
 
 ## 组件介绍
 ### **WeBankBlockchain-Data-Stash  数据仓库组件** 
@@ -25,9 +25,6 @@ WeBankBlockchain-Data数据治理通用组件文档
 - [Github地址](https://github.com/WeBankBlockchain/Data-Reconcile)
 - [Gitee地址](https://github.com/FISCO-BCOS/FISCO-BCOS)
 - [文档](https://gitee.com/WeBankBlockchain/Data-Reconcile)
-
-## 文档
-- [**中文**](https://data-doc.readthedocs.io/zh_CN/dev/index.html)
 
 ## 贡献代码
 欢迎参与本项目的社区建设：
