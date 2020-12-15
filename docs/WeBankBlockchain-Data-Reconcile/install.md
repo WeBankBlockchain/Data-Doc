@@ -117,14 +117,15 @@ reconcile.task.time.range.days=1
 #定时对账时间规则（对账时间点设置）
 #Online build/parse: http://cron.qqe2.com/
 #Commonly used: second, minute, hour, day, month, year
-reconcile.task.time.rule=0 0 1 * * ?
+#默认配置为每隔1分钟执行一次，可根据实际场景按需配置
+reconcile.task.time.rule=0 0/1 * * * ?
 
 #对账任务超时时间（ms）
 reconcile.task.timeout=600000
 #对账任务失败重试间隔时间（ms）
 reconcile.task.retry.interval.time=60000
-#对账失败任务重试次数
-reconcile.task.retry.count=2
+#对账失败任务重试次数，若配置为0则关闭任务重试
+reconcile.task.retry.count=0
 #对账状态补偿时间规则（执行中）
 reconcile.executing.compensate.rule=0 0/1 * * * ?
 #对账状态补偿时间规则（失败）

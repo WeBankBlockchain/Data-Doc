@@ -150,7 +150,7 @@ ftp：用于文件托管
 
 **centos**:
 
-4.1 搭建vsftp服务器
+### 4.1 搭建vsftp服务器
 ```
 # 安装vsftpd
 yum -y install vsftpd
@@ -161,7 +161,7 @@ vim /etc/vsftpd/vsftpd.conf
 在最后一行新增 allow_writeable_chroot=YES
 然后保存退出
 ```
-4.2 增加访问ftp的用户
+### 4.2 增加访问ftp的用户
 
 ```
 # 编辑账户文件，输入账户名，多个用户名以空格隔开
@@ -178,14 +178,14 @@ chown ftptest /home/upload
 passwd ftptest
 ```
 
-4.3 修改firewall使之允许ftp功能
+### 4.3 修改firewall使之允许ftp功能
 ```
 systemctl start firewalld.service
 firewall-cmd --permanent --zone=public --add-service=ftp
 firewall-cmd --reload
 ```
 
-4.4 修改firewall使之允许ftp功能
+### 4.4 修改firewall使之允许ftp功能
 ```
 # 启动ftp
 systemctl start vsftpd
@@ -194,11 +194,18 @@ systemctl status vsftpd
 # 设置开机自启动
 chkconfig vsftpd on
 ```
-4.5 安装问题
+### 4.5 安装问题
 
+#### 4.5.1 ftp无法正常连接
 安装完成后可通过以下命令测试ftp是否可以正常登录
 ```
 ftp localhost
 ```
 如果无法登录，可在/etc/shells文件中，增加配置：/sbin/nologin
 保存后重启ftp，尝试登录
+
+#### 4.5.2 ftp无法下载上传文件
+ftp配置目录需赋予相应的读写权限，如
+```
+chmod 777 xxxx
+```
