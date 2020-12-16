@@ -193,7 +193,7 @@ ftp配置在 filetransfer.properties中，local.enabled设置为false，基本�
 
 ```
 #localfile switch
-local.enabled=fasle
+local.enabled=false
 
 #FTP switch
 ftp.enabled=true
