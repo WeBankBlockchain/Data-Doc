@@ -407,7 +407,7 @@ WeBankBlockchain-Data-Export-codegen会自动生成数据的dashboard模板，�
 
 **请注意，swagger插件仅推荐在开发或测试环境调试使用，在正式上生产环境时，请关闭此插件。 **
 
-如果未在monkey工程中配置打开swagger选项，则默认关闭，需要在配置文件中打开。
+如果未在工程中配置打开swagger选项，则默认关闭，需要在配置文件中打开。
 
 打开方法：
 
