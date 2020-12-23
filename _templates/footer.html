@@ -22,14 +22,11 @@
       {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright
       }}.{% endtrans %}
       {%- else %}
-      {% trans copyright=copyright|e %}&copy; Copyright FISCO BCOS 2019.{% endtrans %}
+      {% trans copyright=copyright|e %}&copy; Copyright 2020 Webank.{% endtrans %}
 
       {%- endif %}
       {%- endif %}
 
-      {% trans %}本技术文档适用于FISCO BCOS 2.0+版本，FISCO BCOS 1.3版本技术文档请查看 <a rel="1.x-documents"
-        href="http://fisco-bcos-documentation.readthedocs.io/zh_CN/release-1.3/">这里</a>{%
-      endtrans %}。
       {%- if build_id and build_url %}
       {% trans build_url=build_url, build_id=build_id %}
       <span class="build">
