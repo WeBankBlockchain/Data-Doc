@@ -54,6 +54,7 @@ WeBankBlockchain-Data 技术文档
 
 .. toctree::
    :maxdepth: 3
+   :caption: 组件介绍
 
    ./docs/WeBankBlockchain-Data-Stash/index.md
    ./docs/WeBankBlockchain-Data-Export/index.md
