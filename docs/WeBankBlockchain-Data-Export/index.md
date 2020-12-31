@@ -11,6 +11,8 @@
 
     WeBankBlockchain-Data-Export的前身是WeBASE-Codegen-Monkey和WeBASE-Collect-Bee，迄今已知在十多家公司数十个生产系统中稳定、安全运行。作为区块链数据治理的关键一环，WeBankBlockchain-Data-Export基于此进行了整合和优化，并作为WeBankBlockchain-Data重要组件正式发布。后续的社区和支持会转移到WeBankBlockchain-Data-Bee。欢迎大家一起多多反馈并参与到建设中来。
 
+    WeBankBlockchain-Data-Export在V1.7.0之后提供SDK，通过jar方式集成，去除spring等三方依赖，方便项目调用，使用更加灵活便捷。
+
 ```
 
 ```eval_rst
@@ -20,6 +22,7 @@
 ```eval_rst
 .. admonition:: **主要特性**
 
+    - 支持通过jar包集成，以SDK方式调用
     - 自动基于智能合约代码分析和生成导出代码
     - 支持自定义导出数据内容
     - 内置Restful API，提供常用的查询功能
@@ -37,6 +40,7 @@
 
    outline.md
    install.md
+   install_SDK.md
    expertconfig.md
    model.md
    question.md
