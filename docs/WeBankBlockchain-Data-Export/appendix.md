@@ -1,7 +1,7 @@
 ## 附录
 
 
-### 1. Java安装
+### Java安装
 
 #### Ubuntu环境安装Java
 
@@ -38,7 +38,7 @@ $ source /etc/profile
 java -version 
 ```
 
-### 2. Git安装
+### Git安装
 
 git：用于拉取最新代码
 
@@ -52,7 +52,7 @@ sudo yum -y install git
 sudo apt install git
 ```
 
-### 3. Mysql安装
+### Mysql安装
 
 此处以Centos安装MariaDB为例。MariaDB数据库是 MySQL 的一个分支，主要由开源社区在维护，采用 GPL 授权许可。MariaDB完全兼容 MySQL，包括API和命令行。其他安装方式请参考[MySQL官网](https://dev.mysql.com/downloads/mysql/)。
 
@@ -140,18 +140,18 @@ mysql > use databee;
   
   
   
-### 4. Elasticsearch 安装
+### Elasticsearch 安装
 
 [ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
   
-### 5. zookeeper 安装
+### zookeeper 安装
 zookeeper 支持单机和集群部署，推荐使用集群部署的方式，请参考zookeeper官网的说明：
 
 [集群部署](https://zookeeper.apache.org/doc/r3.4.13/zookeeperAdmin.html#sc_zkMulitServerSetup)
 
 [单机部署](https://zookeeper.apache.org/doc/r3.4.13/zookeeperAdmin.html#sc_singleAndDevSetup)
 
-### 6. supervisor安装与部署
+### supervisor安装与部署
 
 ##### 安装脚本
 > sudo yum -y install supervisor
@@ -200,16 +200,8 @@ ps -ef|grep supervisord|grep databee| awk '{print $2}'|xargs kill -9
 ps -ef|grep WeBankBlockchain-Data-Export|grep -v grep| awk '{print $2}'|xargs kill -9
 ```
 
-### 7. 常见问题
 
-#### 7.1 脚本没权限
 
-- 执行shell脚本报错误"permission denied"或格式错误
-
-```
-赋权限：chmod + *.sh
-转格式：dos2unix *.sh
-```
 
 
 
