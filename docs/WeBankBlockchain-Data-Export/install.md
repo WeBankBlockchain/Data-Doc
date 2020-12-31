@@ -72,7 +72,7 @@ WeBankBlockchain-Data-Export-parser 区块解析相关的功能。
 其中build.gradle为gradle的构建文件，tools/config/contract目录存放了合约编译为Java的文件，tools/config/resources下面存放了配置文件
 
 
-##### 2.1.2 进入安装路径
+##### 进入安装路径
 
 ```shell
 cd Data-Export/tools
@@ -257,10 +257,10 @@ tail -f dataexport-core.log| grep "sync block"
 ……
 ```
 
-##### 2.4.3 检查数据是否已经正常产生
+##### 检查数据是否已经正常产生
 
 
-###### 2.4.3.1 DB数据检查
+###### DB数据检查
 
 你也可以通过DB来检查，登录你之前配置的数据库，看到自动创建完表的信息，以及表内开始出现数据内容，则代表一切进展顺利。如你可以执行以下命令：
 

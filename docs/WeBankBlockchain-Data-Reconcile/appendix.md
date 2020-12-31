@@ -1,7 +1,7 @@
 # 附录
 
 
-## 1. MySql的安装
+## MySql的安装
 
 此处以Centos安装MariaDB为例。MariaDB数据库是 MySQL 的一个分支，主要由开源社区在维护，采用 GPL 授权许可。MariaDB完全兼容 MySQL，包括API和命令行。其他安装方式请参考[MySQL官网](https://dev.mysql.com/downloads/mysql/)。
 
@@ -92,9 +92,9 @@ mysql > use webasebee;
 
 ```
 
-## 2. Java安装
+## Java安装
 
-### 2.1. Ubuntu环境安装Java
+### Ubuntu环境安装Java
 
 ```
 # 安装默认Java版本(Java 8或以上)
@@ -103,7 +103,7 @@ sudo apt install -y default-jdk
 java -version 
 ```
 
-### 2.2. CentOS环境安装Java
+### CentOS环境安装Java
 
 ```
 # 查询centos原有的Java版本
@@ -129,7 +129,7 @@ $ source /etc/profile
 java -version 
 ```
 
-## 3. Git安装
+## Git安装
 
 git：用于拉取最新代码
 
@@ -144,13 +144,13 @@ sudo apt install git
 ```
 
 
-## 4. FTP安装
+## FTP安装
 
 ftp：用于文件托管
 
 **centos**:
 
-### 4.1 搭建vsftp服务器
+### 搭建vsftp服务器
 ```
 # 安装vsftpd
 yum -y install vsftpd
@@ -161,7 +161,7 @@ vim /etc/vsftpd/vsftpd.conf
 在最后一行新增 allow_writeable_chroot=YES
 然后保存退出
 ```
-### 4.2 增加访问ftp的用户
+### 增加访问ftp的用户
 
 ```
 # 编辑账户文件，输入账户名，多个用户名以空格隔开
@@ -178,14 +178,14 @@ chown ftptest /home/upload
 passwd ftptest
 ```
 
-### 4.3 修改firewall使之允许ftp功能
+### 修改firewall使之允许ftp功能
 ```
 systemctl start firewalld.service
 firewall-cmd --permanent --zone=public --add-service=ftp
 firewall-cmd --reload
 ```
 
-### 4.4 修改firewall使之允许ftp功能
+### 修改firewall使之允许ftp功能
 ```
 # 启动ftp
 systemctl start vsftpd
@@ -194,9 +194,9 @@ systemctl status vsftpd
 # 设置开机自启动
 chkconfig vsftpd on
 ```
-### 4.5 安装问题
+### 安装问题
 
-#### 4.5.1 ftp无法正常连接
+#### ftp无法正常连接
 安装完成后可通过以下命令测试ftp是否可以正常登录
 ```
 ftp localhost
@@ -204,7 +204,7 @@ ftp localhost
 如果无法登录，可在/etc/shells文件中，增加配置：/sbin/nologin
 保存后重启ftp，尝试登录
 
-#### 4.5.2 ftp无法下载上传文件
+#### ftp无法下载上传文件
 ftp配置目录需赋予相应的读写权限，如
 ```
 chmod 777 xxxx

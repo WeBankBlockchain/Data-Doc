@@ -1,6 +1,6 @@
 # 快速开始
 
-## 1. 环境准备
+## 环境准备
 
 在使用本组件前，请确认系统环境已安装相关依赖软件，清单如下：
 
@@ -13,9 +13,9 @@
 | MySQL      | \>= mysql-community-server[5.7]                              |      |
 | FTP        | 需要时安装                                                     |      |
 
-## 2. 项目准备
+## 项目准备
 
-### 2.1 下载代码：
+### 下载代码：
 
 ```
 git clone https://github.com/WeBankBlockchain/Data-Reconcile.git
@@ -26,7 +26,7 @@ cd Data-Reconcile
     - 如果因为网络问题导致长时间无法下载，请尝试：git clone https://gitee.com/WeBankBlockchain/Data-Reconcile.git
 ```
 
-### 2.2 项目打包
+### 项目打包
 
 ```
 ./gradlew build
@@ -45,7 +45,7 @@ cd Data-Reconcile
 │   └── Data-Reconcile-1.0.0-SNAPSHOT.jar
 ```
 
-### 2.3 项目配置
+### 项目配置
 
 配置文件位于dist/config目录下
 ```
@@ -57,7 +57,7 @@ cd Data-Reconcile
 │   │   └── reconcile.properties
 ```
 
-#### 2.3.1 数据库配置
+#### 数据库配置
 
 关于数据库的连接配置在datasource.properties下，将链上导出数据所在的数据库参数配置到这里，链上数据需要借助数据导出组件WeBankBlockchain-Data-Export对链上数据进行导出，数据导出组件使用：[WeBankBlockchain-Data-Export](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/install.html)
 
@@ -101,11 +101,11 @@ CREATE TABLE `task_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-#### 2.3.2 对账配置
+#### 对账配置
 
 对账配置reconcile.properties，包括对账任务调度配置和对账数据规则配置
 
-##### 2.3.2.1 对账任务调度配置
+##### 对账任务调度配置
 
 对账任务配置及说明如下，配置项如下，其中必配项做了标记(Must)，可采用默认配置
 
@@ -135,7 +135,7 @@ reconcile.failed.compensate.rule=0 0/1 * * * ?
 对账任务相关详情参考基础模块中[任务管理](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
 
 
-##### 2.3.2.2 对账数据规则配置
+##### 对账数据规则配置
 
 对账数据规则配置及说明如下，配置项如下，其中必配项做了标记(Must)
 
@@ -175,11 +175,11 @@ reconcile.field.bc.uniqueColumn=block_height
 对账配置更多说明参考[配置介绍](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
 
 
-#### 2.3.3 文件传输配置
+#### 文件传输配置
 
 文件传输中心现支持本地或远程FTP两种模式,任选其一，默认配置为本地模式，可通过filetransfer.properties配置文件进行配置
 
-#### 2.3.3.1 文件中心配置
+#### 文件中心配置
 将filetransfer.properties中local.enabled配置为true即可，ftp保持关闭
 ```
 #localfile switch
@@ -188,7 +188,7 @@ local.enabled=true
 ftp.enabled=false
 ```
 
-#### 2.3.3.2 FTP配置
+#### FTP配置
 ftp配置在 filetransfer.properties中，local.enabled设置为false，基本配置项如下：
 
 ```
@@ -206,9 +206,9 @@ ftp.workDir=/home/upload
 
 需自行搭建，推荐vsftp，参考链接：[ftp安装](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/appendix.html#ftp)
 
-#### 2.3.4 对账数据准备
+#### 对账数据准备
 
-##### 2.3.4.1 业务方数据准备
+##### 业务方数据准备
 
 如采用本地模式，需要预先将业务数据文件放至dist目录下；
 如采用远程FTP模式，需要将业务数据文件推送至filetransfer.properties中配置的工作目录下（ftp.workDir配置目录）
@@ -278,7 +278,7 @@ boolean append)
 
 
 
-## 3.  项目启动
+## 项目启动
 
 
 ### 项目启动
@@ -316,7 +316,7 @@ cd dist && bash start.sh
 
 
 
-## 4. 项目扩展
+## 项目扩展
 
 支持业务根据自身需求对组件进行扩展，组件核心流程位于src/main/java/com/webank/blockchain/data/reconcile/handler目录下，如下：
 
