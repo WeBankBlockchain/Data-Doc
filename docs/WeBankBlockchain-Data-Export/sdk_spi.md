@@ -1,4 +1,4 @@
-## SDK-API详解
+### SDK-API详解
 
 **SDK提供接口如下：**
 ```
@@ -67,3 +67,21 @@ stop(DataExportExecutor exportExecutor)
 | dataFlowJobCron | 任务分片执行job定时配置 | string |"0/"+ frequency + " * * * * ?" |
 | dataFlowJobItemParameters | 任务分片执行job参数 | string | 如 "0=A,1=B,2=C,3=D,4=E,5=F,6=G,7=H" |
 | dataFlowJobShardingTotalCount | 任务分片数目 | int | 8 |
+| generatedOff | 合约事件或函数导出过滤,如: Map<合约名, 方法名/事件名>| Map | empty map |
+| ignoreParam | 合约函数指定字段导出过滤,如: Map<合约名, Map<方法名/事件名, List<字段名>>> | Map | empty map |
+| paramSQLType | 合约函数指定字段导出sql类型,如: Map<合约名, Map<方法名/事件名, Map<字段名,sql类型>>> | Map| empty map |
+| tablePrefix | 合约函数导出表名前缀设置 | String | 空 |
+| tablePostfix | 合约函数导出表名后缀设置 | String | 空 |
+| namePrefix | 合约函数导出表字段前缀设置 | String | 空 |
+| namePostfix | 合约函数导出表字段后缀设置 | String | 空 |
+
+
+#### 功能说明
+
+- 本版本为SDK版本，去Spring等框架依赖，更好地支持第三方以jar形式引入
+- 支持分库分表和分布式调度
+- 增加导出启停的API接口
+- 支持导出数据类型可选功能
+- 支持多链多群组调用
+- 支持数据库和ES存储
+- 暂不支持指定合约分表数目配置功能，如需使用可使用服务方式配置启动
