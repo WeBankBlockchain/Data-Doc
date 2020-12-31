@@ -9,9 +9,9 @@
 
     WeBankBlockchain-Data-Export是一款基于FISCO BCOS平台的数据导出工具，旨在降低区块链数据开发的门槛，提升研发效率。研发人员几乎不需要编写任何代码，只需要进行简单配置，就可以把非结构化的链上数据导出到关系型数据库或ES等数据源中存储，便于后续的业务分析和处理。此外，WeBankBlockchain-Data-Export还支持了多活部署、数据分库分表、导出数据可视化、应用监控等功能，适应各类复杂的业务场景，满足了业务开发中各项需求，提升了使用体验。
 
-    WeBankBlockchain-Data-Export的前身是WeBASE-Codegen-Monkey和WeBASE-Collect-Bee，迄今已知在十多家公司数十个生产系统中稳定、安全运行。作为区块链数据治理的关键一环，WeBankBlockchain-Data-Export基于此进行了整合和优化，并作为WeBankBlockchain-Data重要组件正式发布。后续的社区和支持会转移到WeBankBlockchain-Data-Bee。欢迎大家一起多多反馈并参与到建设中来。
+    WeBankBlockchain-Data-Export的前身是WeBASE-Codegen-Monkey和WeBASE-Collect-Bee，迄今已知在十多家公司数十个生产系统中稳定、安全运行。作为区块链数据治理的关键一环，WeBankBlockchain-Data-Export基于此进行了整合和优化，并作为WeBankBlockchain-Data重要组件正式发布。后续的社区和支持会转移到WeBankBlockchain-Data。欢迎大家一起多多反馈并参与到建设中来。
 
-    WeBankBlockchain-Data-Export在V1.7.0之后提供SDK，通过jar方式集成，去除spring等三方依赖，方便项目调用，使用更加灵活便捷。
+    WeBankBlockchain-Data-Export在V1.7.0之后提供SDK轻量化使用方式，通过jar包方式集成到用户项目中，去除spring等三方依赖，使用更加灵活便捷。
 
 ```
 
