@@ -16,9 +16,9 @@
 
 ### 2. 部署步骤
 
-#### 2.1.引入数据导出SDK依赖 
+#### 引入数据导出SDK依赖 
 
-1. 在java项目的build.gradle中引入如下Maven库
+##### 在java项目的build.gradle中引入如下Maven库
 ```
 allprojects {
 		repositories {
@@ -27,7 +27,7 @@ allprojects {
 		}
 	}
 ```
-2. 建立依赖
+##### 建立依赖
 ```
 dependencies {
 	implementation 'com.github.WeBankBlockchain:Data-Export:DataExport-SDK-Beta-SNAPSHOT'
@@ -37,7 +37,7 @@ dependencies {
 
 ### 3. SDK调用
 
-<br />**单库基础数据导出使用例子如下（默认导出配置）：**
+#### 单库基础数据导出使用例子如下（默认导出配置）：
 ```
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
         .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
@@ -60,7 +60,7 @@ ExportDataSDK.start(exportExecutor);
 ```
 
 
-<br />**分库分表基础数据导出使用例子如下（默认导出配置）：**
+#### 分库分表基础数据导出使用例子如下（默认导出配置）：
 ```
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
         .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
