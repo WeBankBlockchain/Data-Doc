@@ -38,7 +38,7 @@ cd Data-Reconcile
 │   ├── config
 │   │   ├── application.properties
 │   │   └── datasource.properties
-│   │   └── ftp.properties
+│   │   └── filetransfer.properties
 │   │   └── reconcile.properties
 │   ├── start.sh
 │   ├── stop.sh
@@ -53,7 +53,7 @@ cd Data-Reconcile
 │   ├── config
 │   │   ├── application.properties
 │   │   └── datasource.properties
-│   │   └── ftp.properties
+│   │   └── filetransfer.properties
 │   │   └── reconcile.properties
 ```
 
@@ -117,14 +117,15 @@ reconcile.task.time.range.days=1
 #定时对账时间规则（对账时间点设置）
 #Online build/parse: http://cron.qqe2.com/
 #Commonly used: second, minute, hour, day, month, year
-reconcile.task.time.rule=0 0 1 * * ?
+#默认配置为每隔1分钟执行一次，可根据实际场景按需配置
+reconcile.task.time.rule=0 0/1 * * * ?
 
 #对账任务超时时间（ms）
 reconcile.task.timeout=600000
 #对账任务失败重试间隔时间（ms）
 reconcile.task.retry.interval.time=60000
-#对账失败任务重试次数
-reconcile.task.retry.count=2
+#对账失败任务重试次数，若配置为0则关闭任务重试
+reconcile.task.retry.count=0
 #对账状态补偿时间规则（执行中）
 reconcile.executing.compensate.rule=0 0/1 * * * ?
 #对账状态补偿时间规则（失败）
@@ -174,11 +175,27 @@ reconcile.field.bc.uniqueColumn=block_height
 对账配置更多说明参考[配置介绍](https://data-doc.readthedocs.io/zh_CN/dev/docs/WeBankBlockchain-Data-Reconcile/model.html#id5)
 
 
-#### 2.3.3 FTP配置
+#### 2.3.3 文件传输配置
 
-ftp配置在ftp.properties中，基本配置项如下：
+文件传输中心现支持本地或远程FTP两种模式,任选其一，默认配置为本地模式，可通过filetransfer.properties配置文件进行配置
+
+#### 2.3.3.1 文件中心配置
+将filetransfer.properties中local.enabled配置为true即可，ftp保持关闭
+```
+#localfile switch
+local.enabled=true
+#FTP switch
+ftp.enabled=false
+```
+
+#### 2.3.3.2 FTP配置
+ftp配置在 filetransfer.properties中，local.enabled设置为false，基本配置项如下：
 
 ```
+#localfile switch
+local.enabled=false
+
+#FTP switch
 ftp.enabled=true
 ftp.host=127.0.0.1
 ftp.port=21
@@ -193,7 +210,8 @@ ftp.workDir=/home/upload
 
 ##### 2.3.4.1 业务方数据准备
 
-需要预先将业务数据文件推送至ftp.properties中配置的工作目录下（ftp.workDir配置目录）
+如采用本地模式，需要预先将业务数据文件放至dist目录下；
+如采用远程FTP模式，需要将业务数据文件推送至filetransfer.properties中配置的工作目录下（ftp.workDir配置目录）
 
 业务对账文件命名规则为：业务数据提供方机构名_对账数据查询起始日期（如：webank_2020-11-19），机构名为对账配置reconcile.properties中的机构名，如webank。
 
@@ -275,8 +293,7 @@ cd dist && bash start.sh
 ![](../../images/WeBankBlockchain-Data-Reconcile/runsuccess.png)
 
 
-
-对账执行结果文件保存在dist/out/result/下，并远程推送到FTP。
+对账执行结果文件保存在dist/out/result/下，如开启远程FTP模式，则将结果文件推送到远程FTP。
 
 执行日志如下：
 

@@ -86,7 +86,7 @@ spring.datasource.password=[password]
 
 ##### 3.1.1.2 传输配置
 
-传输配置包含了文件传输和消息传输中间件的配置，这里默认采用ftp来完成文件的传输，ftp配置位于resource目录下ftp.properties文件，用于FTP的连接配置，主要包括ip地址、端口号、username、password等配置。
+传输配置包含了文件传输和消息传输中间件的配置，这里默认支持本地和远程ftp来完成文件的传输，配置位于resource目录下filetransfer.properties文件，用于FTP的连接配置，主要包括ip地址、端口号、username、password等配置。
 
 
 
@@ -95,15 +95,24 @@ spring.datasource.password=[password]
 
 
 ```
-ftp.enabled=true
-ftp.Host=192.168.xx.xx
-ftp.Port=21
-ftp.UserName=root
-ftp.PassWord=root
+#localfile switch
+local.enabled=true
+
+#FTP switch
+ftp.enabled=false
+ftp.host=127.0.0.1
+ftp.port=21
+ftp.userName=
+##ftp.userName=ftptest
+ftp.passWord=
+ftp.workDir=/home/upload
+ftp.encoding=UTF-8
+ftp.maxTotal=100
+ftp.minIdel=2
+ftp.maxIdle=5
+ftp.maxWaitMillis=3000
+
 ```
-
-
-
 
 
 
