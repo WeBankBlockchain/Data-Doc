@@ -1,6 +1,6 @@
 ### SDK Java API
 
-#### 1.接口说明
+#### 接口说明
 ```
 //创建数据导出执行器DataExportExecutor，导出配置采用默认配置
 DataExportExecutor create(ExportDataSource dataSource, ChainInfo chainInfo);
@@ -15,7 +15,7 @@ start(DataExportExecutor exportExecutor)
 stop(DataExportExecutor exportExecutor)
 ```
 
-#### 2.参数说明
+#### 参数说明
 
 **参数ExportDataSource为数据源配置，参数如下：**
 
