@@ -1,17 +1,23 @@
 ### SDK Java API
 
-**SDK提供接口如下：**
+#### 1.接口说明
 ```
 //创建数据导出执行器DataExportExecutor，导出配置采用默认配置
 DataExportExecutor create(ExportDataSource dataSource, ChainInfo chainInfo);
+
 //创建数据导出执行器DataExportExecutor, 配置导出配置
 DataExportExecutor create(ExportDataSource dataSource, ChainInfo chainInfo, ExportConfig config)
+
 //DataExportExecutor启动
 start(DataExportExecutor exportExecutor)
+
 //DataExportExecutor关闭
 stop(DataExportExecutor exportExecutor)
 ```
-<br />**参数ExportDataSource为数据源配置，参数如下：**
+
+#### 2.参数说明
+
+**参数ExportDataSource为数据源配置，参数如下：**
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | ---|
@@ -23,7 +29,7 @@ stop(DataExportExecutor exportExecutor)
 
 <br />**数据源参数支持了mysql和es，包括MysqlDataSource, ESDataSource，参数如下：**
 
-<br />**MysqlDataSource（必须），参数如下：**
+**MysqlDataSource（必须），参数如下：**
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | ---|
