@@ -1,4 +1,4 @@
-### SDK-API详解
+### SDK Java API
 
 **SDK提供接口如下：**
 ```
