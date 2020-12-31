@@ -41,6 +41,7 @@
    outline.md
    install.md
    install_SDK.md
+   sdk_spi.md
    expertconfig.md
    model.md
    question.md
