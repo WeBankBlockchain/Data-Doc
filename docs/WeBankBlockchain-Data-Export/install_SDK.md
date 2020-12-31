@@ -37,7 +37,6 @@ dependencies {
 
 ### 3. SDK调用
 
-
 #### 单库基础数据导出使用例子如下（默认导出配置）：
 ```
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
