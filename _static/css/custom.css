@@ -173,3 +173,13 @@ p {
     background-position: center top;
     background-origin: content box;
 }
+
+body {counter-reset:section}
+body h2{counter-reset:sub-section}
+body h3{counter-reset:composite}
+body h4{counter-reset:detail}
+
+body h2:before{content:counter(section) ". ";counter-increment:section}
+body h3:before{content:counter(section) "." counter(sub-section) " ";counter-increment:sub-section}
+body h4:before{content:counter(section) "." counter(sub-section) "." counter(composite) " ";counter-increment:composite}
+body h5:before{content:counter(section) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";counter-increment:detail}

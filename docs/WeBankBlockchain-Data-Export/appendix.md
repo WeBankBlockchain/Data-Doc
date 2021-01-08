@@ -1,92 +1,7 @@
 ## 附录
 
-### 1. 配置参数说明
 
-组件中配置文件只有一个：./tools/config/resources/application.properties。该配置文件覆盖了数据导出组件所需的所有配置，并提供了详细的说明和样例，开发者可根据需求进行灵活配置。
-
-#### 1.1 Springboot服务配置
-
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| server.port | N | 启动WeBankBlockchain-Data-Export组件实例的服务端口 | 8082 | 5200 |
-
-#### 1.2 FISCO-BCOS节点配置
-
-FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankBlockchain-Data-Export服务能够访问连接节点，并通过该节点获取区块链网络上的数据。
-
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| system.nodeStr | Y | 连接区块链节点的nodeStr，nodeName@[IP]:[PORT], 其中prot为channel port | node1@ip:8822 | - |
-| system.encryptType | N | 加密类型： 0-RSA, 1-gm | 0 | 0 |
-
-
-#### 1.3 数据库配置
-
-数据导出组件最终会把区块链网络上的数据导出到数据存储介质中，目前版本仅支持MySQL，所以需要进行数据库配置。
-
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| system.dbUrl | Y | 访问数据的URL | jdbc:mysql://[IP]:[PORT]/[DB]?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8 | - |
-| system.dbUser | Y | 数据库用户名 | admin | - |
-| system.dbPassword | Y | 数据库密码 | 123456 | - |
-| system.contractName.[methodName or eventName].shardingNO | N | 合约数据分片数：数据库指定数据表的个数 | system.Rule.NewruleEvent.shardingNO = 3 | 1 |
-| system.sys.[sysTableName].shardingNO | N | 系统数据分片数 | system.sys.BlockTxDetailInfo.shardingNO=5 | 1 |
-| system.nameStyle | N | 数据库表名和字段命名规则，支持下划线命名和原始数据命名 | system.nameStyle=rawCase | underScoreCase |
-| system.namePrefix | N | 数据库表字段命名前缀，默认为_ | system.namePrefix=_ | _ |
-| system.namePostfix | N | 数据库表字段命名后缀，默认为空 | system.namePostfix=_ | 空 |
-| system.tablePrefix | N | 数据库表名命名前缀，默认为空 | system.tablePrefix=_ | 空 |
-| system.tablePostfix | N | 数据库表名命名后缀，默认为空 | system.tablePostfix=_ | 空 |
-| system.dbIdentifierSplit | N | 是否开启自动裁剪过长的数据库表名，默认为false | system.dbIdentifierSplit=true | false |
-
-
-其中**sysTableName**对应区块数据表和账户数据表，详情见 **数据存储模型** 章节。
-
-#### 1.4 WeBankBlockchain-Data-Export工程配置
-
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| system.group | Y | 同spring项目的group | com.example | - |
-| system.contractPackName | Y | 编译智能合约所输入的包名 | com.webank.blockchain.wecredit.contracts | - |
-| system.frequency | N | 所有method和event的抓取频率，默认几秒轮询一次 | 10 | 5 |
-
-#### 1.5 线程池配置
-
-在单机部署下，必须配置线程池参数。数据导出配置用于配置数据导出的频率、线程数及启动多线程条件等。当system.multiLiving=true时，配置文件不会生成线程池相关配置。
-
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| system.multiLiving | Y | 关闭多活开关 | false | false |
-| system.crawlBatchUnit | N | 线程处理单元：多线程任务模式下单个线程一次任务执行完成的区块数 | 100 | 100 |
-
-#### 1.6 集群多活配置
-
-在集群多活部署的方案中，必须设置集群多活的配置。集群必须通过zookeeper进行服务注册和任务分发。当system.multiLiving=false时，配置文件不会生成zookeeper相关配置。
-
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| system.multiLiving | Y | 启动多活开关 | true | false |
-| regcenter.serverList | N | 注册中心服务器列表 | [ip1:2181;ip2:2181] | - |
-| regcenter.namespace | N | 注册中心命名空间 | wecredit_bee | - |
-
-#### 1.7 elastic search配置
-
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| es.enabled | Y | 启动ES开关 | true | false |
-| es.clusterName | N | 集群名称 | my-application | my-application |
-| es.ip | N | es节点ip | 127.0.0.1 |  |
-| es.port | N | es节点端口 | 9300 |  |
-
-#### 1.8 其他高级配置
-
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| monitor.[contractName].[methodName/eventName].generated=false | N | 是否抓取特定合约中特定method或event的数据 | on/off | on |
-| monitor.[contractName].[eventName].ignoreParam=XXX,XXX | N | 忽略特定合约特定event的特定字段不进行抓取 | xxx,xxx |  |
-| length.[contractName].[methodName or eventName].paraName | N | 指定特定字段在数据库表中的长度 |  | 512 |
-| button.swagger | N | 是否打开swagger功能，请务必在生成环境关闭此开关 | on/off | on |
-
-### 2. Java安装
+### Java安装
 
 #### Ubuntu环境安装Java
 
@@ -123,7 +38,7 @@ $ source /etc/profile
 java -version 
 ```
 
-### 3. Git安装
+### Git安装
 
 git：用于拉取最新代码
 
@@ -137,7 +52,7 @@ sudo yum -y install git
 sudo apt install git
 ```
 
-### 4. Mysql安装
+### Mysql安装
 
 此处以Centos安装MariaDB为例。MariaDB数据库是 MySQL 的一个分支，主要由开源社区在维护，采用 GPL 授权许可。MariaDB完全兼容 MySQL，包括API和命令行。其他安装方式请参考[MySQL官网](https://dev.mysql.com/downloads/mysql/)。
 
@@ -225,18 +140,18 @@ mysql > use databee;
   
   
   
-### 5. Elasticsearch 安装
+### Elasticsearch 安装
 
 [ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
   
-### 6. zookeeper 安装
+### zookeeper 安装
 zookeeper 支持单机和集群部署，推荐使用集群部署的方式，请参考zookeeper官网的说明：
 
 [集群部署](https://zookeeper.apache.org/doc/r3.4.13/zookeeperAdmin.html#sc_zkMulitServerSetup)
 
 [单机部署](https://zookeeper.apache.org/doc/r3.4.13/zookeeperAdmin.html#sc_singleAndDevSetup)
 
-### 7. supervisor安装与部署
+### supervisor安装与部署
 
 ##### 安装脚本
 > sudo yum -y install supervisor
@@ -285,16 +200,7 @@ ps -ef|grep supervisord|grep databee| awk '{print $2}'|xargs kill -9
 ps -ef|grep WeBankBlockchain-Data-Export|grep -v grep| awk '{print $2}'|xargs kill -9
 ```
 
-### 8. 常见问题
 
-#### 8.1 脚本没权限
-
-- 执行shell脚本报错误"permission denied"或格式错误
-
-```
-赋权限：chmod + *.sh
-转格式：dos2unix *.sh
-```
 
 
 

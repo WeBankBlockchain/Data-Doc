@@ -1,6 +1,6 @@
 ## 组件介绍
 
-### 1. 组件介绍
+### 组件介绍
 
 WeBankBlockchain-Data-Export 是一个基于[FISCO-BCOS](https://github.com/FISCO-BCOS/FISCO-BCOS)平台的数据导出工具。
 
@@ -14,11 +14,11 @@ WeBankBlockchain-Data-Export提供了基于Restful的API，支持通过http的�
 
 WeBankBlockchain-Data-Export还集成了Swagger组件，提供了可视化的文档和测试控制台。
 
-### 2. 使用场景和解决方案
+### 使用场景和解决方案
 
 区块链的数据存储在区块链上，需要使用智能合约暴露的接口来进行调用。由于智能合约暴露的接口的限制，区块链上不适合进行复杂的数据查询、大数据分析和数据可视化等工作。因此，我们致力于提供一种智能化、自动化的数据导出和备份的解决方案。
 
-#### 2.1 案例 数据可视化后台系统
+#### 案例 数据可视化后台系统
 
 - 背景
 
@@ -28,7 +28,7 @@ WeBankBlockchain-Data-Export还集成了Swagger组件，提供了可视化的文
 
 该公司使用了[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export/tree/master)，并根据实际需求进行了定制化开发，在一天之内投入到线上使用。导出到db的数据接入到了该公司的统一监控平台，该公司PM可以在业务后台系统上获得该业务的实时进展，该公司运维人员可以在公司运维监控室的大屏幕实时监控业务系统的状态。
 
-#### 2.2 案例 区块链业务数据对账系统
+#### 案例 区块链业务数据对账系统
 
 - 背景
 
@@ -38,7 +38,7 @@ WeBankBlockchain-Data-Export还集成了Swagger组件，提供了可视化的文
 
 该公司使用[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export/tree/master)，并根据实际需求进行了定制化开发。通过在智能合约中设计的各类event，相关的业务数据都被导出到数据库中；从而实现轻松对账的需求。
 
-#### 2.3 案例 区块链业务数据查询系统
+#### 案例 区块链业务数据查询系统
 
 - 背景
 
@@ -48,32 +48,32 @@ WeBankBlockchain-Data-Export还集成了Swagger组件，提供了可视化的文
 
 该公司使用[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export/tree/master)，并根据实际需求进行了定制化开发，区块链上的数据可以实时导出到数据库中。利用[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export)自带的Restful API，该公司的报表系统实现了和区块链数据的对接，可以获得准实时的各类业务报表。
 
-### 3. 特性介绍
+### 特性介绍
 
-#### 3.1 可自动生成代码
+#### 可自动生成代码
 
 集成了Beetl作为模板引擎，经过简单配置后启动脚本，即可自动生成相关合约和配置代码
 
-#### 3.2 支持灵活的存储策略
+#### 支持灵活的存储策略
 
 导出数据支持mysql和ES存储，对于mysql存储来说集成sharding-jdbc组件支持多数据源、分库分表、读写分离，同时只需简单配置即可引入ES存储，方便海量数据的存储和查询
 
-#### 3.3 支持集群部署和分布式任务调度
+#### 支持集群部署和分布式任务调度
 
 集成elstic-job开源组件，支持灵活的分布式部署和任务调度
 
-#### 3.4 可定制化的数据导出策略
+#### 可定制化的数据导出策略
 
 提供灵活的可配置的区块、交易、事件、账户等数据导出功能，过滤不需要的数据
 
-#### 3.5 提供丰富的Restful API查询接口
+#### 提供丰富的Restful API查询接口
 
 支持丰富的Restful API数据查询接口
 
-#### 3.6 提供可视化的互动API控制台
+#### 提供可视化的互动API控制台
 
 集成swagger插件，提供可视化互动API控制台
 
-#### 3.7 支持可视化的监控页面
+#### 支持可视化的监控页面
 
 WeBankBlockchain-Data-Export可与grafana深度集成，支持自动生成dashboard实例，让您的链上数据了如指掌。
