@@ -1,5 +1,9 @@
 # 快速开始
 
+Data-Stash用于生成数据仓库，后续节点若实现瘦身，则需要启动amdb代理，以查询冷数据；若要将数据仓库数据导回节点实现节点同步或迁移，则需要先启动amdb代理，再启动fisco sync工具。
+
+本文仅介绍Data-Stash，关于amdb请参考[amdb代理](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#amdb-proxy)；关于fisco sync，请参考[fisco sync工具](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#fisco-sync)。
+
 ## 1. 前置依赖
 
 在使用本组件前，请确认系统环境已安装相关依赖软件，清单如下：
