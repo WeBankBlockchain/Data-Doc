@@ -1,5 +1,13 @@
 # 快速开始
 
+```eval_rst
+.. note::
+   Data-Stash的使用包括导入节点数据、将数据同步回节点。 本指引主要介绍如何将节点数据导入到Data-Stash。
+
+   若要将数据仓库数据导回节点实现节点同步或迁移，则需要先启动 `amdb-proxy <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#amdb-proxy>`_ ，再启动 `fisco-sync <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#fisco-sync>`_ 。
+```
+
+
 ## 前置依赖
 
 在使用本组件前，请确认系统环境已安装相关依赖软件，清单如下：
