@@ -17,7 +17,6 @@ FISCO BCOS节点的变化会被记录到binlog中。binlog目录被放在data/gr
 #### Nginx
 FISCO BCOS节点本身并不会暴露binlog，如果希望外界读取到binlog，需要借助nginx。通过在nginx中配置端口和binlog目录的映射，外界就可以通过该端口访问到binlog。
 ### 数据仓库组件
-
 数据仓库组件自身由如下几个部分构成：
 #### 下载服务Fetcher Server
 下载服务会持续轮询nginx端口，下载最新binlog日志到本地目录中。

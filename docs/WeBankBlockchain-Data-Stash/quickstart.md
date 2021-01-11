@@ -2,6 +2,7 @@
 
 ```eval_rst
 .. note::
+
    本指引主要介绍如何通过Data-Stash为节点生成全量备份。全量备份是节点冷热分离、快速同步的基础。
 
    若要使节点在仅保留热数据的情况下还能正常运行，需要先启动 `amdb-proxy <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#amdb-proxy>`_ ，以通过amdb访问全量数据 。
@@ -180,7 +181,6 @@ spring.datasource.driverClassName=com.mysql.jdbc.Driver
     - Data-Stash并不会自动创建数据库，所以请预先建好数据库。
     - 若您的链是国密链，请配置system.encryptType=1. DataStash需要验证区块中的签名。
 ```
-
 ### 运行程序
 
 可以通过bash启动程序：
