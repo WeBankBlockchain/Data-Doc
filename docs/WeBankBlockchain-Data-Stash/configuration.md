@@ -5,11 +5,11 @@
 | 配置项 | 说明 | 是否必需 | 说明|
 | --- | --- | --- | --- |
 |system.binlogAddress|nginx服务的binlog地址，如果连接多个节点的话，使用逗号分隔|必选|示例：system.binlogAddress=http://www.example.com:5299/, http://www.example.com:5300/|
-|spring.datasource.url|数据库连接URL|是|示例：jdbc:mysql://127.0.0.1:3306/etl?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8|
+|spring.datasource.url|数据库连接URL。请确保数据库已预先建立。|是|示例：jdbc:mysql://127.0.0.1:3306/stash?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8|
 |spring.datasource.username|用户名|是|示例：root|
 |spring.datasource.password|密码|是|示例：123456|
-|spring.datasource.driverClassName | JDBC驱动|是 |示例：com.mysql.jdbc.Driver 或 com.mysql.cj.jdbc.Driver|
-|system.encryptType|0-非国密，1-国密|否|默认非国密|
+|spring.datasource.driverClassName | JDBC驱动|是 |示例：com.mysql.cj.jdbc.Driver|
+|system.encryptType|0-非国密，1-国密。binlog中签名验证时需要使用与链一致的哈希。|否|默认非国密|
 |system.localBinlogPath|binlog的下载位置，支持相对地址和绝对地址|否|示例：~/binlogs|
 |system.batchCount|数据库批量插入条数|否|默认为5|
 |system.binlogVerify|1-开启binlog校验，0-不开启|否|默认开启|

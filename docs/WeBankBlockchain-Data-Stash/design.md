@@ -12,11 +12,11 @@
 
 #### FISCO BCOS节点
 
-FISCO BCOS节点的账本按照mysql存储。每次新增加一个区块，都会为mysql里添加一些数据。mysql表的变化会被记录到binlog中。binlog目录被放在data/groupX/BinaryLogs目录下，x表示群组号：
+FISCO BCOS节点的变化会被记录到binlog中。binlog目录被放在data/groupX/BinaryLogs目录下，x表示群组号。
 
 #### Nginx
-FISCO BCOS节点本身并不会暴露binlog，如果希望外界读取到binlog，需要借助nginx。通过在nginx中配置端口和binlog目录的映射，外界就可以通过该端口访问到binlogs。
-### 全量数据组件
+FISCO BCOS节点本身并不会暴露binlog，如果希望外界读取到binlog，需要借助nginx。通过在nginx中配置端口和binlog目录的映射，外界就可以通过该端口访问到binlog。
+### 数据仓库组件
 
 数据仓库组件自身由如下几个部分构成：
 #### 下载服务Fetcher Server
@@ -42,20 +42,24 @@ Binlog的结构如下：
 
 ## 存储模型
 
+数据仓库包含节点的全量备份：
+
 | 表 |表作用| 字段 | 字段说明 |
 | --- | --- | --- | --- |
-|_sys_config_|存储需要共识的群组配置项	|name,value,enable_num|配置名称，配置值，该条记录生效块高|
-|_sys_cns_|存储合约名到地址的映射关系	|name,version,address,abi|合约名，合约版本，合约地址，合约ABI|
-|_sys_consensus_|存储共识节点和观察节点的列表|name,type,node_id,enable_num|用于全量查询的标记，节点类型，节点ID，该条记录生效块高|
-|_sys_current_state_|存储链最新的状态	|key,value|状态项（目前有current_number/total_transaction_count），状态值|
-|_sys_table_access_|存储每个表的具有写权限的外部账户地址|table_name,address,enable_num|表明，账号地址，该条记录生效块高|
-|_sys_tables_|存储所有表的结构|table_name,key_field,value_field|表名，表主key的列名，表其他列的列名|
-|_sys_tx_hash_2_block_|存储交易hash到区块号的映射	|hash,value,index|交易hash，交易所在的区块号，区块中第几条交易|
-|_sys_number_2_hash_|存储区块号到区块hash的映射	|number,value|区块号，区块hash|
-|_sys_block_2_nonces_|存储区块中交易的nonces		|number,value|区块号，该区块中的nonce列表|
-|_sys_hash_2_block_|存储区块hash到区块数据的映射	|key,value|区块hash，区块序列化数据|
-|_sys_hash_2_header_|存储区块哈希对应的区块头数据|hash,value,sigs|区块hash，区块头序列号数据，签名列表|
+|\_sys_config\_|存储需要共识的群组配置项	|name,value,enable_num|配置名称，配置值，该条记录生效块高|
+|\_sys_cns\_|存储合约名到地址的映射关系	|name,version,address,abi|合约名，合约版本，合约地址，合约ABI|
+|\_sys_committee_votes\_|存储投票信息	|key,value,origin,block_limit|投票项，投票值，源起，区块限制|
+|\_sys_consensus\_|存储共识节点和观察节点的列表|name,type,node_id,enable_num|用于全量查询的标记，节点类型，节点ID，该条记录生效块高|
+|\_sys_current_state\_|存储链最新的状态	|key,value|状态项（目前有current_number/total_transaction_count），状态值|
+|\_sys_table_access\_|存储每个表的具有写权限的外部账户地址|table_name,address,enable_num|表明，账号地址，该条记录生效块高|
+|\_sys_tables\_|存储所有表的结构|table_name,key_field,value_field|表名，表主key的列名，表其他列的列名|
+|\_sys_tx_hash_2_block\_|存储交易hash到区块号的映射	|hash,value,index|交易hash，交易所在的区块号，区块中第几条交易|
+|\_sys_number_2_hash\_|存储区块号到区块hash的映射	|number,value|区块号，区块hash|
+|\_sys_block_2_nonces\_|存储区块中交易的nonces		|number,value|区块号，该区块中的nonce列表|
+|\_sys_hash_2_block\_|存储区块hash到区块数据的映射	|key,value|区块hash，区块序列化数据|
+|\_sys_hash_2_header\_|存储区块哈希对应的区块头数据|hash,value,sigs|区块hash，区块头序列号数据，签名列表|
 |c_[合约地址]|存储外部账户信息|key,value|记录项（目前有balance/nonce/code/codeHash/alive），记录值|
+|cp_[合约地址]|存储并行合约信息|key,value|记录项（目前有balance/nonce/code/codeHash/alive），记录值|
 
 
 ## 数据检查逻辑

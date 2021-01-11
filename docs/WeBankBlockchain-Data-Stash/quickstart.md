@@ -2,9 +2,12 @@
 
 ```eval_rst
 .. note::
-   Data-Stash的使用包括导入节点数据、将数据同步回节点。 本指引主要介绍如何将节点数据导入到Data-Stash。
+   本指引主要介绍如何通过Data-Stash为节点生成全量备份。全量备份是节点冷热分离、快速同步的基础。
 
-   若要将数据仓库数据导回节点实现节点同步或迁移，则需要先启动 `amdb-proxy <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#amdb-proxy>`_ ，再启动 `fisco-sync <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#fisco-sync>`_ 。
+   若要使节点在仅保留热数据的情况下还能正常运行，需要先启动 `amdb-proxy <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#amdb-proxy>`_ ，以通过amdb访问全量数据 。
+
+   若要将数据仓库数据导回节点实现节点同步或迁移，则需要先启动 `amdb-proxy <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#amdb-proxy>`_ ，再启动 `fisco-sync <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#fisco-sync>`_ 。fisco-sync的运行依赖于amdb。
+
 ```
 
 
@@ -18,7 +21,7 @@
 | MySQL | >= mysql-community-server[5.7] | |
 | Nginx | >= nginx[1.17.3]| |
 | Java | JDK[1.8] | |
-| Git | 下载的安装包使用Git | |
+| Git | 下载安装包需要使用Git | |
 
 如果您还未安装这些依赖，请参考[附录](appendix.md)。
 
@@ -155,7 +158,7 @@ dist
 ### 启动配置
 
 在启动之间还需要进行配置，主要包括：
-- FISCO BCOS节点binlog获取端口
+- binlog获取端口
 - 数据库连接配置
 
 需要在dist/config/application.properties中进行配置，示例如下：
@@ -166,14 +169,17 @@ system.binlogAddress=http://www.example.com:5299/,http://www.example.com:5300/
 
 
 ### 数据库连接配置
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/etl?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/stash?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8
 spring.datasource.username=root
 spring.datasource.password=123456
 spring.datasource.driverClassName=com.mysql.jdbc.Driver
 ```
 
-
-如果您需要配置国密等需求，请见[详细配置](configuration.md)。
+```eval_rst
+.. note::
+    - Data-Stash并不会自动创建数据库，所以请预先建好数据库。
+    - 若您的链是国密链，请配置system.encryptType=1. DataStash需要验证区块中的签名。
+```
 
 ### 运行程序
 
@@ -190,22 +196,22 @@ java -jar Data-Stash.jar
 如果日志出现下述字样，则表示运行成功：
 
 ```
-2020-10-29 17:42:34.404  INFO 15044 --- [main] com.webank.etl.DataStashApplication   : Starting DataStashApplication on aaronchu-nb with PID 15044 (E:\gitee\WeBASE-ETL-Bee\dist\WeBASE-ETL-Bee.jar started by aaronchu in E:\gitee\WeBASE-ETL-Bee\dist)
-2020-10-29 17:42:34.411  INFO 15044 --- [main] com.webank.etl.DataStashApplication   : No active profile set, falling back to default profiles: default
+2020-10-29 17:42:34.404  INFO 15044 --- [main] com.webank.blockchain.data.stash.DataStashApplication   : Starting DataStashApplication on aaronchu-nb with PID 15044 (E:\gitee\Data-Stash\dist\Data-Stash.jar started by aaronchu in E:\gitee\Data-Stash\dist)
+2020-10-29 17:42:34.411  INFO 15044 --- [main] com.webank.blockchain.data.stash.DataStashApplication   : No active profile set, falling back to default profiles: default
 2020-10-29 17:42:36.984  INFO 15044 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2020-10-29 17:42:36.992  WARN 15044 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
 2020-10-29 17:42:37.645  INFO 15044 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
 2020-10-29 17:42:41.420  INFO 15044 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-10-29 17:42:41.473  INFO 15044 --- [main] com.webank.etl.DataStashApplication   : Started DataStashApplication in 7.489 seconds (JVM running for 8.368)
-2020-10-29 17:42:41.901  INFO 15044 --- [main] com.webank.etl.manager.DownloadManager   : Scan remote item 0, size: 1
-2020-10-29 17:42:41.944  INFO 15044 --- [main] com.webank.etl.manager.DownloadManager   : Download start from last task: 0
+2020-10-29 17:42:41.473  INFO 15044 --- [main] com.webank.blockchain.data.stash.DataStashApplication   : Started DataStashApplication in 7.489 seconds (JVM running for 8.368)
+2020-10-29 17:42:41.901  INFO 15044 --- [main] com.webank.blockchain.data.stash.manager.DownloadManager   : Scan remote item 0, size: 1
+2020-10-29 17:42:41.944  INFO 15044 --- [main] com.webank.blockchain.data.stash.manager.DownloadManager   : Download start from last task: 0
 ........
 ```
 
 ```eval_rst
    .. admonition:: **注意事项**
 
-    - 不要删除binlog的本地目录，也不要修改此目录下的binlog文件，否则会导致程序运行异常。
+    - 除非重新建了链，否则不要删除binlog的本地目录，也不要修改此目录下的binlog文件，否则会导致程序运行异常。
     - binlog目录下的binlog文件，建议在人工归档备份后再删除，以便于后续的维护和审计等工作。
     - 删除binlog的工作建议在服务停止的时候执行，以避免影响服务的正常运行。
     - 程序在运行失败后会自动退出，运维人员需要详细查看日志报错的原因，并人工介入。对不确定的问题，请联系并咨询开发人员。
