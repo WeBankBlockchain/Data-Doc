@@ -7,7 +7,7 @@ WeBankBlockchain-Data数据治理通用组件[文档](https://data-doc.readthedo
 可基于binlog协议同步区块链底层节点数据，支持断点续传，数据可信验证，并提供快速同步机制。
 请参考:  
 - [Github地址](https://github.com/WeBankBlockchain/Data-Stash)
-- [Gitee地址](https://github.com/FISCO-BCOS/FISCO-BCOS)
+- [Gitee地址](https://gitee.com/WeBankBlockchain/Data-Stash)
 - [文档](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Stash/index.html)
 - [快速开始](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Stash/quickstart.html)
 
@@ -16,8 +16,8 @@ WeBankBlockchain-Data数据治理通用组件[文档](https://data-doc.readthedo
 只需简单配置、无需开发、即可实时导出个性化的业务数据，实现将裸数据转化为标准化、结构化、有序化、可视化的高价值数据。
 请参考:  
 - [Github地址](https://github.com/WeBankBlockchain/Data-Export)
-- [Gitee地址](https://github.com/FISCO-BCOS/FISCO-BCOS)
-- [文档](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Export/install.html)
+- [Gitee地址](https://gitee.com/WeBankBlockchain/Data-Export)
+- [文档](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Export/index.html)
 - [快速开始](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Export/install.html)
     
 ### **WeBankBlockchain-Data-Reconcile  数据对账组件**
@@ -25,9 +25,9 @@ WeBankBlockchain-Data数据治理通用组件[文档](https://data-doc.readthedo
 灵活配置、无需开发，支持自定义对账数据和对账格式，支持定时对账和触发对账，对账处理模块可插拔可扩展。
 请参考:  
 - [Github地址](https://github.com/WeBankBlockchain/Data-Reconcile)
-- [Gitee地址](https://github.com/FISCO-BCOS/FISCO-BCOS)
-- [文档](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/install.html)
-- [快速开始](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/install.html)
+- [Gitee地址](https://gitee.com/WeBankBlockchain/Data-Reconcile)
+- [文档](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/index.html)
+- [快速开始](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/install.html)	
 
 ## 贡献代码
 欢迎参与本项目的社区建设：
