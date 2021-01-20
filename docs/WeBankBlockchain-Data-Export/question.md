@@ -2,7 +2,7 @@
 
 ### 为啥我的数据里自动生成的表里，只有block_detail_info、block_raw_data、block_task_pool、contract_info表有数据？
 
-> A： block_task_pool、block_raw_data、block_detail_info表是链的基本数据，只要服务正常运行，这两个表肯定会有数据。首先，请检查连接的区块链的地址、端口是否正确。其次，你需要检查合约的版本。如果你升级了合约，但链上执行的合约都是老版本的合约，这个时候就无法获得数据。最后，需要检查合约中是否定义了Event、显式定义了构造函数；如果没有定义，是不会有Event和构造函数的表的。
+> A： block_task_pool、block_raw_data、block_detail_info表是链的基本数据，只要服务正常运行，这些表肯定会有数据。首先，请检查连接的区块链的地址、端口是否正确。其次，你需要检查合约的版本。如果你升级了合约，但链上执行的合约都是老版本的合约，这个时候就无法获得数据。最后，需要检查合约中是否定义了Event、显式定义了构造函数；如果没有定义，是不会有Event和构造函数的表的。
 
 > B： Java文件中的binary数据必须保证和上链文件的binary一致，否则识别不出来
 
