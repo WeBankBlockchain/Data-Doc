@@ -97,8 +97,12 @@ tools目录如下：
 
 找到你的业务工程（你要导出数据的那条区块链中，往区块链写数据的工程），复制合约产生的Java文件：请将Java文件**复制到./tools/config/contract目录**下（请先删除目录结构中的合约示例HelloWorld.java文件）。
 
-如果你的业务工程并非Java工程，那就先找到你所有的合约代码。不清楚如何将Solidity合约生成为Java文件，请参考： [利用控制台将合约代码转换为java代码](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/console.html)
+假如业务工程并非Java工程，需要将Solidity合约生成为Java文件，请参考： [利用控制台将合约代码转换为java代码](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/console.html)
 
+```eval_rst
+.. important::
+    需要保证上链的binary与Java文件中的BINARY保持一致，否则导出程序无法正确识别具体的合约。例如，如果是通过java sdk来发送上链的，则将sdk中的合约java文件复制到数据导出工程中；如果是通过WeBASE-Front来发送的，则从WeBASE-Front中导出Java文件，并复制到数据导出工程中。如果非Java工程，需要将Solidity合约生成为Java文件，同时将上链时的binary数据完整复制和拷贝到对应合约Java文件的BINARY字段中。
+```
 
 ##### 配置证书文件
 
@@ -179,7 +183,10 @@ bash build_export.sh
 ## ./build_export.sh -v 1.3.0
 ```
 
-请注意:请务必按照以上命令操作，**切莫使用sudo命令来操作**，否则会导致Gradlew没有权限，导致depot数据失败。
+```eval_rst
+.. important::
+    请务必按照以上命令操作，**请勿使用sudo命令来操作**，否则会导致Gradlew没有权限，导致导出数据失败。
+```
 
 ##### 选择二：本机编译，复制执行包到其他服务器上运行
 
