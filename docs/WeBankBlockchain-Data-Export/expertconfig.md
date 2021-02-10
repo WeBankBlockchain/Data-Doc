@@ -17,7 +17,6 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.nodeStr | Y | 连接区块链节点的nodeStr，nodeName@[IP]:[PORT], 其中prot为channel port | node1@ip:8822 | - |
-| system.encryptType | N | 加密类型： 0-RSA, 1-gm | 0 | 0 |
 
 
 #### 数据库配置
