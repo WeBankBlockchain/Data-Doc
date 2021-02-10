@@ -9,6 +9,13 @@
 
 > A：同上一个问题。数据导出合约Java文件的binary与上链文件的binary不一致，导致数据导出程序无法识别上链的合约数据。解决办法是，找到上链的代码，保证和数据导出里的bianry一致。例如，如果是通过java sdk来发送上链的，则将sdk中的合约java文件复制到数据导出工程中；如果是通过WeBASE-Front来发送的，则从WeBASE-Front中导出Java文件，并复制到数据导出工程中。然后，重新使用脚本重启即可。
 
+### 数据导出按文档配置好后，本机运行报错，报错信息如下图，请问怎么办？
+
+![报错信息](../../images/WeBankBlockchain-Data-Export/web3sdk_error.png)
+
+> A：如果报错信息中含有web3sdk字样，这是因为使用了web3sdk编译Java代码。请更新控制台，使用[2.6+控制台进行代码编译]( https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/console/console_of_java_sdk.html) 。
+
+
 ### 我在链上部署了多个项目的合约，其中的包名并不同，能在同一个工程里导出数据吗？
 
 > A：可以。只需要手动将编译生成的合约代码的包名改为同一个，然后在配置文件中将monitor.contractPackName配置为该包名，并按照之前的方式配置、重启，即可导出所有合约的数据。
