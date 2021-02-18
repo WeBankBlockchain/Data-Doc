@@ -173,6 +173,13 @@ mysql>
 
 #### 运行程序
 
+```eval_rst
+.. note::
+        本工程默认使用gradle wrapper来实施构建。在必要时，可在build_export.sh时添加-c的编译选项，指定使用本机的gradle来进行代码编译。
+
+            - 如果运行程序以后无法正常下载gradle wrapper，可自行安装gradle软件，可参考 `官网安装教程 <https://gradle.org/install/>`_ 。       
+            - 如果本机已经安装了符合要求的gradle软件，则可以使用`./build_export.sh -c gradle`选项来指定编译方式，使用本机安装的gradle来实施构建。
+```
 
 ##### 选择一：直接在本机运行
 
