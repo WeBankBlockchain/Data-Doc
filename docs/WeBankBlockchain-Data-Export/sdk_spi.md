@@ -82,6 +82,7 @@ stop(DataExportExecutor exportExecutor)
 | namePostfix | 合约函数导出表字段后缀设置 | String | 空 |
 
 
+
 #### 功能说明
 
 - 本版本为SDK版本，去Spring等框架依赖，更好地支持第三方以jar形式引入
