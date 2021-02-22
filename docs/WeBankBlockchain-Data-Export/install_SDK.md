@@ -18,22 +18,12 @@
 
 ##### 引入数据导出SDK依赖 
 
-###### 在java项目的build.gradle中引入如下Maven库
-```
-allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-```
 ###### 建立依赖
 ```
 dependencies {
-	implementation 'com.github.WeBankBlockchain:Data-Export:DataExport-SDK-Beta-SNAPSHOT'
+    compile 'com.webank:data-export-sdk:1.7.0'
 }
 ```
-
 
 #### SDK调用
 
