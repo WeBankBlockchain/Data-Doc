@@ -1,4 +1,4 @@
-## 配置说明
+## 服务配置说明
 
 ### 配置参数说明
 
@@ -86,7 +86,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | button.swagger | N | 是否打开swagger功能，请务必在生成环境关闭此开关 | on/off | on |
 
 
-### 配置工程
+#### 配置工程
 
 快速启动后，主要的基础配置都将会在配置中自动生成，无需额外配置。但是，基于已生成的配置文件，你可以继续按照需求进行深入的个性化高级配置，例如配置集群部署、分库分表、读写分离等等。
 
@@ -106,7 +106,7 @@ bash gradlew clean bootJar
 
 ```
 
-#### 导出数据范围的配置
+##### 导出数据范围的配置
 
 配置文件位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
 
@@ -115,7 +115,7 @@ bash gradlew clean bootJar
 | system.startBlockHeight | N | 设置导出数据的起始区块号，优先以此配置为准 | 1000 | 0 |
 | system.startDate | N | 设置导出数据的起始时间，例如设置导出2019年元旦开始上链的数据；如已配置startBlockHeight，以导出数据起始区块号为准。支持的数据格式包括：yyyy-MM-dd HH:mm:ss 或 yyyy-MM-dd 或 HH:mm:ss 或 yyyy-MM-dd HH:mm  或 yyyy-MM-dd  HH:mm:ss.SSS | 2019-01-01 | - |
 
-#### 单节点部署的配置
+##### 单节点部署的配置
 
 在选择单节点配置后，以下配置会自动生成。
 单节点任务调度的配置，分布式任务调度的配置默认位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
@@ -128,7 +128,7 @@ system.multiLiving=false
 system.crawlBatchUnit=100
 ```
 
-#### 集群部署的配置
+##### 集群部署的配置
 
 多节点任务调度的配置，分布式任务调度的配置默认位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
 
@@ -159,7 +159,8 @@ dataflowJob.shardingItemParameters=0=A,1=B,2=C
 
 数据库配置解析，数据库的配置默认位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application-sharding-tables.properties
 
-#### 分库分表的配置
+
+##### 分库分表的配置
 
 实践表明，当区块链上存在海量的数据时，导出到单个数据库或单个业务表会对运维造成巨大的压力，造成数据库性能的衰减。
 一般来讲，单一数据库实例的数据的阈值在1TB之内，单一数据库表的数据的阈值在10G以内，是比较合理的范围。
@@ -234,7 +235,7 @@ spring.shardingsphere.props.sql.show=true
 
 ```
 
-#### 数据库读写分离的配置：
+##### 数据库读写分离的配置
 
 数据库读写分离的主要设计目标是让用户无痛地使用主从数据库集群，就好像使用一个数据库一样。读写分离的特性支持往主库写入数据，往从库查询数据，从而减轻数据库的压力，提升服务的性能。
 
@@ -271,7 +272,7 @@ spring.shardingsphere.props.sql.show=true
 
 ```
 
-#### 数据库读写分离+分库分表的配置：
+##### 数据库读写分离+分库分表的配置
 
 
 ```
