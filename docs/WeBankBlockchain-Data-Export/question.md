@@ -1,5 +1,6 @@
 ## 常见问题
 
+
 ### 为啥我的数据里自动生成的表里，只有block_detail_info、block_raw_data、block_task_pool、contract_info表有数据？
 
 > 1. 区块链刚完成初始化，块高为0；
