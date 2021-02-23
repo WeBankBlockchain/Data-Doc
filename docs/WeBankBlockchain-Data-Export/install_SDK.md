@@ -31,8 +31,8 @@ dependencies {
 //数据库配置信息
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
         .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
-        .pass("password")
         .user("username")
+        .pass("password")
         .build();
 //mysql数据库列表
 List<MysqlDataSource> mysqlDataSourceList = new ArrayList<>();
