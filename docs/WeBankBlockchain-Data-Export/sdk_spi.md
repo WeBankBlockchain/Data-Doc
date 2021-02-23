@@ -2,11 +2,17 @@
 
 #### 接口说明
 ```
-//创建数据导出执行器DataExportExecutor，导出配置采用默认配置
+//创建数据导出执行器DataExportExecutor，导出配置采用默认配置，从链上导出数据
 DataExportExecutor create(ExportDataSource dataSource, ChainInfo chainInfo);
 
-//创建数据导出执行器DataExportExecutor, 配置导出配置
+//创建数据导出执行器DataExportExecutor, 配置导出配置，从链上导出数据
 DataExportExecutor create(ExportDataSource dataSource, ChainInfo chainInfo, ExportConfig config)
+
+//创建Stash数据导出执行器DataExportExecutor，导出配置采用默认配置，从数据仓库中导出数据
+DataExportExecutor create(ExportDataSource dataSource, StashInfo stashInfo);
+
+//创建Stash数据导出执行器DataExportExecutor, 配置导出配置，从数据仓库中导出数据
+DataExportExecutor create(ExportDataSource dataSource, StashInfo stashInfo, ExportConfig config)
 
 //DataExportExecutor启动
 start(DataExportExecutor exportExecutor)
@@ -47,13 +53,31 @@ stop(DataExportExecutor exportExecutor)
 | port | 端口号 | int | null |
 
 
-<br />**ChainInfo为链参数配置（必须），参数如下：**
+<br />**ChainInfo为链参数配置，支持RPC通道和Channel通道两种配置方式，参数如下：**
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | ---|
-| nodeStr | 节点ip和端口port，格式为：[ip]:[port] | string | null |
-| groupId | 分组id | int | null |
-| certPath | 链节点连接所需证书路径 | string | null |
+| groupId | 分组id (必配)| int | null |
+| nodeStr | 链节点ip和端口port，格式：[ip]:[port] (channel通道连接时设置) | string | null |
+| certPath | 链节点连接所需证书路径 (channel通道连接时设置)| string | null |
+| rpcUrl | rpc连接url，格式：http://[ip]:[port]，如：http://127.0.0.1:8546；（使用rpc连接时设置）| string | null |
+| cryptoTypeConfig | 链密钥类型，0-ECDSA，1-SM（国密）,（使用rpc连接时设置） | int | 0 |
+
+```eval_rst
+.. note::
+    - 链上证书默认位于链节点 ~/fisco/nodes/127.0.0.1/sdk目录中，如果为国密链直接将sdk下gm文件夹拷贝到certPath配置的目录中。
+    - channel通道和rpc通道同时设置时，将使用rpc方式连接。
+
+```
+
+<br />**StashInfo为数据仓库源mysql配置，与ChainInfo同时设置后，优先该方式，参数如下：**
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | ---|
+| jdbcUrl | 数据仓库jdbc连接配置，格式：jdbc:mysql://[ip]:[port]/[database] | string | null |
+| user | 用户名 | string | null |
+| pass | 密码 | string | null |
+| cryptoTypeConfig | 链密钥类型，0-ECDSA，1-SM（国密） | int | 0 |
 
 
 <br />**ExportConfig为数据导出任务配置（非必须），参数如下：**
@@ -76,10 +100,10 @@ stop(DataExportExecutor exportExecutor)
 | generatedOff | 合约事件或函数导出过滤,如: Map<合约名, 方法名/事件名>| Map | empty map |
 | ignoreParam | 合约函数指定字段导出过滤,如: Map<合约名, Map<方法名/事件名, List<字段名>>> | Map | empty map |
 | paramSQLType | 合约函数指定字段导出sql类型,如: Map<合约名, Map<方法名/事件名, Map<字段名,sql类型>>> | Map| empty map |
-| tablePrefix | 合约函数导出表名前缀设置 | String | 空 |
-| tablePostfix | 合约函数导出表名后缀设置 | String | 空 |
-| namePrefix | 合约函数导出表字段前缀设置 | String | 空 |
-| namePostfix | 合约函数导出表字段后缀设置 | String | 空 |
+| tablePrefix | 数据导出表名前缀设置 | String | 空 |
+| tablePostfix | 数据导出表名前缀设置 | String | 空 |
+| namePrefix | 合约导出表字段前缀设置，只针对method、event表中变量字段 | String | 空 |
+| namePostfix | 合约导出表字段后缀设置，只针对method、event表中变量字段 | String | 空 |
 
 #### 功能说明
 
