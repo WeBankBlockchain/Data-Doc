@@ -51,9 +51,12 @@ stop(DataExportExecutor exportExecutor)
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | ---|
-| nodeStr | 节点ip和端口port，格式为：[ip]:[port] | string | null |
 | groupId | 分组id | int | null |
-| certPath | 链节点连接所需证书路径 | string | null |
+| nodeStr | channel通道连接时设置，链节点ip和端口port，格式为：[ip]:[port] | string | null |
+| certPath | channel通道连接时设置, 链节点连接所需证书路径 | string | null |
+| rpcUrl | rpc连接时设置，如：http://127.0.0.1:8546；同时设置时，rpc通道优先 | string | null |
+| cryptoTypeConfig | 链密钥类型，0-ECDSA，1-SM（国密），使用rpc连接时设置该参数 | int | 0 |
+
 
 
 <br />**ExportConfig为数据导出任务配置（非必须），参数如下：**
@@ -76,10 +79,10 @@ stop(DataExportExecutor exportExecutor)
 | generatedOff | 合约事件或函数导出过滤,如: Map<合约名, 方法名/事件名>| Map | empty map |
 | ignoreParam | 合约函数指定字段导出过滤,如: Map<合约名, Map<方法名/事件名, List<字段名>>> | Map | empty map |
 | paramSQLType | 合约函数指定字段导出sql类型,如: Map<合约名, Map<方法名/事件名, Map<字段名,sql类型>>> | Map| empty map |
-| tablePrefix | 合约函数导出表名前缀设置 | String | 空 |
-| tablePostfix | 合约函数导出表名后缀设置 | String | 空 |
-| namePrefix | 合约函数导出表字段前缀设置 | String | 空 |
-| namePostfix | 合约函数导出表字段后缀设置 | String | 空 |
+| tablePrefix | 合约导出表名前缀设置 | String | 空 |
+| tablePostfix | 合约导出表名后缀设置 | String | 空 |
+| namePrefix | 合约导出表字段前缀设置，只针对method、event表中变量字段 | String | 空 |
+| namePostfix | 合约导出表字段后缀设置，只针对method、event表中变量字段 | String | 空 |
 
 #### 功能说明
 
