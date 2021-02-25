@@ -79,8 +79,8 @@ stop(DataExportExecutor exportExecutor)
 | generatedOff | 合约事件或函数导出过滤,如: Map<合约名, 方法名/事件名>| Map | empty map |
 | ignoreParam | 合约函数指定字段导出过滤,如: Map<合约名, Map<方法名/事件名, List<字段名>>> | Map | empty map |
 | paramSQLType | 合约函数指定字段导出sql类型,如: Map<合约名, Map<方法名/事件名, Map<字段名,sql类型>>> | Map| empty map |
-| tablePrefix | 合约导出表名前缀设置 | String | 空 |
-| tablePostfix | 合约导出表名后缀设置 | String | 空 |
+| tablePrefix | 数据导出表名前缀设置 | String | 空 |
+| tablePostfix | 数据导出表名前缀设置 | String | 空 |
 | namePrefix | 合约导出表字段前缀设置，只针对method、event表中变量字段 | String | 空 |
 | namePostfix | 合约导出表字段后缀设置，只针对method、event表中变量字段 | String | 空 |
 
