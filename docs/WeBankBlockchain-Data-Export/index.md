@@ -32,7 +32,7 @@
     - 支持区块重置导出
     - 支持可视化的监控页面
     - 提供可视化的互动API控制台
-    - SDK支持JSON-RPC获取链上数据
+    - SDK支持JSON-RPC、Channel通道、数据仓库源等方式导出数据
 ```
 
 ```eval_rst

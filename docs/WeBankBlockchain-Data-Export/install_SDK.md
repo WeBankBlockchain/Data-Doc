@@ -146,6 +146,45 @@ Thread.sleep(60 *1000L);
 //ExportDataSDK.stop(exportExecutor);
 ```
 
+##### Data-Stash仓库源方式导出（默认导出配置）：
+
+SDK打通了[Data-Stash组件](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Stash/intro.html) ，支持从Data-Stash仓库源中导出数据，如下
+
+```
+//数据库配置信息
+MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .user("username")
+        .pass("password")
+        .build();
+//mysql数据库列表
+List<MysqlDataSource> mysqlDataSourceList = new ArrayList<>();
+//mysql数据库添加
+mysqlDataSourceList.add(mysqlDataSourc);
+//导出数据源配置
+ExportDataSource dataSource = ExportDataSource.builder()
+        //设置mysql源
+        .mysqlDataSources(mysqlDataSourceList)
+        //自动建表开启
+        .autoCreateTable(true) 
+        .build();
+//stash仓库源类型的数据导出执行器构建
+DataExportExecutor exportExecutor = ExportDataSDK.create(dataSource, StashInfo.builder()
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .user("username")
+        .pass("password")
+        // chain cryptoType, gm-1
+        .cryptoTypeConfig(0)
+        .build());
+//数据导出执行启动
+ExportDataSDK.start(exportExecutor);
+//休眠一定时间，因导出执行为线程池执行，测试时主线程需阻塞
+Thread.sleep(60 *1000L);
+//数据导出执行关闭
+//ExportDataSDK.stop(exportExecutor);
+```
+
+
 <br />**更多使用方式参照[Sdk Java API](sdk_spi.md)**
 
 #### SDK-Demo

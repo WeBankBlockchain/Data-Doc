@@ -2,11 +2,17 @@
 
 #### 接口说明
 ```
-//创建数据导出执行器DataExportExecutor，导出配置采用默认配置
+//创建数据导出执行器DataExportExecutor，导出配置采用默认配置，从链上导出数据
 DataExportExecutor create(ExportDataSource dataSource, ChainInfo chainInfo);
 
-//创建数据导出执行器DataExportExecutor, 配置导出配置
+//创建数据导出执行器DataExportExecutor, 配置导出配置，从链上导出数据
 DataExportExecutor create(ExportDataSource dataSource, ChainInfo chainInfo, ExportConfig config)
+
+//创建Stash数据导出执行器DataExportExecutor，导出配置采用默认配置，从数据仓库中导出数据
+DataExportExecutor create(ExportDataSource dataSource, StashInfo stashInfo);
+
+//创建Stash数据导出执行器DataExportExecutor, 配置导出配置，从数据仓库中导出数据
+DataExportExecutor create(ExportDataSource dataSource, StashInfo stashInfo, ExportConfig config)
 
 //DataExportExecutor启动
 start(DataExportExecutor exportExecutor)
@@ -47,7 +53,7 @@ stop(DataExportExecutor exportExecutor)
 | port | 端口号 | int | null |
 
 
-<br />**ChainInfo为链参数配置（必须），参数如下：**
+<br />**ChainInfo为链参数配置，支持RPC通道和Channel通道两种配置方式，参数如下：**
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | ---|
@@ -57,6 +63,14 @@ stop(DataExportExecutor exportExecutor)
 | rpcUrl | rpc连接时设置，如：http://127.0.0.1:8546；同时设置时，rpc通道优先 | string | null |
 | cryptoTypeConfig | 链密钥类型，0-ECDSA，1-SM（国密），使用rpc连接时设置该参数 | int | 0 |
 
+<br />**StashInfo为数据仓库源mysql配置，与ChainInfo同时设置后，优先该方式，参数如下：**
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | ---|
+| jdbcUrl | 数据仓库jdbc连接配置，格式：jdbc:mysql://[ip]:[port]/[database] | string | null |
+| user | 用户名 | string | null |
+| pass | 密码 | string | null |
+| cryptoTypeConfig | 链密钥类型，0-ECDSA，1-SM（国密） | int | 0 |
 
 
 <br />**ExportConfig为数据导出任务配置（非必须），参数如下：**
