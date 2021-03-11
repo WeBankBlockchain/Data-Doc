@@ -57,11 +57,14 @@ stop(DataExportExecutor exportExecutor)
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | ---|
-| groupId | 分组id | int | null |
-| nodeStr | channel通道连接时设置，链节点ip和端口port，格式为：[ip]:[port] | string | null |
-| certPath | channel通道连接时设置, 链节点连接所需证书路径 | string | null |
-| rpcUrl | rpc连接时设置，如：http://127.0.0.1:8546；同时设置时，rpc通道优先 | string | null |
-| cryptoTypeConfig | 链密钥类型，0-ECDSA，1-SM（国密），使用rpc连接时设置该参数 | int | 0 |
+| groupId | 分组id (必配)| int | null |
+| nodeStr | 链节点ip和端口port，格式为：[ip]:[port] (channel通道连接时设置) | string | null |
+| certPath | 链节点连接所需证书路径 (channel通道连接时设置)| string | null |
+| rpcUrl | http://[ip]:[port]，如：http://127.0.0.1:8546；（使用rpc连接时设置）| string | null |
+| cryptoTypeConfig | 链密钥类型，0-ECDSA，1-SM（国密）,（使用rpc连接时设置） | int | 0 |
+
+其中, 链上证书默认位于链节点 ~/fisco/nodes/127.0.0.1/sdk目录中，如果为国密链直接将sdk下gm文件夹拷贝到certPath配置的目录中。
+channel通道和rpc通道同时设置时，将使用rpc方式连接。
 
 <br />**StashInfo为数据仓库源mysql配置，与ChainInfo同时设置后，优先该方式，参数如下：**
 
