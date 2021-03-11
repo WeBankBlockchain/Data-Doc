@@ -30,7 +30,7 @@ dependencies {
 ```
 //数据库配置信息
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
-        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
         .user("username")
         .pass("password")
         .build();
@@ -67,13 +67,13 @@ Thread.sleep(60 *1000L);
 ```
 //数据库配置信息
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
-        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
         .user("username")
         .pass("password")
         .build();
 //数据库配置信息
 MysqlDataSource mysqlDataSourc1 = MysqlDataSource.builder()
-        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
         .user("username")
         .pass("password")
         .build();
@@ -116,7 +116,7 @@ SDK也支持通过链JSON RPC方式导出数据，如下
 ```
 //数据库配置信息
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
-        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
         .user("username")
         .pass("password")
         .build();
@@ -153,7 +153,7 @@ SDK打通了[Data-Stash组件](https://data-doc.readthedocs.io/zh_CN/latest/docs
 ```
 //数据库配置信息
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
-        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
         .user("username")
         .pass("password")
         .build();
@@ -170,7 +170,7 @@ ExportDataSource dataSource = ExportDataSource.builder()
         .build();
 //stash仓库源类型的数据导出执行器构建
 DataExportExecutor exportExecutor = ExportDataSDK.create(dataSource, StashInfo.builder()
-        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
         .user("username")
         .pass("password")
         // chain cryptoType, gm-1
