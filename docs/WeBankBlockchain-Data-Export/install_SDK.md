@@ -20,7 +20,7 @@
 ###### 建立依赖
 ```
 dependencies {
-    compile 'com.webank:data-export-sdk:1.7.0'
+    compile 'com.webank:data-export-sdk:1.7.1'
 }
 ```
 
@@ -30,7 +30,7 @@ dependencies {
 ```
 //数据库配置信息
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
-        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
         .user("username")
         .pass("password")
         .build();
@@ -45,7 +45,7 @@ ExportDataSource dataSource = ExportDataSource.builder()
         //自动建表开启
         .autoCreateTable(true) 
         .build();
-//数据导出执行器构建
+//channel通道的数据导出执行器构建
 DataExportExecutor exportExecutor = ExportDataSDK.create(dataSource, ChainInfo.builder()
         //链节点连接信息
         .nodeStr("[ip]:[port]")
@@ -67,13 +67,13 @@ Thread.sleep(60 *1000L);
 ```
 //数据库配置信息
 MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
-        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
         .user("username")
         .pass("password")
         .build();
 //数据库配置信息
 MysqlDataSource mysqlDataSourc1 = MysqlDataSource.builder()
-        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]")
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
         .user("username")
         .pass("password")
         .build();
@@ -92,7 +92,7 @@ ExportDataSource dataSource = ExportDataSource.builder()
         //分片数设置
         .shardingNumberPerDatasource(2)
         .build();
-//数据导出执行器构建
+//channel通道的数据导出执行器构建
 DataExportExecutor exportExecutor = ExportDataSDK.create(dataSource, ChainInfo.builder()
         //链节点连接信息
         .nodeStr("[ip]:[port]")
@@ -108,6 +108,82 @@ Thread.sleep(60 *1000L);
 //数据导出执行关闭
 //ExportDataSDK.stop(exportExecutor);
 ```
+
+##### JSON-RPC方式导出（默认导出配置）：
+
+SDK也支持通过链JSON RPC方式导出数据，如下
+
+```
+//数据库配置信息
+MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
+        .user("username")
+        .pass("password")
+        .build();
+//mysql数据库列表
+List<MysqlDataSource> mysqlDataSourceList = new ArrayList<>();
+//mysql数据库添加
+mysqlDataSourceList.add(mysqlDataSourc);
+//导出数据源配置
+ExportDataSource dataSource = ExportDataSource.builder()
+        //设置mysql源
+        .mysqlDataSources(mysqlDataSourceList)
+        //自动建表开启
+        .autoCreateTable(true) 
+        .build();
+//RPC通道类型的数据导出执行器构建
+DataExportExecutor exportExecutor = ExportDataSDK.create(dataSource, ChainInfo.builder()
+        .rpcUrl("http://127.0.0.1:8546")
+        // chain cryptoType, gm-1
+        .cryptoTypeConfig(0)
+        .groupId(1)
+        .build());
+//数据导出执行启动
+ExportDataSDK.start(exportExecutor);
+//休眠一定时间，因导出执行为线程池执行，测试时主线程需阻塞
+Thread.sleep(60 *1000L);
+//数据导出执行关闭
+//ExportDataSDK.stop(exportExecutor);
+```
+
+##### Data-Stash仓库源方式导出（默认导出配置）：
+
+SDK打通了[Data-Stash组件](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Stash/intro.html) ，支持从Data-Stash仓库源中导出数据，如下
+
+```
+//数据库配置信息
+MysqlDataSource mysqlDataSourc = MysqlDataSource.builder()
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
+        .user("username")
+        .pass("password")
+        .build();
+//mysql数据库列表
+List<MysqlDataSource> mysqlDataSourceList = new ArrayList<>();
+//mysql数据库添加
+mysqlDataSourceList.add(mysqlDataSourc);
+//导出数据源配置
+ExportDataSource dataSource = ExportDataSource.builder()
+        //设置mysql源
+        .mysqlDataSources(mysqlDataSourceList)
+        //自动建表开启
+        .autoCreateTable(true) 
+        .build();
+//stash仓库源类型的数据导出执行器构建
+DataExportExecutor exportExecutor = ExportDataSDK.create(dataSource, StashInfo.builder()
+        .jdbcUrl("jdbc:mysql://[ip]:[port]/[database]?autoReconnect=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8")
+        .user("username")
+        .pass("password")
+        // chain cryptoType, gm-1
+        .cryptoTypeConfig(0)
+        .build());
+//数据导出执行启动
+ExportDataSDK.start(exportExecutor);
+//休眠一定时间，因导出执行为线程池执行，测试时主线程需阻塞
+Thread.sleep(60 *1000L);
+//数据导出执行关闭
+//ExportDataSDK.stop(exportExecutor);
+```
+
 
 <br />**更多使用方式参照[Sdk Java API](sdk_spi.md)**
 
