@@ -416,7 +416,7 @@ WeBankBlockchain-Data-Export-codegen会自动生成数据的dashboard模板，�
 
 ##### 开启可视化的API文档和功能性测试
 
-[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export)默认集成了swagger的插件，支持通过可视化的控制台来发送交易、生成报文、查看结果、调试交易等。
+[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export) [Gitee地址](https://gitee.com/WeBankBlockchain/Data-Export) 默认集成了swagger的插件，支持通过可视化的控制台来发送交易、生成报文、查看结果、调试交易等。
 
 ![[swagger控制台]](../../images/WeBankBlockchain-Data-Export/swagger.png)
 
@@ -438,7 +438,7 @@ button.swagger=on
 
 > http://your_ip:port/swagger-ui.html
 
-例如，当你在本机运行了[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export)，且未修改默认的5200端口，则可以访问此地址：
+例如，当你在本机运行了[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export) [Gitee地址](https://gitee.com/WeBankBlockchain/Data-Export)，且未修改默认的5200端口，则可以访问此地址：
 
 > http://localhost:5200/swagger-ui.html
 
