@@ -17,6 +17,26 @@
 > A：如果报错信息中含有web3sdk字样，这是因为使用了web3sdk编译Java代码。请更新控制台，使用[2.6+控制台进行代码编译]( https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/console/console_of_java_sdk.html) 。
 
 
+### 数据导出的时候报错,"Could not find xxx.jar"，无法正常运行，错误信息参考如下：
+```
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':WeBankBlockchain-Data-Export-common:compileJava'.
+> Could not resolve all files for configuration ':WeBankBlockchain-Data-Export-common:compileClasspath'.
+   > Could not find java-sdk-2.6.1.jar (org.fisco-bcos.java-sdk:java-sdk:2.6.1).
+     Searched in the following locations:
+         http://maven.aliyun.com/nexus/content/repositories/jcenter/org/fisco-bcos/java-sdk/java-sdk/2.6.1/java-sdk-2.6.1.jar
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+```
+
+> A：下载jar包失败。请首先检查报错的链接能否正常打开下载。如果正常，在项目根目录下执行下 `bash gradlew clean bootJar --refresh-dependencies` 强制重新刷新依赖。
+
+
 ### 我在链上部署了多个项目的合约，其中的包名并不同，能在同一个工程里导出数据吗？
 
 > A：可以。只需要手动将编译生成的合约代码的包名改为同一个，然后在配置文件中将monitor.contractPackName配置为该包名，并按照之前的方式配置、重启，即可导出所有合约的数据。
