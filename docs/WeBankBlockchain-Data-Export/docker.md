@@ -101,6 +101,21 @@ system.contract0.binary=
 system.grafanaEnable=true
 ```
 
+##### 多群组数据导出
+
+无需多群组可跳过该步骤。
+
+首先，请配置FISCO BCOS的多群组，详情可参考[FISCO BCOS多群组部署](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/group_use_cases.html?highlight=%E5%A4%9A%E7%BE%A4%E7%BB%84#)
+
+其次，修改修改application.properties文件。多个群组使用,分隔。例如，假如存在1和2两个群组。
+
+多群组将导出到相同的库中，表名将以群组id做前缀来区分，格式为：g1_tableName
+
+配置如下：
+```
+system.groupId=1,2
+```
+
 #### 更多配置
 
 更多配置参见application.properties文件，还包括ES存储、多活、分库分表等多种配置，可按需配置。
@@ -173,6 +188,8 @@ grafana安装并启动成功，通过访问[ip]:3000（本机则为localhost:300
 <br /> <br />
 ![](../../images/WeBankBlockchain-Data-Export/grafana_view.png)
 <br /> <br />
+
+更多关于Grafana的自定义配置和开发文档，可参考[Grafana官方文档](http://docs.grafana.org/guides/getting_started/)
 
 #### 问题
 
