@@ -156,22 +156,22 @@ docker restart dataexport
 
 grafana安装并启动成功，通过访问[ip]:3000（本机则为localhost:3000）即可看到如下界面：
 <br /> <br />
-![](./image/grafana_start.png)
+![](../../images/WeBankBlockchain-Data-Export/grafana_start.png)
 <br /> <br />
 
 输入账密admin/admin, 现在跳过即可进入主界面，添加导出数据库的mysql信息，如下位置：
 <br /> <br />
-![](./image/grafana_index.png)
+![](../../images/WeBankBlockchain-Data-Export/grafana_index.png)
 <br /> <br />
 
 添加mysql成功后，可通过如下方式导入系统生成的default_dashboard.json文件，如下位置：
 <br /> <br />
-![](./image/grafana_json.png)
+![](../../images/WeBankBlockchain-Data-Export/grafana_json.png)
 <br /> <br />
 
 导入成功后即可看到链的数据可视化情况，如下：
 <br /> <br />
-![](./image/grafana_view.png)
+![](../../images/WeBankBlockchain-Data-Export/grafana_view.png)
 <br /> <br />
 
 #### 问题
