@@ -199,10 +199,7 @@ yum更新失败：rpmdb: BDB0113 Thread/process 2673/140126198814528 failed: BDB
 ```
 解决方式如下：
 ```
-# cd /var/lib/rpm
-# ls
-Basenames     __db.001  __db.003  Group       Name          Packages     Requirename  Sigmd5
-Conflictname  __db.002  Dirnames  Installtid  Obsoletename  Providename  Sha1header   Triggername
-# rm -rf __db*
-# rpm --rebuilddb
+cd /var/lib/rpm
+rm -rf __db*
+rpm --rebuilddb
 ```
