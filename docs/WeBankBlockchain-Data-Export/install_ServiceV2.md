@@ -88,7 +88,7 @@ tools目录如下：
 ### 选择上述三种中一种方式配置即可，推荐 Channel方式
 
 # 1、Channel方式启动，需配置证书
-## GROUP_ID必须与FISCO-BCOS中配置的groupId一致。
+## GROUP_ID必须与FISCO-BCOS中配置的groupId一致, 多群组以,分隔，如1,2
 system.groupId=1
 # 节点的IP及通讯端口、组号。 
 ##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200
