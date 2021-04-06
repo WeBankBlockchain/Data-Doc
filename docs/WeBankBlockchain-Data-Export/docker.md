@@ -28,9 +28,9 @@ data-export目录如下：
 │   ├── log
 │   └── build_export.sh
 ```
-config为配置文件目录，使用channel方式连接区块链时，需将证书放至该目录。
-log为运行日志保存的地方。
-运行生成的sql脚本和可视化脚本会保存在config目录下。
+**config为配置文件目录，使用channel方式连接区块链时，需将证书放至该目录。**
+<br /> 运行生成的sql脚本**data_export.sql**和可视化脚本**default_dashboard.json**会保存在**config**目录下。
+<br /> log为运行日志保存的地方。
 
 
 #### 配置证书（channel方式启动）
