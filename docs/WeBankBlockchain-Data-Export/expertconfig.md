@@ -16,17 +16,18 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 连接区块链节点包括两种方式：channel和JSON-RPC方式
 
 ##### channel方式配置说明如下：
+
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.nodeStr | Y | 连接区块链节点的nodeStr，nodeName@[IP]:[PORT], 其中prot为channel port | node1@ip:8822 | - |
-| system.groupId | Y | 群组id | 1 | 1 |
+| system.nodeStr | Y | 连接区块链节点的nodeStr,nodeName@[IP]:[PORT], 其中prot为channel port | - | - |
+| system.groupId | Y | 群组id | - | 1 |
 | system.certPath | Y | 证书路径 | - | ./config |
 
 ##### JSON-RPC方式配置说明如下：
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.rpcUrl | Y | 连接区块链节点的JsonRPC url，http://[IP]:[PORT], 其中prot为rpc port | http://localhost:8546 | - |
+| system.rpcUrl | Y | 连接区块链节点的rpc url, http://[IP]:[PORT], 其中prot为rpc port | http://localhost:8546 | - |
 | system.groupId | Y | 群组id | 1 | 1 |
 | system.cryptoTypeConfig | Y | 链密钥类型 | 0-ECDSA，1-gm | 0 |
 
