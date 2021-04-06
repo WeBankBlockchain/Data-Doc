@@ -10,8 +10,6 @@ WeBankBlockchain-Data-Export可以导出区块链上的基础数据，如当前�
 
 数据导出组件支持多数据源、分库分表、读写分离、分布式部署，支持ES存储。
 
-WeBankBlockchain-Data-Export提供了基于Restful的API，支持通过http的方式调用这些接口。
-
 WeBankBlockchain-Data-Export还提供SDK调用方式，通过jar包依赖可以集成到用户项目中，使用更加灵活便捷。
 
 ### 使用场景和解决方案
@@ -65,10 +63,6 @@ WeBankBlockchain-Data-Export还提供SDK调用方式，通过jar包依赖可以�
 #### 可定制化的数据导出策略
 
 提供灵活的可配置的区块、交易、事件、账户等数据导出功能，过滤不需要的数据
-
-#### 提供丰富的Restful API查询接口
-
-支持丰富的Restful API数据查询接口
 
 #### 支持可视化的监控页面
 

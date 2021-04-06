@@ -124,7 +124,7 @@ system.groupId=1,2
 
 #### 更多配置
 
-更多配置参见application.properties文件，还包括ES存储、多活、分库分表等多种配置，可按需配置。
+更多配置参见[服务配置说明](./expertconfig.md)
 
 #### 启动脚本
 
