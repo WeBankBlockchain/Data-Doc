@@ -1,4 +1,4 @@
-### 服务方式启动_V1
+### 服务方式启动
 
 #### 前置依赖
 
@@ -38,12 +38,8 @@ git clone https://github.com/WeBankBlockchain/Data-Export.git
 ├── LICENSE
 ├── README.md
 ├── tools
-├── WeBankBlockchain-Data-Export-codegen
-├── WeBankBlockchain-Data-Export-common
-├── WeBankBlockchain-Data-Export-core
-├── WeBankBlockchain-Data-Export-db
-├── WeBankBlockchain-Data-Export-extractor
-├── WeBankBlockchain-Data-Export-parser
+├── WeBankBlockchain-Data-Export-service
+├── WeBankBlockchain-Data-Export-sdk
 ├── build.gradle
 ├── gradle
 ├── gradlew
@@ -56,21 +52,11 @@ git clone https://github.com/WeBankBlockchain/Data-Export.git
 
 其中各个子工程的说明如下：
 
-WeBankBlockchain-Data-Export-codegen 数据导出代码生成功能
+WeBankBlockchain-Data-Export-service 数据导出服务
 
-WeBankBlockchain-Data-Export-core是运行任务的主工程。
+WeBankBlockchain-Data-Export-sdk 数据导出SDK
 
-WeBankBlockchain-Data-Export-common 公共类库。
-
-WeBankBlockchain-Data-Export-db 数据库相关的功能。
-
-WeBankBlockchain-Data-Export-extractor 区块抽取相关的功能。
-
-WeBankBlockchain-Data-Export-parser 区块解析相关的功能。
-
-
-其中build.gradle为gradle的构建文件，tools/config/contract目录存放了合约编译为Java的文件，tools/config/resources下面存放了配置文件
-
+tools中包括了服务方式启动所需配置文件和启动脚本。
 
 ###### 进入安装路径
 
@@ -83,63 +69,75 @@ tools目录如下：
 ```
 ├── tools
 │   ├── config
-│   │   ├── contract
-│   │   │   └── HelloWorld.java
-│   │   └── resources
-│   │       └── application.properties
-│   │       └── web3j.def
-│   └── build_export.sh
+│   │   ├── application.properties
+│   ├── start.sh
+│   └── stop.sh
 ```
 
 ##### 配置工程
 
-###### 配置合约文件
+###### 配置文件设置
 
-找到你的业务工程（你要导出数据的那条区块链中，往区块链写数据的工程），复制合约产生的Java文件：请将Java文件**复制到./tools/config/contract目录**下（请先删除目录结构中的合约示例HelloWorld.java文件）。
+修改config/application.properties文件：该文件包含了所有的配置信息。以下配置信息是必须要修改的：
 
-假如业务工程并非Java工程，需要将Solidity合约生成为Java文件，请参考： [利用控制台将合约代码转换为java代码](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/console/console_of_java_sdk.html#id5)
+```
+### The following types are supported:
+### 1, Channel
+### 2, JsonRPC
+### 3, Data-Stash
+### 选择上述三种中一种方式配置即可，推荐 Channel方式
 
-```eval_rst
-.. important::
-    需要保证上链的binary与Java文件中的BINARY保持一致，否则导出程序无法正确识别具体的合约。例如，如果是通过java sdk来发送上链的，则将sdk中的合约java文件复制到数据导出工程中；如果是通过WeBASE-Front来发送的，则从WeBASE-Front中导出Java文件，并复制到数据导出工程中。如果非Java工程，需要将Solidity合约生成为Java文件，同时将上链时的binary数据完整复制和拷贝到对应合约Java文件的BINARY字段中。
+# 1、Channel方式启动，需配置证书
+## GROUP_ID必须与FISCO-BCOS中配置的groupId一致, 多群组以,分隔，如1,2
+system.groupId=1
+# 节点的IP及通讯端口、组号。 
+##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200
+system.nodeStr=[IP]:[PORT]
+system.certPath=./config
+
+# 2、RPC方式启动
+#system.groupId=1
+#system.cryptoTypeConfig=0
+#system.rpcUrl=
+
+# 3、数据仓库方式启动
+#system.jdbcUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+#system.user=
+#system.password=
+#system.cryptoTypeConfig=0
+
+### 数据库的信息，暂时只支持mysql； serverTimezone 用来设置时区
+### 请确保在运行前创建对应的database，如果分库分表，则可配置多个数据源，如system.db1.dbUrl=\system.db1.user=\system.db0.password=
+system.db0.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+system.db0.user=
+system.db0.password=
+
+### 是否自动建表，默认开启
+system.db.autoCreateTable=true
+
+### 合约信息，导出交易详情、方法、事件等数据时需配置，不配置则只导出基础数据
+### 可配置多合约，格式：system.contract+numer.contractName, 其中number递增排列
+system.contract0.contractName=
+system.contract0.abi=
+system.contract0.binary=
 ```
 
-###### 配置证书文件
+###### 可视化安装配置
+
+在application.properties中将grafana打开时，将在docker中自动部署grafana，通过[ip]:3000即可访问，配置如下:
+```
+system.grafanaEnable=true
+```
+
+
+###### 配置证书文件(channel方式启动)
 
 将SDK证书拷贝到 **./tools/config/resources目录**下，SDK证书目录位于nodes/${ip}/sdk/目录下
 ```
 # 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
-cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/resources
+cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
 ```
 
-###### 配置应用
-
-修改application.properties文件：该文件包含了所有的配置信息。以下配置信息是必须要修改的，否则跑不起来：
-
-```
-# 节点的IP及通讯端口、组号。 
-##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200，多节点以;分隔
-system.nodeStr=[IP]:[PORT]
-## GROUP_ID必须与FISCO-BCOS中配置的groupId一致。
-system.groupId=[GROUP_ID]
-
-# 数据库的信息，暂时只支持mysql； serverTimezone 用来设置时区
-## 请确保在运行前创建对应的database
-system.dbUrl=jdbc:mysql://[IP]:[PORT]/[database]?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-system.dbUser=[user_name]
-system.dbPassword=[password]
-
-# 合约Java文件的包名
-system.contractPackName=[编译Solidity合约时指定的包名]
-
-# elastic serach 配置（如果需要的话可进行配置）
-##是否开启ES存储
-es.enabled=false
-##ES集群名称
-es.clusterName=my-application
-es.ip=[ip]
-es.port=9300
-```
 
 ###### 创建数据库
 
@@ -176,19 +174,17 @@ mysql>
 
 ```eval_rst
 .. note::
-        本工程默认使用gradle wrapper来实施构建。在必要时，可在build_export.sh时添加-c的编译选项，指定使用本机的gradle来进行代码编译。
+        本工程默认使用gradle wrapper来实施构建。在必要时，可在start.sh时添加-c的编译选项，指定使用本机的gradle来进行代码编译。
 
             - 如果运行程序以后无法正常下载gradle wrapper，可自行安装gradle软件，可参考 `官网安装教程 <https://gradle.org/install/>`_ 。       
-            - 如果本机已经安装了符合要求的gradle软件，则可以使用`./build_export.sh -c gradle`选项来指定编译方式，使用本机安装的gradle来实施构建。
+            - 如果本机已经安装了符合要求的gradle软件，则可以使用`./start.sh -c gradle`选项来指定编译方式，使用本机安装的gradle来实施构建。
 ```
 
 ###### 选择一：直接在本机运行
 
 ```
-chmod +x build_export.sh
-bash build_export.sh
-## 还可以指定数据导出程序的版本，例如
-## ./build_export.sh -v 1.3.0
+chmod +x start.sh
+bash start.sh
 ```
 
 ```eval_rst
@@ -199,13 +195,11 @@ bash build_export.sh
 ###### 选择二：本机编译，复制执行包到其他服务器上运行
 
 ```
-chmod +x build_export.sh
-bash build_export.sh
-## 还可以指定数据导出程序的版本，例如
-## ./build_export.sh -e build -v 1.3.0
+chmod +x start.sh
+bash start.sh
 ```
 
-请将此工程下的./WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/dist文件夹复制到其他服务器上，并执行：
+请将此工程下的./WeBankBlockchain-Data-Export-service/dist 文件夹复制到其他服务器上，并执行：
 
 ```
 chmod +x *.sh
@@ -322,52 +316,20 @@ bash stop.sh
 
 
 ##### 支持多群组数据导出
+
 首先，请配置FISCO BCOS的多群组，详情可参考[FISCO BCOS多群组部署](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/group_use_cases.html?highlight=%E5%A4%9A%E7%BE%A4%E7%BB%84#)
 
 其次，修改修改application.properties文件。多个群组使用,分隔。例如，假如存在1和2两个群组。
+
+多群组将导出到相同的库中，如果想导出到不同库中，请另开工程。
+
+当配置多群组时，表名将以群组id做前缀来区分，格式为：g1_tableName
+
+配置如下：
 ```
 system.groupId=1,2
 ```
-无需其他更多的配置，其他和群组相关的配置会自动生成。例如：
-- server.port，系统服务监听端口，根据配置，按照群组自动累加
-- logging.file，日志文件名称，根据群组名，自动拼装，如群组1的日志文件名为dataexport-core-1.log
-- system.dbUrl，数据库名。数据库名按照配置的数据库名，自动组装拼接。例如配置的database名称为bee，则群组1的数据库名自动为bee_g1.
 
-再次，按照之前的步骤启动build程序。
-```
-./build_export.sh -e build
-```
-在dist目录下，会自动构建运行的程序和配置。同时，会自动生成start_all_groups.sh的脚本。
-
-在启动服务之前，请按照之前application.properties的配置中的system.dbUrl，创建对应的数据库。数据库名为所配置的数据库名加上群组名。
-假如所配置的数据库名为bee，群组为1和2，则需要手动创建好数据库bee_g1和bee_g2.
-```
-sql_admin > 
-create database bee_g1;
-create database bee_g2;
-```
-
-启动所有群组：
-```
-./start_all_groups.sh
-```
-
-关闭所有群组的服务：
-```
-./stop.sh
-```
-
-##### 注意事项
-
-在生成的工程中，我们使用了Hibernate auto-ddl 的特性来自动创建数据库表，该特性仅供提供快速的演示，但请勿使用该特性上线；否则可能会造成生产系统的安全隐患。
-
-你可以修改WeBankBlockchain-Data-Export-core/src/main/resources/appliction.properties:
-
-```
-
-spring.jpa.properties.hibernate.hbm2ddl.auto=none
-
-```
 
 #### 可视化监控程序安装和部署
 
@@ -394,61 +356,32 @@ docker run   -d   -p 3000:3000   --name=grafana   -e "GF_INSTALL_PLUGINS=grafana
 
 grafana将自动绑定3000端口并自动安装时钟和Json的插件。
 
-##### 登录grafana界面
+在application.properties中将grafana打开时，系统将会生成可视化json脚本 default_dashboard.json 文件，位于config目录下。
 
-直接使用浏览器访问：http://your_ip:3000/，请注意使用你机器的IP替换掉your_ip，默认的用户名和密码为admin/admin
+grafana安装并启动成功，通过访问[ip]:3000（本机则为localhost:3000）即可看到如下界面：
+<br /> <br />
+![](../../images/WeBankBlockchain-Data-Export/grafana_start.png)
+<br /> <br />
 
-##### 添加MySQL数据源
+输入账密admin/admin, 现在跳过即可进入主界面，添加导出数据库的mysql信息，如下位置：
+<br /> <br />
+![](../../images/WeBankBlockchain-Data-Export/grafana_index.png)
+<br /> <br />
 
-在正常登录成功后，如图所示，选择左边栏设置按钮，点击『Data Sources』，选择『MySQL』数据源，随后按照提示的页面，配置 Host， Database， User 和 Password等。
+添加mysql成功后，可通过如下方式导入系统生成的default_dashboard.json文件，如下位置：
+<br /> <br />
+![](../../images/WeBankBlockchain-Data-Export/grafana_json.png)
+<br /> <br />
 
-![[添加步骤]](../../images/WeBankBlockchain-Data-Export/add_datasource.png)
-
-##### 导入Dashboard模板
-
-WeBankBlockchain-Data-Export-codegen会自动生成数据的dashboard模板，数据的路径位于：WeBankBlockchain-Data-Export/WeBankBlockchain-Data-Export-core/src/main/scripts/grafana/default_dashboard.json，请点击左边栏『+』，选择『import』，点击绿色按钮『Upload.json File』,选择刚才的WeBankBlockchain-Data-Export/src/main/scripts/grafana/default_dashboard.json文件，最后，点击『import』按钮。
-
-![[导入步骤]](../../images/WeBankBlockchain-Data-Export/import_json.png)
-
-如果导入成功，dashboards下面会出现『FISCO-BCOS区块链监控视图』，您可以选择右上方的时间按钮来选择和设置时间范围及刷新时间等。您也可以选中具体的页面组件进行编辑，自由地移除或挪动组件的位置，达到更好的使用体验。
+导入成功后即可看到链的数据可视化情况，如下：
+<br /> <br />
+![](../../images/WeBankBlockchain-Data-Export/grafana_view.png)
+<br /> <br />
 
 更多关于Grafana的自定义配置和开发文档，可参考[Grafana官方文档](http://docs.grafana.org/guides/getting_started/)
 
-##### 开启可视化的API文档和功能性测试
-
-[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export) [Gitee地址](https://gitee.com/WeBankBlockchain/Data-Export) 默认集成了swagger的插件，支持通过可视化的控制台来发送交易、生成报文、查看结果、调试交易等。
-
-![[swagger控制台]](../../images/WeBankBlockchain-Data-Export/swagger.png)
-
-**请注意，swagger插件仅推荐在开发或测试环境调试使用，在正式上生产环境时，请关闭此插件。 **
-
-如果未在工程中配置打开swagger选项，则默认关闭，需要在配置文件中打开。
-
-打开方法：
-
-打开config/resources/application.properties，添加：
-```
-button.swagger=on
-```
 
 
-##### 查看API文档：
+###### 更多配置
 
-请在你的浏览器打开此地址：
-
-> http://your_ip:port/swagger-ui.html
-
-例如，当你在本机运行了[WeBankBlockchain-Data-Export](https://github.com/WeBankBlockchain/Data-Export) [Gitee地址](https://gitee.com/WeBankBlockchain/Data-Export)，且未修改默认的5200端口，则可以访问此地址：
-
-> http://localhost:5200/swagger-ui.html
-
-此时，你可以看到上述页面，可以看到页面主要包括了http请求页面和数据模型两部分。
-
-##### 使用swagger发送具体的交易：
-
-选择点击对应的http请求集，可以点开相关的http请求。此时，你可以选择点击“try it out”，手动修改发送的Json报文，点击“Excute”按钮，即可发送并查收结果。
-
-我们以查询区块信息为例，如下列图所示：
-![[选择请求]](../../images/WeBankBlockchain-Data-Export/swag_test1.png)
-![[编辑报文]](../../images/WeBankBlockchain-Data-Export/swag_test2.png)
-![[查收结果]](../../images/WeBankBlockchain-Data-Export/swag_test3.png)
+更多配置参见[服务配置说明](./expertconfig.md)
