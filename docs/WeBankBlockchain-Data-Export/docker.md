@@ -12,7 +12,7 @@
 #### 获取启动脚本和配置文件
 
 ```
-curl -#LO https://github.com/WeBankBlockchain/Data-Export-Demo/releases/download/1.7.2-beta/data-export-1.7.2-beta.tar.gz
+curl -#LO https://github.com/WeBankBlockchain/Data-Export/releases/download/1.7.2-beta/data-export-1.7.2-beta.tar.gz
 ```
 
 解压文件包至当前目录
@@ -24,6 +24,8 @@ data-export目录如下：
 ```
 ├── data-export
 │   ├── config
+│   │   ├── abi
+│   │   ├── bin
 │   │   ├── application.properties
 │   ├── log
 │   └── build_export.sh
@@ -32,6 +34,7 @@ data-export目录如下：
 ```eval_rst
 .. note::
     - **config为配置文件目录，使用channel方式连接区块链时，需将证书放至该目录。**
+    - config包括了abi和bin两个文件夹，用于配置合约信息。
     - 运行生成的sql脚本data_export.sql和可视化脚本default_dashboard.json会保存在config目录下。
     - 运行日志保存在log目录下
 
@@ -62,7 +65,7 @@ cd config
 ### 1, Channel
 ### 2, JsonRPC
 ### 3, Data-Stash
-### 选择上述三种中一种方式配置即可，推荐 Channel方式
+### 选择其中一种方式配置即可，推荐 Channel方式
 
 # 1、Channel方式启动，需配置证书
 ## GROUP_ID必须与FISCO-BCOS中配置的groupId一致, 多群组以,分隔，如1,2
@@ -89,15 +92,11 @@ system.db0.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&s
 system.db0.user=
 system.db0.password=
 
-### 是否自动建表，默认开启
-system.db.autoCreateTable=true
-
-### 合约信息，导出交易详情、方法、事件等数据时需配置，不配置则只导出基础数据
-### 可配置多合约，格式：system.contract+numer.contractName, 其中number递增排列
-system.contract0.contractName=
-system.contract0.abi=
-system.contract0.binary=
 ```
+
+#### 配置合约（需要时配置）
+
+将合约对应的abi和binary文件分别放置到config/abi和config/bin中。
 
 
 #### 可视化安装配置

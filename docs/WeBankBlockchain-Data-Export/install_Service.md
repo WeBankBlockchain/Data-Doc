@@ -77,6 +77,7 @@ tools目录如下：
 ```eval_rst
 .. note::
     - **config为配置文件目录，使用channel方式连接区块链时，需将证书放至该目录。**
+    - config包括了abi和bin两个文件夹，用于配置合约信息。
     - 运行生成的sql脚本data_export.sql和可视化脚本default_dashboard.json会保存在config目录下。
     - 运行日志保存在./tools/log目录下
 
@@ -118,16 +119,12 @@ system.certPath=./config
 system.db0.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
 system.db0.user=
 system.db0.password=
-
-### 是否自动建表，默认开启
-system.db.autoCreateTable=true
-
-### 合约信息，导出交易详情、方法、事件等数据时需配置，不配置则只导出基础数据
-### 可配置多合约，格式：system.contract+numer.contractName, 其中number递增排列
-system.contract0.contractName=
-system.contract0.abi=
-system.contract0.binary=
 ```
+
+#### 配置合约（需要时配置）
+
+将合约对应的abi和binary文件分别放置到config/abi和config/bin中。
+
 
 ###### 可视化安装配置
 

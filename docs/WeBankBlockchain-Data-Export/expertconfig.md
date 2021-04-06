@@ -68,11 +68,8 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.contract0.contractName | Y | 合约名称 | HelloWorld | - |
-| system.contract0.abi | Y | 合约abi | - | - |
-| system.contract0.binary| Y | 合约binary | - | - |
-
-上述合约信息配置中，可配置多个，以contract0、contract1..区分，如system.contract0.contractName、system.contract1.contractName...按组递增排列
+| system.abiPath | Y | 合约abi地址 | - | ./config/abi |
+| system.binPath | Y | 合约bin地址 | - | ./config/bin |
 
 
 #### 工程配置
