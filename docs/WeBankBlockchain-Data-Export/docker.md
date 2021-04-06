@@ -32,7 +32,7 @@ data-export目录如下：
 ```eval_rst
 .. note::
     - **config为配置文件目录，使用channel方式连接区块链时，需将证书放至该目录。**
-    - 运行生成的sql脚本**data_export.sql**和可视化脚本**default_dashboard.json**会保存在**config**目录下。
+    - 运行生成的sql脚本data_export.sql和可视化脚本default_dashboard.json会保存在config目录下。
     - 运行日志保存在log目录下
 
 ```
