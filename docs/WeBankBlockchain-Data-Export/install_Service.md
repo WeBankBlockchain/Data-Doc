@@ -74,8 +74,13 @@ tools目录如下：
 │   └── stop.sh
 ```
 
-运行生成的sql脚本和可视化脚本会保存在./tools/config目录下。
+```eval_rst
+.. note::
+    - **config为配置文件目录，使用channel方式连接区块链时，需将证书放至该目录。**
+    - 运行生成的sql脚本**data_export.sql**和可视化脚本**default_dashboard.json**会保存在**config**目录下。
+    - 运行日志保存在./tools/log目录下
 
+```
 ##### 配置工程
 
 ###### 配置文件设置
