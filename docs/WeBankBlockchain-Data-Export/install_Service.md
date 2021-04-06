@@ -131,7 +131,7 @@ system.contract0.binary=
 
 ###### 可视化安装配置
 
-在application.properties中将grafana打开时，将在docker中自动部署grafana，通过[ip]:3000即可访问，配置如下:
+在application.properties中将grafana打开时，将在config目录下生成可视化脚本，配置如下:
 ```
 system.grafanaEnable=true
 ```
