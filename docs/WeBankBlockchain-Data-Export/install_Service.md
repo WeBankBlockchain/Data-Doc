@@ -275,7 +275,7 @@ tail -f dataexport-core.log| grep "sync block"
 ###### 检查数据是否已经正常产生
 
 
-####### DB数据检查
+**DB数据检查**
 
 你也可以通过DB来检查，登录你之前配置的数据库，看到自动创建完表的信息，以及表内开始出现数据内容，则代表一切进展顺利。如你可以执行以下命令：
 
@@ -294,7 +294,7 @@ mysql -u[用户名] -p[密码] -e "use [数据库名]; select count(*) from bloc
 +----------+
 ```
 
-####### ES数据检查
+**ES数据检查**
 
 可以通过url查询索引建立情况，http://ip:9200/_cat/indices?v，结果类似如下：
 
@@ -312,7 +312,7 @@ yellow open   deployaccountinfo                ET0VMMahRyqAuSHNLTVEhg   1   1   
 
 更多查询，参考[ES数据查询](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/search-your-data.html)
 
-####### 停止导入程序
+**停止导入程序**
 
 ```
 bash stop.sh
@@ -321,7 +321,7 @@ bash stop.sh
 恭喜您，到以上步骤，您已经完成了数据导出组件的安装和部署。如果您还需要额外获得可视化的监控页面，请参考3.3章节。
 
 
-##### 支持多群组数据导出
+##### 多群组数据导出
 
 首先，请配置FISCO BCOS的多群组，详情可参考[FISCO BCOS多群组部署](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/group_use_cases.html?highlight=%E5%A4%9A%E7%BE%A4%E7%BB%84#)
 
