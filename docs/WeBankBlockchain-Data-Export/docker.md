@@ -73,7 +73,6 @@ system.groupId=1
 # 节点的IP及通讯端口、组号。 
 ##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200
 system.nodeStr=[IP]:[PORT]
-system.certPath=./config
 
 # 2、RPC方式启动
 #system.groupId=1
