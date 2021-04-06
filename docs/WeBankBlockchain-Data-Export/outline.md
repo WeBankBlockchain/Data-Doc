@@ -12,8 +12,6 @@ WeBankBlockchain-Data-Export可以导出区块链上的基础数据，如当前�
 
 WeBankBlockchain-Data-Export提供了基于Restful的API，支持通过http的方式调用这些接口。
 
-WeBankBlockchain-Data-Export还集成了Swagger组件，提供了可视化的文档和测试控制台。
-
 WeBankBlockchain-Data-Export还提供SDK调用方式，通过jar包依赖可以集成到用户项目中，使用更加灵活便捷。
 
 ### 使用场景和解决方案
@@ -71,10 +69,6 @@ WeBankBlockchain-Data-Export还提供SDK调用方式，通过jar包依赖可以�
 #### 提供丰富的Restful API查询接口
 
 支持丰富的Restful API数据查询接口
-
-#### 提供可视化的互动API控制台
-
-集成swagger插件，提供可视化互动API控制台
 
 #### 支持可视化的监控页面
 
