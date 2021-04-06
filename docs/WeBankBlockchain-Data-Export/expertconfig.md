@@ -87,7 +87,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 | 配置项 | 是否必输 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.multiLiving | Y | 启动多活开关 | true | false |
+| system.multiLiving | Y | 启动多活开关 | boolean | false |
 | regcenter.serverList | N | 注册中心服务器列表 | [ip1:2181;ip2:2181] | - |
 | regcenter.namespace | N | 注册中心命名空间 | wecredit_bee | - |
 | zookeeperServiceLists | N | zk服务节点列表(,分隔),格式：[IP]:[port],[IP]:[port] | string | null |
