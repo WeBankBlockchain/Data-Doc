@@ -122,10 +122,11 @@ system.db0.user=
 system.db0.password=
 ```
 
-#### 配置合约（需要时配置）
+#### 配置合约
 
-将合约对应的abi和binary文件分别放置到config/abi和config/bin中。
+将合约对应的abi和binary文件分别放置到config/abi和config/bin目录中。
 
+两个目录中包含了一个HelloWorld合约的abi和bin文件，使用时请按需删除。
 
 ###### 可视化安装配置
 
