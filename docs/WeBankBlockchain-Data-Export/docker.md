@@ -46,6 +46,8 @@ data-export-docker目录如下：
 
 #### 配置证书（channel方式启动）
 
+选择channel方式连接链节点时，需配置证书。
+
 将链节点SDK证书拷贝到 **./data-export/config**下，SDK证书目录位于nodes/${ip}/sdk/目录下
 ```
 # 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
@@ -203,30 +205,8 @@ grafana安装并启动成功，通过访问[ip]:3000（本机则为localhost:300
 
 #### 问题
 
-##### docker与数据库或链在一台机器上，docker无法访问宿主机
+docker与数据库或链在一台机器上，docker无法访问宿主机。
 
-如果链或者数据库为本地安装，需查询本机ip，替换上述配置中的localhost 或者 127.0.0.1 地址。
+centos启动脚本报yum更新失败。
 
-启动脚本中已对本地ip进行了查询并替换，如果失败，可以按照下列命令查询并手动替换。
-
-查询ip命令为：
-
-```
-   ifconfig | grep "inet " | grep -v 127.0.0.1
-```
-
-其中inet后的ip地址，即为本机ip
-
-
-##### centos启动脚本报yum更新失败
-
-错误如：
-```
-yum更新失败：rpmdb: BDB0113 Thread/process 2673/140126198814528 failed: BDB1507 Thread died...
-```
-解决方式如下：
-```
-cd /var/lib/rpm
-rm -rf __db*
-rpm --rebuilddb
-```
+参考[常见问题](./question.md)

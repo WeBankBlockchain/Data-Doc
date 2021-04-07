@@ -84,6 +84,17 @@ tools目录如下：
 ```
 ##### 配置工程
 
+###### 配置证书文件(channel方式启动)
+
+选择channel方式连接链节点时，需配置证书。
+
+将链SDK证书拷贝到 **./tools/config/resources目录**下，SDK证书目录位于nodes/${ip}/sdk/目录下
+```
+# 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
+cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
+```
+
+
 ###### 配置文件设置
 
 修改config/application.properties文件：该文件包含了所有的配置信息。以下配置信息是必须要修改的：
@@ -106,6 +117,7 @@ system.certPath=./config
 
 # 2、RPC方式启动
 #system.groupId=1
+## 链密钥类型，1-国密，2-ECDSA
 #system.cryptoTypeConfig=0
 #system.rpcUrl=
 
@@ -113,6 +125,7 @@ system.certPath=./config
 #system.jdbcUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
 #system.user=
 #system.password=
+## 链密钥类型，1-国密，2-ECDSA
 #system.cryptoTypeConfig=0
 
 ### 数据库的信息，暂时只支持mysql； serverTimezone 用来设置时区
@@ -128,20 +141,12 @@ system.db0.password=
 
 两个目录中包含了一个HelloWorld合约的abi和bin文件，使用时请按需删除。
 
+
 ###### 可视化安装配置
 
 在application.properties中将grafana打开时，将在config目录下生成可视化脚本，配置如下:
 ```
 system.grafanaEnable=true
-```
-
-
-###### 配置证书文件(channel方式启动)
-
-将SDK证书拷贝到 **./tools/config/resources目录**下，SDK证书目录位于nodes/${ip}/sdk/目录下
-```
-# 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
-cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
 ```
 
 
@@ -218,7 +223,6 @@ tail -f *.log
 使用supervisor来守护和管理进程，supervisor能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。
 它是通过fork/exec的方式把这些被管理的进程当作supervisor的子进程来启动，这样只要在supervisor的配置文件中，把要管理的进程的可执行文件的路径写进去即可。也实现当子进程挂掉的时候，父进程可以准确获取子进程挂掉的信息的，可以选择是否自己启动和报警。
 supervisor还提供了一个功能，可以为supervisord或者每个子进程，设置一个非root的user，这个user就可以管理它对应的进程。
-编译生成代码的部署同2.2.3.2
 
 使用supervisor来安装与部署的步骤请参阅[附录6](appendix.html#supervisor)
 
@@ -249,13 +253,13 @@ Hibernate: select blockheigh0_.pk_id as pk_id1_2_, blockheigh0_.block_height as 
 还可以通过以下命令来查看区块的同步状态：
 
 ```
-tail -f dataexport-core.log| grep "sync block"
+tail -f data-export.log | grep "sync block"
 ```
 
 当看到以下滚动的日志时，则代表区块同步状态正常，开始执行下载任务。
 
 ```
- $ tail -f dataexport-core.log| grep "sync block"
+ $ tail -f data-export.log | grep "sync block"
 2019-05-05 14:41:07.348  INFO 60538 --- [main] c.w.w.c.service.CommonCrawlerService     : Try to sync block number 0 to 90 of 90
 2019-05-05 14:41:07.358  INFO 60538 --- [main] c.w.w.c.service.BlockTaskPoolService     : Begin to prepare sync blocks from 0 to 90
 2019-05-05 14:41:17.142  INFO 60538 --- [main] c.w.w.crawler.service.BlockSyncService   : Block 0 of 90 sync block succeed.
