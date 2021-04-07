@@ -59,7 +59,26 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | system.db.shardingNumberPerDatasource | N |  分表数目 | - | 0 |
 | system.paramSQLType | N |  指定数据表字段类型，针对事件或方法字段，多个配置已竖杠字符分隔，[contractName.methodName/eventName.solidityParamName.paramType] | - | HelloWorld.set.name.text |
 
+##### 分库分表
+
 上述数据源配置中，在分库分表时可配置多个，以db0、db1..区分，如system.db0.dbUrl、system.db1.dbUrl...按组递增排列
+配置如下：
+```
+system.db0.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+system.db0.user=
+system.db0.password=
+
+system.db1.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+system.db1.user=
+system.db1.password=
+
+system.db2.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+system.db2.user=
+system.db2.password=
+
+system.db.sharding=true
+system.db.shardingNumberPerDatasource=3
+```
 
 
 #### 合约配置
@@ -83,7 +102,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 #### 集群多活配置
 
-在集群多活部署的方案中，必须设置集群多活的配置。集群必须通过zookeeper进行服务注册和任务分发。当system.multiLiving=false时，配置文件不会生成zookeeper相关配置。
+在集群多活部署的方案中，必须设置集群多活的配置。集群必须通过zookeeper进行服务注册和任务分发。
 
 | 配置项 | 是否必输 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- | --- |
