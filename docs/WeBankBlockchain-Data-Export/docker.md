@@ -63,32 +63,21 @@ cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./data-export/config/
 cd config
 ```
 
-修改application.properties文件：该文件包含了所有的配置信息。以下配置信息是必须要修改的：
+修改application.properties文件：该文件包含了所有的配置信息。以下配置信息是必须要配置的：
 
 ```
-### The following types are supported:
+### 数据导出支持以下三种方式:
 ### 1, Channel
 ### 2, JsonRPC
 ### 3, Data-Stash
-### 选择其中一种方式配置即可，推荐 Channel方式
+### 选择其中一种方式配置即可，默认Channel方式
 
-# 1、Channel方式启动，需配置证书
+# Channel方式启动，需配置证书
 ## GROUP_ID必须与FISCO-BCOS中配置的groupId一致, 多群组以,分隔，如1,2
 system.groupId=1
 # 节点的IP及通讯端口、组号。 
 ##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200
 system.nodeStr=[IP]:[PORT]
-
-# 2、RPC方式启动
-#system.groupId=1
-#system.cryptoTypeConfig=0
-#system.rpcUrl=
-
-# 3、数据仓库方式启动
-#system.jdbcUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-#system.user=
-#system.password=
-#system.cryptoTypeConfig=0
 
 ### 数据库的信息，暂时只支持mysql； serverTimezone 用来设置时区
 ### 请确保在运行前创建对应的database，如果分库分表，则可配置多个数据源，如system.db1.dbUrl=\system.db1.user=\system.db0.password=
@@ -97,6 +86,10 @@ system.db0.user=
 system.db0.password=
 
 ```
+
+数据导出除支持上述的Channel方式导出数据外，还支持[JSON-RPC方式](./expertconfig.md)和[数据仓库方式](./expertconfig.md)
+
+其中多群组数据导出，参照[多群组数据导出](./expertconfig.md)
 
 #### 配置合约
 
@@ -112,25 +105,6 @@ system.db0.password=
 ```
 system.grafanaEnable=true
 ```
-
-##### 多群组数据导出
-
-无需多群组可跳过该步骤。
-
-首先，请配置FISCO BCOS的多群组，详情可参考[FISCO BCOS多群组部署](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/group_use_cases.html?highlight=%E5%A4%9A%E7%BE%A4%E7%BB%84#)
-
-其次，修改修改application.properties文件。多个群组使用,分隔。例如，假如存在1和2两个群组。
-
-多群组将导出到相同的库中，表名将以群组id做前缀来区分，格式为：g1_tableName
-
-配置如下：
-```
-system.groupId=1,2
-```
-
-#### 更多配置
-
-更多配置参见[服务配置说明](./expertconfig.md)
 
 #### 启动脚本
 
@@ -179,34 +153,15 @@ docker restart dataexport
 
 #### 可视化展示配置
 
-在application.properties中将grafana打开时，系统将会生成可视化json脚本 default_dashboard.json 文件，位于config目录下。
+参照[可视化展示配置](./view.md)
 
-grafana安装并启动成功，通过访问[ip]:3000（本机则为localhost:3000）即可看到如下界面：
-<br /> <br />
-![](../../images/WeBankBlockchain-Data-Export/grafana_start.png)
-<br /> <br />
+#### 更多配置
 
-输入账密admin/admin, 现在跳过即可进入主界面，添加导出数据库的mysql信息，如下位置：
-<br /> <br />
-![](../../images/WeBankBlockchain-Data-Export/grafana_index.png)
-<br /> <br />
+更多配置参见[服务配置说明](./expertconfig.md)
 
-添加mysql成功后，可通过如下方式导入系统生成的default_dashboard.json文件，如下位置：
-<br /> <br />
-![](../../images/WeBankBlockchain-Data-Export/grafana_json.png)
-<br /> <br />
+#### 常见问题
 
-导入成功后即可看到链的数据可视化情况，如下：
-<br /> <br />
-![](../../images/WeBankBlockchain-Data-Export/grafana_view.png)
-<br /> <br />
+docker与数据库或链在一台机器上，docker无法访问宿主机。参考[常见问题](./question.html#docker-docker)
 
-更多关于Grafana的自定义配置和开发文档，可参考[Grafana官方文档](http://docs.grafana.org/guides/getting_started/)
+centos启动脚本报yum更新失败。参考[常见问题](./question.html#centosyum)
 
-#### 问题
-
-docker与数据库或链在一台机器上，docker无法访问宿主机。
-
-centos启动脚本报yum更新失败。
-
-参考[常见问题](./question.md)

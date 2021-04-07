@@ -97,43 +97,33 @@ cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
 
 ###### 配置文件设置
 
-修改config/application.properties文件：该文件包含了所有的配置信息。以下配置信息是必须要修改的：
+修改application.properties文件：该文件包含了所有的配置信息。以下配置信息是必须要配置的：
 
 ```
-### The following types are supported:
+### 数据导出支持以下三种方式:
 ### 1, Channel
 ### 2, JsonRPC
 ### 3, Data-Stash
-### 选择上述三种中一种方式配置即可，推荐 Channel方式
+### 选择其中一种方式配置即可，默认Channel方式
 
-# 1、Channel方式启动，需配置证书
+# Channel方式启动，需配置证书
 ## GROUP_ID必须与FISCO-BCOS中配置的groupId一致, 多群组以,分隔，如1,2
 system.groupId=1
 # 节点的IP及通讯端口、组号。 
 ##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200
 system.nodeStr=[IP]:[PORT]
-# 默认为./config路径
-system.certPath=./config
-
-# 2、RPC方式启动
-#system.groupId=1
-## 链密钥类型，1-国密，2-ECDSA
-#system.cryptoTypeConfig=0
-#system.rpcUrl=
-
-# 3、数据仓库方式启动
-#system.jdbcUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-#system.user=
-#system.password=
-## 链密钥类型，1-国密，2-ECDSA
-#system.cryptoTypeConfig=0
 
 ### 数据库的信息，暂时只支持mysql； serverTimezone 用来设置时区
 ### 请确保在运行前创建对应的database，如果分库分表，则可配置多个数据源，如system.db1.dbUrl=\system.db1.user=\system.db0.password=
 system.db0.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
 system.db0.user=
 system.db0.password=
+
 ```
+
+数据导出除支持上述的Channel方式导出数据外，还支持[JSON-RPC方式](./expertconfig.md)和[数据仓库方式](./expertconfig.md)
+
+其中多群组数据导出，参照[多群组数据导出](./expertconfig.md)
 
 #### 配置合约
 
@@ -144,41 +134,23 @@ system.db0.password=
 
 ###### 可视化安装配置
 
-在application.properties中将grafana打开时，将在config目录下生成可视化脚本，配置如下:
+在application.properties中将grafana打开时，将在config目录下生成可视化脚本，默认关闭，打开配置如下:
 ```
 system.grafanaEnable=true
+
 ```
 
 
 ###### 创建数据库
 
-连接MysQL数据库，创建对应的数据库，参考的命令行命令如下，请把中括号的值替换为实际值。
+参考[连接和创建数据库](./appendix.md)
 
-```shell
-$ mysql -u[user_name] -h[IP] -p
-Enter password: [password]
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 164
-Server version: 5.7.28-log MySQL Community Server (GPL)
-
-Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> create database [database];
-Query OK, 1 row affected (0.04 sec)
-
-mysql> 
-```
-只有创建成功database后，导出程序才能正常连接数据库。
 
 ###### 创建Elasticsearch
 
 需要ES存储时，需先安装ES, 参考[ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
+
+配置参考[ES配置](./expertconfig.md)
 
 
 ##### 运行程序
@@ -191,8 +163,6 @@ mysql>
             - 如果本机已经安装了符合要求的gradle软件，则可以使用`./start.sh -c gradle`选项来指定编译方式，使用本机安装的gradle来实施构建。
 ```
 
-###### 选择一：直接在本机运行
-
 ```
 chmod +x start.sh
 bash start.sh
@@ -203,28 +173,9 @@ bash start.sh
     请务必按照以上命令操作，**请勿使用sudo命令来操作**，否则会导致Gradlew没有权限，导致导出数据失败。
 ```
 
-###### 选择二：本机编译，复制执行包到其他服务器上运行
+更多运行方式参照[运行方式说明](./appendix.md)
 
-```
-chmod +x start.sh
-bash start.sh
-```
 
-请将此工程下的./WeBankBlockchain-Data-Export-service/dist 文件夹复制到其他服务器上，并执行：
-
-```
-chmod +x *.sh
-bash start.sh
-tail -f *.log
-```
-
-###### 选择三：本机编译，复制执行包到其他服务器，使用supervisor来启动。
-
-使用supervisor来守护和管理进程，supervisor能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。
-它是通过fork/exec的方式把这些被管理的进程当作supervisor的子进程来启动，这样只要在supervisor的配置文件中，把要管理的进程的可执行文件的路径写进去即可。也实现当子进程挂掉的时候，父进程可以准确获取子进程挂掉的信息的，可以选择是否自己启动和报警。
-supervisor还提供了一个功能，可以为supervisord或者每个子进程，设置一个非root的user，这个user就可以管理它对应的进程。
-
-使用supervisor来安装与部署的步骤请参阅[附录6](appendix.html#supervisor)
 
 ##### 检查运行状态及退出
 
@@ -322,74 +273,12 @@ yellow open   deployaccountinfo                ET0VMMahRyqAuSHNLTVEhg   1   1   
 bash stop.sh
 ```
 
-恭喜您，到以上步骤，您已经完成了数据导出组件的安装和部署。如果您还需要额外获得可视化的监控页面，请参考3.3章节。
-
-
-##### 多群组数据导出
-
-首先，请配置FISCO BCOS的多群组，详情可参考[FISCO BCOS多群组部署](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/group_use_cases.html?highlight=%E5%A4%9A%E7%BE%A4%E7%BB%84#)
-
-其次，修改修改application.properties文件。多个群组使用,分隔。例如，假如存在1和2两个群组。
-
-多群组将导出到相同的库中，如果想导出到不同库中，请另开工程。
-
-当配置多群组时，表名将以群组id做前缀来区分，格式为：g1_tableName
-
-配置如下：
-```
-system.groupId=1,2
-```
+恭喜您，到以上步骤，您已经完成了数据导出组件的安装和部署。如果您还需要额外获得可视化的监控页面，请参考下述可视化安装和部署。
 
 
 #### 可视化监控程序安装和部署
 
-##### 安装软件
-
-首先，请安装docker，docker的安装可参考[docker安装手册](https://docker_practice.gitee.io/install/centos.html)
-等docker安装成功后，请下载grafana：
-
-```
-docker pull grafana/grafana
-```
-
-如果你是使用sudo用户安装了docker，可能会提示『permission denied』的错误，建议执行:
-
-```
-sudo docker pull grafana/grafana
-```
-
-##### 启动grafana
-
-```
-docker run   -d   -p 3000:3000   --name=grafana   -e "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource"   grafana/grafana
-```
-
-grafana将自动绑定3000端口并自动安装时钟和Json的插件。
-
-在application.properties中将grafana打开时，系统将会生成可视化json脚本 default_dashboard.json 文件，位于config目录下。
-
-grafana安装并启动成功，通过访问[ip]:3000（本机则为localhost:3000）即可看到如下界面：
-<br /> <br />
-![](../../images/WeBankBlockchain-Data-Export/grafana_start.png)
-<br /> <br />
-
-输入账密admin/admin, 现在跳过即可进入主界面，添加导出数据库的mysql信息，如下位置：
-<br /> <br />
-![](../../images/WeBankBlockchain-Data-Export/grafana_index.png)
-<br /> <br />
-
-添加mysql成功后，可通过如下方式导入系统生成的default_dashboard.json文件，如下位置：
-<br /> <br />
-![](../../images/WeBankBlockchain-Data-Export/grafana_json.png)
-<br /> <br />
-
-导入成功后即可看到链的数据可视化情况，如下：
-<br /> <br />
-![](../../images/WeBankBlockchain-Data-Export/grafana_view.png)
-<br /> <br />
-
-更多关于Grafana的自定义配置和开发文档，可参考[Grafana官方文档](http://docs.grafana.org/guides/getting_started/)
-
+参照[可视化展示配置](./view.md)
 
 
 ###### 更多配置
