@@ -97,6 +97,7 @@ system.db0.password=
 
 两个目录中包含了一个HelloWorld合约的abi和bin文件，使用时请按需删除。
 
+合约bin和binary的获取参考[编译智能合约](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/sdk_application.html#id6)
 
 
 #### 可视化安装配置
