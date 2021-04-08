@@ -125,14 +125,14 @@ system.db0.password=
 
 其中多群组数据导出，参照[多群组数据导出](./expertconfig.html#id11)
 
-#### 配置合约
+##### 配置合约
 
 将合约对应的abi和binary文件分别放置到config/abi和config/bin目录中。
 
 两个目录中包含了一个HelloWorld合约的abi和bin文件，使用时请按需删除。
 
 
-#### 可视化安装配置
+##### 可视化配置
 
 在application.properties中将grafana打开时，将在config目录下生成可视化脚本，默认关闭，打开配置如下:
 ```
