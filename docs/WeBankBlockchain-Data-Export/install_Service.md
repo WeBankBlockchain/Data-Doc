@@ -132,7 +132,7 @@ system.db0.password=
 两个目录中包含了一个HelloWorld合约的abi和bin文件，使用时请按需删除。
 
 
-###### 可视化安装配置
+#### 可视化安装配置
 
 在application.properties中将grafana打开时，将在config目录下生成可视化脚本，默认关闭，打开配置如下:
 ```
@@ -141,19 +141,19 @@ system.grafanaEnable=true
 ```
 
 
-###### 创建数据库
+#### 创建数据库
 
 参考[连接和创建数据库](./appendix.html#mysql)
 
 
-###### 创建Elasticsearch
+#### 创建Elasticsearch
 
 需要ES存储时，需先安装ES, 参考[ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
 
 配置参考[ES配置](./expertconfig.html#elastic-search)
 
 
-##### 运行程序
+#### 运行程序
 
 ```eval_rst
 .. note::
@@ -177,9 +177,9 @@ bash start.sh
 
 
 
-##### 检查运行状态及退出
+#### 检查运行状态及退出
 
-###### 检查程序进程是否正常运行
+##### 检查程序进程是否正常运行
 
 ```
 ps -ef |grep Data-Export
@@ -191,7 +191,7 @@ ps -ef |grep Data-Export
 app   21980 24843  0 15:23 pts/3    00:00:44 java -jar WeBankBlockchain-Data-Export-core1.3.1.jar
 ```
 
-###### 检查程序是否已经正常执行
+##### 检查程序是否已经正常执行
 
 当你看到程序运行，并在最后出现以下字样时，则代表运行成功：
 
@@ -227,7 +227,7 @@ tail -f data-export.log | grep "sync block"
 ……
 ```
 
-###### 检查数据是否已经正常产生
+##### 检查数据是否已经正常产生
 
 
 **DB数据检查**
@@ -281,6 +281,6 @@ bash stop.sh
 参照[可视化展示配置](./view.html#id3)
 
 
-###### 更多配置
+#### 更多配置
 
 更多配置参见[服务配置说明](./expertconfig.md)
