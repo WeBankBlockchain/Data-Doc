@@ -87,9 +87,9 @@ system.db0.password=
 
 ```
 
-数据导出除支持上述的Channel方式导出数据外，还支持[JSON-RPC方式](./expertconfig.md)和[数据仓库方式](./expertconfig.md)
+数据导出除支持上述的Channel方式导出数据外，还支持[JSON-RPC方式](./expertconfig.html#json-rpc)和[数据仓库方式](./expertconfig.html#id3)
 
-其中多群组数据导出，参照[多群组数据导出](./expertconfig.md)
+其中多群组数据导出，参照[多群组数据导出](./expertconfig.html#id11)
 
 #### 配置合约
 
@@ -153,7 +153,7 @@ docker restart dataexport
 
 #### 可视化展示配置
 
-参照[可视化展示配置](./view.md)
+参照[可视化展示配置](./view.html#id4)
 
 #### 更多配置
 

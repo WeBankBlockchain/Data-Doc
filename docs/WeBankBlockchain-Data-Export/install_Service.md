@@ -121,9 +121,9 @@ system.db0.password=
 
 ```
 
-数据导出除支持上述的Channel方式导出数据外，还支持[JSON-RPC方式](./expertconfig.md)和[数据仓库方式](./expertconfig.md)
+数据导出除支持上述的Channel方式导出数据外，还支持[JSON-RPC方式](./expertconfig.html#json-rpc)和[数据仓库方式](./expertconfig.html#id3)
 
-其中多群组数据导出，参照[多群组数据导出](./expertconfig.md)
+其中多群组数据导出，参照[多群组数据导出](./expertconfig.html#id11)
 
 #### 配置合约
 
@@ -143,14 +143,14 @@ system.grafanaEnable=true
 
 ###### 创建数据库
 
-参考[连接和创建数据库](./appendix.md)
+参考[连接和创建数据库](./appendix.html#mysql)
 
 
 ###### 创建Elasticsearch
 
 需要ES存储时，需先安装ES, 参考[ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
 
-配置参考[ES配置](./expertconfig.md)
+配置参考[ES配置](./expertconfig.html#elastic-search)
 
 
 ##### 运行程序
@@ -173,7 +173,7 @@ bash start.sh
     请务必按照以上命令操作，**请勿使用sudo命令来操作**，否则会导致Gradlew没有权限，导致导出数据失败。
 ```
 
-更多运行方式参照[运行方式说明](./appendix.md)
+更多运行方式参照[运行方式说明](./expertconfig.html#id13)
 
 
 
@@ -278,7 +278,7 @@ bash stop.sh
 
 #### 可视化监控程序安装和部署
 
-参照[可视化展示配置](./view.md)
+参照[可视化展示配置](./view.html#id3)
 
 
 ###### 更多配置
