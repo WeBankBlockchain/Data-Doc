@@ -57,7 +57,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | system.db.autoCreateTable | N |  自动建表 | - | true |
 | system.db.sharding | N |  开启分库分表 | - | false |
 | system.db.shardingNumberPerDatasource | N |  分表数目 | - | 0 |
-| system.paramSQLType | N |  指定数据表字段类型，针对事件或方法字段，多个配置已竖杠字符分隔，[contractName.methodName/eventName.solidityParamName.paramType] | - | HelloWorld.set.name.text |
+| system.paramSQLType | N |  指定数据表字段类型，针对事件或方法字段，多个配置已竖杠字符分隔，[contractName.methodName/eventName.javaParamName.paramType],其中参数名为java驼峰命名| - | HelloWorld.set.name.text |
 
 
 #### 合约配置
@@ -118,7 +118,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.generatedOffStr | N | 指定事件或方法不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName,methodName or eventName,...] |  HelloWorld.set.nameA,nameB | - |
-| system.ignoreParam | N | 指定事件或方法中字段不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName.javaParamName,javaParamName] | HelloWorld.set.name.text | - |
+| system.ignoreParam | N | 指定事件或方法中字段不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName.javaParamName,javaParamName],其中参数名为java驼峰命名| HelloWorld.set.name.text | - |
 
 
 ### 配置操作说明
