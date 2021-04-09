@@ -122,7 +122,7 @@ bash build_export.sh
 
 ```
 ......
-docker.io/wangyue168git/dataexport:1.7.2
+docker.io/fiscoorg/dataexport:1.7.2
 b7c087943edbe731304c76bcc44d705d20a8362fa8f2271d0d03ca6c75ee061c
 data export run success
 See the logging command: docker logs -f dataexport
