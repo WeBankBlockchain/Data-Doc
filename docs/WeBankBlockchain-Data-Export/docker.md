@@ -100,6 +100,10 @@ system.db0.password=
 合约bin和binary的获取参考[编译智能合约](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/sdk_application.html#id6)
 
 
+#### 创建数据库
+
+参考[连接和创建数据库](./appendix.html#mysql)
+
 #### 可视化安装配置
 
 在application.properties中将grafana打开时，将在docker中自动部署grafana，通过[ip]:3000即可访问，配置如下:
