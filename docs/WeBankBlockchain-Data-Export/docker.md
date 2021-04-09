@@ -162,19 +162,19 @@ docker restart dataexport
 
 #### 更多配置
 
-除上述功能外，还支持一下功能：
+除上述功能外，还支持以下功能：
 
-[数据表个性化](./expertconfig.html#id4)
+- [数据表个性化](./expertconfig.html#id4)
 
-[ES存储](./expertconfig.html#es)
+- [ES存储](./expertconfig.html#es)
 
-[集群多活](./expertconfig.html#id7)
+- [集群多活](./expertconfig.html#id7)
 
-[分库分表](./expertconfig.html#id12)
+- [分库分表](./expertconfig.html#id12)
 
-[工程配置](./expertconfig.html#id6)
+- [工程配置](./expertconfig.html#id6)
 
-[合约字段个性化配置](./expertconfig.html#id9)
+- [合约字段个性化配置](./expertconfig.html#id9)
 
 更多配置参见[服务配置说明](./expertconfig.md)
 
