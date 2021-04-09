@@ -148,13 +148,6 @@ system.grafanaEnable=true
 参考[连接和创建数据库](./appendix.html#mysql)
 
 
-#### 创建Elasticsearch
-
-需要ES存储时，需先安装ES, 参考[ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
-
-配置参考[ES配置](./expertconfig.html#elastic-search)
-
-
 #### 运行程序
 
 ```eval_rst
@@ -251,24 +244,6 @@ mysql -u[用户名] -p[密码] -e "use [数据库名]; select count(*) from bloc
 +----------+
 ```
 
-**ES数据检查**
-
-可以通过url查询索引建立情况，http://ip:9200/_cat/indices?v，结果类似如下：
-
-```
-health status index                            uuid                   pri rep docs.count docs.deleted store.size pri.store.size
-yellow open   helloworldsetnamemethod          hvYse4rKTJuSskQPh9ac7Q   1   1          0            0       208b           208b
-yellow open   blockrawdata                     ZV6vNxfRSyGDnm_R0aR-tg   1   1         65            7      504kb          504kb
-yellow open   blockdetailinfo                  Vbv9dtdCTrK1U5p9okeCfA   1   1         65            7     33.6kb         33.6kb
-yellow open   blocktxdetailinfo                1seHyG6CQk6x8AKeqPsLqQ   1   1         35            0     43.3kb         43.3kb
-yellow open   blockrawdatabo                   hNl3wUSsQoG2h2AHdgV-NQ   1   1          0            0       208b           208b
-yellow open   txreceiptrawdata                 v-bMu_khQ8OI2TyDEhakkA   1   1         35            0    155.3kb        155.3kb
-yellow open   contractinfo                     DolSTxR9ToSMLzJ3OJU31w   1   1         27            0    162.4kb        162.4kb
-yellow open   deployaccountinfo                ET0VMMahRyqAuSHNLTVEhg   1   1         21            0     15.9kb         15.9kb
-```
-
-更多查询，参考[ES数据查询](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/search-your-data.html)
-
 **停止导入程序**
 
 ```
@@ -284,5 +259,13 @@ bash stop.sh
 
 
 #### 更多配置
+
+除上述功能外，还支持一下功能：
+[数据库配置](./expertconfig.html#id4)
+[ES存储](./expertconfig.html#es)
+[集群多活](./expertconfig.html#id7)
+[分库分表](./expertconfig.html#id12)
+[工程配置](./expertconfig.html#id6)
+[合约字段个性化配置](./expertconfig.html#id9)
 
 更多配置参见[服务配置说明](./expertconfig.md)
