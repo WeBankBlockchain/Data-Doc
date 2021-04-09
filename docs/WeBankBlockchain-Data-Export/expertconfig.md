@@ -195,3 +195,28 @@ tail -f *.log
 supervisor还提供了一个功能，可以为supervisord或者每个子进程，设置一个非root的user，这个user就可以管理它对应的进程。
 
 使用supervisor来安装与部署的步骤请参阅[附录6](appendix.html#supervisor)
+
+
+#### ES部署配置
+
+需要ES存储时，需先安装ES, 参考[ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
+
+配置参考[ES配置](./expertconfig.html#elastic-search)
+
+**启动成功后ES数据检查**
+
+可以通过url查询索引建立情况，http://ip:9200/_cat/indices?v，结果类似如下：
+
+```
+health status index                            uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   helloworldsetnamemethod          hvYse4rKTJuSskQPh9ac7Q   1   1          0            0       208b           208b
+yellow open   blockrawdata                     ZV6vNxfRSyGDnm_R0aR-tg   1   1         65            7      504kb          504kb
+yellow open   blockdetailinfo                  Vbv9dtdCTrK1U5p9okeCfA   1   1         65            7     33.6kb         33.6kb
+yellow open   blocktxdetailinfo                1seHyG6CQk6x8AKeqPsLqQ   1   1         35            0     43.3kb         43.3kb
+yellow open   blockrawdatabo                   hNl3wUSsQoG2h2AHdgV-NQ   1   1          0            0       208b           208b
+yellow open   txreceiptrawdata                 v-bMu_khQ8OI2TyDEhakkA   1   1         35            0    155.3kb        155.3kb
+yellow open   contractinfo                     DolSTxR9ToSMLzJ3OJU31w   1   1         27            0    162.4kb        162.4kb
+yellow open   deployaccountinfo                ET0VMMahRyqAuSHNLTVEhg   1   1         21            0     15.9kb         15.9kb
+```
+
+更多查询，参考[ES数据查询](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/search-your-data.html)
