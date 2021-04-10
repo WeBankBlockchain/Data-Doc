@@ -183,7 +183,7 @@ ps -ef |grep Data-Export
 如果看到如下信息，则代表进程执行正常：
 
 ```
-app   21980 24843  0 15:23 pts/3    00:00:44 java -jar WeBankBlockchain-Data-Export-core1.3.1.jar
+app   21980 24843  0 15:23 pts/3    00:00:44 java -jar Data-Export*.jar
 ```
 
 ##### 检查程序是否已经正常执行
@@ -191,9 +191,9 @@ app   21980 24843  0 15:23 pts/3    00:00:44 java -jar WeBankBlockchain-Data-Exp
 当你看到程序运行，并在最后出现以下字样时，则代表运行成功：
 
 ```
-Hibernate: select blockheigh0_.pk_id as pk_id1_2_, blockheigh0_.block_height as block_he2_2_, blockheigh0_.event_name as event_na3_2_, blockheigh0_.depot_updatetime as depot_up4_2_ from block_height_info blockheigh0_ where blockheigh0_.event_name=?
-Hibernate: select blockheigh0_.pk_id as pk_id1_2_, blockheigh0_.block_height as block_he2_2_, blockheigh0_.event_name as event_na3_2_, blockheigh0_.depot_updatetime as depot_up4_2_ from block_height_info blockheigh0_ where blockheigh0_.event_name=?
-Hibernate: select blockheigh0_.pk_id as pk_id1_2_, blockheigh0_.block_height as block_he2_2_, blockheigh0_.event_name as event_na3_2_, blockheigh0_.depot_updatetime as depot_up4_2_ from block_height_info blockheigh0_ where blockheigh0_.event_name=?
+select blockheigh0_.pk_id as pk_id1_2_, blockheigh0_.block_height as block_he2_2_, blockheigh0_.event_name as event_na3_2_, blockheigh0_.depot_updatetime as depot_up4_2_ from block_height_info blockheigh0_ where blockheigh0_.event_name=?
+select blockheigh0_.pk_id as pk_id1_2_, blockheigh0_.block_height as block_he2_2_, blockheigh0_.event_name as event_na3_2_, blockheigh0_.depot_updatetime as depot_up4_2_ from block_height_info blockheigh0_ where blockheigh0_.event_name=?
+select blockheigh0_.pk_id as pk_id1_2_, blockheigh0_.block_height as block_he2_2_, blockheigh0_.event_name as event_na3_2_, blockheigh0_.depot_updatetime as depot_up4_2_ from block_height_info blockheigh0_ where blockheigh0_.event_name=?
 ```
 
 还可以通过以下命令来查看区块的同步状态：

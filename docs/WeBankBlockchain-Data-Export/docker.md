@@ -48,10 +48,10 @@ data-export-docker目录如下：
 
 选择channel方式连接链节点时，需配置证书。
 
-将链节点SDK证书拷贝到 **./data-export/config**下，SDK证书目录位于nodes/${ip}/sdk/目录下
+将链节点SDK证书拷贝到 **./data-export-docker/config**下，SDK证书目录位于nodes/${ip}/sdk/目录下
 ```
 # 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
-cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./data-export/config/
+cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./config/
 ```
 
 
