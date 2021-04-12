@@ -15,7 +15,7 @@
 #### 获取启动脚本和配置文件
 
 ```
-curl -#LO https://github.com/WeBankBlockchain/Data-Export/releases/download/1.7.2-beta/data-export-1.7.2.tar.gz
+curl -#LO https://github.com/WeBankBlockchain/Data-Export-Demo/releases/download/1.7.2-beta/data-export-1.7.2.tar.gz
 ```
 
 解压文件包至当前目录
