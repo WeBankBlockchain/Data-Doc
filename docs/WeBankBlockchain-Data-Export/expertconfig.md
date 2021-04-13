@@ -53,7 +53,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | system.namePrefix | N | 合约导出表字段前缀设置，只针对method、event表中变量字段  |- | 空 |
 | system.namePostfix | N | 合约导出表字段后缀设置，只针对method、event表中变量字段 | - | 空 |
 | system.tablePrefix | N | 数据导出表名前缀设置 | -  |空 |
-| system.tablePostfix | N |  数据导出表名前缀设置 | - | 空 |
+| system.tablePostfix | N |  数据导出表名后缀设置 | - | 空 |
 | system.db.autoCreateTable | N |  自动建表 | - | true |
 | system.db.sharding | N |  开启分库分表 | - | false |
 | system.db.shardingNumberPerDatasource | N |  分表数目 | - | 0 |
