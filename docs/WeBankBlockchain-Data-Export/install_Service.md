@@ -31,7 +31,7 @@ git clone https://github.com/WeBankBlockchain/Data-Export.git
     - 如果因为网络问题导致长时间无法下载，请尝试：git clone https://gitee.com/WeBankBlockchain/Data-Export.git
 ```
 
-得到工程代码，WeBankBlockchain-Data-Export的工程使用gradle进行构建，是一个使用gradle进行多工程构建的SpringBoot工程。
+得到工程代码，WeBankBlockchain-Data-Export的工程使用gradle进行构建。
 
 ```
 ├── ChangeLog.md
@@ -44,9 +44,7 @@ git clone https://github.com/WeBankBlockchain/Data-Export.git
 ├── gradle
 ├── gradlew
 ├── gradlew.bat
-├── libs
-├── settings.gradle
-└── src
+└── settings.gradle
 
 ```
 
