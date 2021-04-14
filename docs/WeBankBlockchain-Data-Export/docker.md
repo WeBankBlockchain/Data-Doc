@@ -143,14 +143,14 @@ grafana run success
 docker logs -f dataexport
 ```
 
-#### 修改配置
+#### 关闭重启
 
 停止运行，命令如下
 ```
 docker stop dataexport
 ```
 
-修改application.properties配置文件后，重新启动，命令如下
+可修改application.properties配置文件后，重新启动，命令如下
 
 ```
 docker restart dataexport
