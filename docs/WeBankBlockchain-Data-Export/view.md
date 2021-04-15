@@ -48,6 +48,8 @@ grafana安装并启动成功，通过访问[ip]:3000（本机则为localhost:300
 ![](../../images/WeBankBlockchain-Data-Export/grafana_index.png)
 <br /> <br />
 
+**如果是docker安装的mysql，添加mysql的host信息时，需先查询本机对外ip，方法见** [常见问题](./question.html#docker-docker)
+
 添加mysql成功后，可通过如下方式导入系统生成的config/default_dashboard.json文件，如下位置：
 <br /> <br />
 ![](../../images/WeBankBlockchain-Data-Export/grafana_json.png)

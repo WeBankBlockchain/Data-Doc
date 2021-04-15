@@ -50,8 +50,8 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | system.db0.dbUrl | Y | 访问数据的URL| jdbc:mysql://[IP]:[PORT]/[DB]?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8 | - |
 | system.db0.dbUser | Y | 数据库用户名 | admin | - |
 | system.db0.dbPassword | Y | 数据库密码 | 123456 | - |
-| system.namePrefix | N | 合约导出表字段前缀设置，只针对method、event表中变量字段  |- | 空 |
-| system.namePostfix | N | 合约导出表字段后缀设置，只针对method、event表中变量字段 | - | 空 |
+| system.namePrefix | N | 合约导出表字段前缀设置，只针对method、event表中变量字段,字段名长度应小于64个字符 |- | 空 |
+| system.namePostfix | N | 合约导出表字段后缀设置，只针对method、event表中变量字段,字段名长度应小于64个字符  | - | 空 |
 | system.tablePrefix | N | 数据导出表名前缀设置 | -  |空 |
 | system.tablePostfix | N |  数据导出表名后缀设置 | - | 空 |
 | system.db.autoCreateTable | N |  自动建表 | - | true |

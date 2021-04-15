@@ -6,7 +6,6 @@
 | 依赖软件 | 说明 |备注|
 | --- | --- | --- |
 | FISCO-BCOS | 2.0及以上版本 | |
-| MySQL | >= mysql-community-server[5.7] | |
 | ElasticSearch | >= elasticsearch [7.0] | 只有在需要ES存储时安装 |
 | zookeeper | >= zookeeper[3.4] | 只有在进行集群部署的时候需要安装|
 | Bash | 需支持Bash（理论上来说支持所有ksh、zsh等其他unix shell，但未测试）|
@@ -31,6 +30,7 @@ data-export-docker目录如下：
 │   │   ├── bin
 │   │   ├── application.properties
 │   ├── log
+│   ├── mysql
 │   └── build_export.sh
 ```
 
@@ -39,8 +39,8 @@ data-export-docker目录如下：
     - **config为配置文件目录，使用channel方式连接区块链时，需将证书放至该目录。**
     - config包括了abi和bin两个文件夹，用于配置合约信息。
     - 运行生成的sql脚本data_export.sql和可视化脚本default_dashboard.json会保存在config目录下。
-    - 运行日志保存在log目录下
-
+    - 运行日志保存在log目录下。
+    - mysql目录用于docker安装mysql后的数据库挂载目录。
 ```
 
 
@@ -72,18 +72,12 @@ cd config
 ### 3, Data-Stash
 ### 选择其中一种方式配置即可，默认Channel方式
 
-# Channel方式启动，需配置证书
+# Channel方式启动，与java sdk一致，需配置证书
 ## GROUP_ID必须与FISCO-BCOS中配置的groupId一致, 多群组以,分隔，如1,2
 system.groupId=1
 # 节点的IP及通讯端口、组号。 
 ##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200
 system.nodeStr=[IP]:[PORT]
-
-### 数据库的信息，暂时只支持mysql； serverTimezone 用来设置时区
-### 请确保在运行前创建对应的database，如果分库分表，则可配置多个数据源，如system.db1.dbUrl=\system.db1.user=\system.db0.password=
-system.db0.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-system.db0.user=
-system.db0.password=
 
 ```
 
@@ -114,9 +108,20 @@ system.grafanaEnable=true
 #### 启动脚本
 
 ```
-bash build_export.sh
+bash build_export.sh -m
 ```
 上述脚本会自动安装docker，并拉取对应镜像，进行执行。如果docker安装失败，请手动安装后重新执行脚本。
+
+加后缀 **-m** 启动脚本, 会通过docker自动安装mysql，无需配置mysql连接信息。
+
+docker安装的mysql的访问信息如下： 
+```
+用户名：root
+密码：123456
+访问地址端口：127.0.0.1:3307
+```
+
+不加后缀执行如: **bash build_export.sh**，这时需自行安装mysql，并配置mysql连接信息。 
 
 控制台可看到提示启动结果：
 
@@ -141,6 +146,11 @@ grafana run success
 通过如下命令可查看运行日志：
 ```
 docker logs -f dataexport
+```
+
+访问docker数据库命令如下：
+```
+docker exec -it mysql mysql -uroot -p123456
 ```
 
 #### 关闭重启
