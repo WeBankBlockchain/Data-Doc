@@ -40,7 +40,7 @@ data-export-docker目录如下：
     - config包括了abi和bin两个文件夹，用于配置合约信息。
     - 运行生成的sql脚本data_export.sql和可视化脚本default_dashboard.json会保存在config目录下。
     - 运行日志保存在log目录下。
-    - mysql目录用于docker安装mysql后的数据库挂载目录。
+    - mysql文件为docker安装mysql后的数据库挂载目录。
 ```
 
 
