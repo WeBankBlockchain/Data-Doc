@@ -166,6 +166,12 @@ docker stop dataexport
 docker restart dataexport
 ```
 
+删除镜像后可重新调用启动脚本，命令如下
+```
+docker rm dataexport
+docker rm mysql
+```
+
 #### 可视化展示配置
 
 参照[可视化展示配置](./view.html#id4)
