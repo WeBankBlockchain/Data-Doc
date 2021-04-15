@@ -170,6 +170,7 @@ docker restart dataexport
 ```
 docker rm dataexport
 docker rm mysql
+docker rm grafana
 ```
 
 #### 可视化展示配置
