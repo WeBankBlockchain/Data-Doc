@@ -6,8 +6,6 @@
 | 依赖软件 | 说明 |备注|
 | --- | --- | --- |
 | FISCO-BCOS | 2.0及以上版本 | |
-| ElasticSearch | >= elasticsearch [7.0] | 只有在需要ES存储时安装 |
-| zookeeper | >= zookeeper[3.4] | 只有在进行集群部署的时候需要安装|
 | Bash | 需支持Bash（理论上来说支持所有ksh、zsh等其他unix shell，但未测试）|
 
 
