@@ -60,7 +60,9 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | system.paramSQLType | N | 指定数据表字段类型，针对事件或方法字段，多个配置已竖杠字符分隔| - | HelloWorld.set.name.text |
 
 说明：
+
 上述字段system.paramSQLType，使用格式如下：
+
 contractName.methodName/eventName.javaParamName.paramType, 其中javaParamName为java驼峰命名，如数据库字段名为item_name, 对应java名为itemName，去掉下划线。
 
 
@@ -83,6 +85,11 @@ contractName.methodName/eventName.javaParamName.paramType, 其中javaParamName�
 | system.crawlBatchUnit | N | 一次任务执行完成的区块数 | 100 | 500 |
 | system.startBlockHeight | N | 开始区块高度 | - | 0 |
 | system.startDate | N | 从指定区块时间开始导出 | 2021-03-04 | - |
+
+说明：
+
+上述**system.startBlockHeight** 和 **system.startDate** 同时配置将优先读取前者指定块高，后者会不生效。
+
 
 #### 集群多活配置
 
