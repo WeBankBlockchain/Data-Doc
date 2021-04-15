@@ -110,16 +110,19 @@ bash build_export.sh -m
 ```
 上述脚本会自动安装docker，并拉取对应镜像，进行执行。如果docker安装失败，请手动安装后重新执行脚本。
 
-加后缀 **-m** 启动脚本, 会通过docker自动安装mysql, 并创建一个名为**data_export**的数据库，**application.properties**中默认配置了该mysql的信息，无需另配置mysql连接信息。
+```eval_rst
+.. note::
+     -加后缀 **-m** 启动脚本, 会通过docker自动安装mysql, 并创建一个名为**data_export**的数据库，**application.properties**中默认配置了该mysql的信息，无需另配置mysql连接信息。
+     -不加后缀执行如: **bash build_export.sh**，这时需自行安装mysql，并配置mysql连接信息。 
+```
 
-docker安装的mysql的访问信息如下： 
+采取**-m**方式启动，docker安装的mysql的访问信息如下： 
 ```
 用户名：root
 密码：123456
 访问地址端口：127.0.0.1:3307
 ```
 
-不加后缀执行如: **bash build_export.sh**，这时需自行安装mysql，并配置mysql连接信息。 
 
 控制台可看到提示启动结果：
 
