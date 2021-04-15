@@ -129,8 +129,8 @@ contractName.methodName/eventName.javaParamName.paramType, 其中javaParamName�
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.generatedOffStr | N | 指定事件或方法不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName,methodName or eventName,...] |  HelloWorld.set.nameA,nameB | - |
-| system.ignoreParam | N | 指定事件或方法中字段不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName.javaParamName,javaParamName],其中参数名为java驼峰命名| HelloWorld.set.name.text | - |
+| system.generatedOffStr | N | 指定事件或方法不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName,methodName or eventName,...] |  HelloWorld.set| - |
+| system.ignoreParam | N | 指定事件或方法中字段不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName.javaParamName,javaParamName],其中参数名为java驼峰命名| HelloWorld.set.n | - |
 
 
 ### 配置操作说明
