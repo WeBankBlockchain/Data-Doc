@@ -157,6 +157,7 @@ system.groupId=1,2
 数据源配置中，在分库分表时可配置多个，以db0、db1..区分，如system.db0.dbUrl、system.db1.dbUrl...按组递增排列
 
 数据库路由规则为： **block_height(区块高度) % 配置数据库数目**
+
 表路由规则为： **block_height(区块高度) % 表分片数目**
 
 分库分表所需配置如下：
