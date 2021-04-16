@@ -82,16 +82,6 @@ tools目录如下：
 ```
 ##### 配置工程
 
-###### 配置证书文件(channel方式启动)
-
-选择channel方式连接链节点时，需配置证书。
-
-将链SDK证书拷贝到 **./tools/config/resources目录**下，SDK证书目录位于nodes/${ip}/sdk/目录下
-```
-# 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
-cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
-```
-
 
 ###### 配置文件设置
 
@@ -122,6 +112,22 @@ system.db0.password=123456
 数据导出除支持上述的Channel方式导出数据外，还支持[JSON-RPC方式](./expertconfig.html#json-rpc)和[数据仓库方式](./expertconfig.html#id3)
 
 其中多群组数据导出，参照[多群组数据导出](./expertconfig.html#id11)
+
+
+###### 配置证书文件(channel方式启动)
+
+选择channel方式连接链节点时，需配置证书。
+
+将链SDK证书拷贝到 **./tools/config/resources目录**下，SDK证书目录位于nodes/${ip}/sdk/目录下
+```
+# 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
+cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
+```
+
+如果在链节点上部署数据导出，也可直接配置证书路径，无需复制操作，配置证书路径如下：
+```
+system.certPath=~/fisco/nodes/127.0.0.1/sdk/
+```
 
 ##### 配置合约
 

@@ -1,5 +1,5 @@
 
-### Docker方式启动
+### Docker快速部署
 
 #### 前置依赖
 
@@ -91,10 +91,6 @@ system.nodeStr=127.0.0.1:20200
 
 合约bin和binary的获取参考[编译智能合约](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/sdk_application.html#id6)
 
-
-#### 创建数据库
-
-参考[连接和创建数据库](./appendix.html#mysql)
 
 #### 可视化安装配置
 
