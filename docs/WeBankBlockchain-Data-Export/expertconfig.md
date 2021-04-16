@@ -142,7 +142,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 首先，请配置FISCO BCOS的多群组，详情可参考[FISCO BCOS多群组部署](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/group_use_cases.html?highlight=%E5%A4%9A%E7%BE%A4%E7%BB%84#)
 
-其次，修改修改application.properties文件。多个群组使用,分隔。例如，假如存在1和2两个群组。
+其次，修改application.properties文件。多个群组使用,分隔。例如，假如存在1和2两个群组。
 
 多群组将导出到相同的库中，表名将以群组id做前缀来区分，格式为：g1_tableName
 
@@ -152,7 +152,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 system.groupId=1,2
 ```
 
-##### 分库分表配置
+#### 分库分表配置
 
 数据源配置中，在分库分表时可配置多个，以db0、db1..区分，如system.db0.dbUrl、system.db1.dbUrl...按组递增排列
 
