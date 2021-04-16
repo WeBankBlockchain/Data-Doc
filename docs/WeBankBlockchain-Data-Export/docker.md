@@ -169,8 +169,6 @@ docker restart dataexport
 删除镜像后可重新调用启动脚本，命令如下
 ```
 docker rm dataexport
-docker rm mysql
-docker rm grafana
 ```
 
 #### 可视化展示配置
