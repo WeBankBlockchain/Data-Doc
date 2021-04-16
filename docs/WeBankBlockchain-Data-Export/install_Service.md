@@ -74,7 +74,7 @@ tools目录如下：
 
 ```eval_rst
 .. note::
-    - **config为配置文件目录，使用channel方式连接区块链时，需将证书放至该目录。**
+    - **config为配置文件目录，使用channel方式连接区块链时，可将证书放至该目录。**
     - config包括了abi和bin两个文件夹，用于配置合约信息。
     - 运行生成的sql脚本data_export.sql和可视化脚本default_dashboard.json会保存在config目录下。
     - 运行日志保存在./tools/log目录下
@@ -94,10 +94,9 @@ tools目录如下：
 ### 3, Data-Stash
 ### 选择其中一种方式配置即可，默认Channel方式
 
-# Channel方式启动，需配置证书
+# Channel方式启动，与java sdk一致，需配置证书
 ## GROUP_ID必须与FISCO-BCOS中配置的groupId一致, 多群组以,分隔，如1,2
-system.groupId=1
-# 节点的IP及通讯端口、组号。 
+system.groupId=1 
 ##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200
 system.nodeStr=127.0.0.1:20200
 
@@ -116,7 +115,7 @@ system.db0.password=123456
 
 ###### 配置证书文件(channel方式启动)
 
-选择channel方式连接链节点时，需配置证书。
+选择channel方式连接链节点时，需配置证书或证书路径。
 
 将链SDK证书拷贝到 **./tools/config/resources目录**下，SDK证书目录位于nodes/${ip}/sdk/目录下
 ```
@@ -124,10 +123,12 @@ system.db0.password=123456
 cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
 ```
 
-如果在链节点上部署数据导出，也可直接配置证书路径，无需复制操作，配置证书路径如下：
+如果在要连接的链节点上部署数据导出，也可直接配置证书路径，无需上述复制操作，配置证书路径取**绝对路径**，如下：
+
 ```
-system.certPath=~/fisco/nodes/127.0.0.1/sdk/
+system.certPath=/root/fisco/nodes/127.0.0.1/sdk
 ```
+
 
 ##### 配置合约
 
