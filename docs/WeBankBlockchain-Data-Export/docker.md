@@ -112,7 +112,7 @@ bash build_export.sh -m
     - 不加后缀执行如: **bash build_export.sh**，这时需自行安装mysql，并配置mysql连接信息。 
 ```
 
-采取**-m**方式启动，docker安装的mysql的访问信息如下： 
+采取 **bash build_export.sh -m** 方式启动，docker安装的mysql的访问信息如下： 
 ```
 用户名：root
 密码：123456
