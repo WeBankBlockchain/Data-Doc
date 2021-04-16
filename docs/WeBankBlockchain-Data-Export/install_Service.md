@@ -138,6 +138,14 @@ system.certPath=/root/fisco/nodes/127.0.0.1/sdk
 
 合约bin和binary的获取参考[编译智能合约](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/sdk_application.html#id6)
 
+如果在要连接的链节点上部署数据导出，也可直接配置abi和bin的路径，无需上述复制操作，配置路径取**绝对路径**。
+这里采用控制台[编译智能合约](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/sdk_application.html#id6) 方式编译合约，可在控制台contracts/目录下看到编译结果，
+配置例子如下：
+```
+system.abiPath=/root/fisco/console/contracts/sdk/abi
+system.binaryPath=/root/fisco/console/contracts/sdk/bin
+```
+
 
 ##### 可视化配置
 
