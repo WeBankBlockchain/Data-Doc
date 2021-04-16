@@ -158,7 +158,7 @@ system.groupId=1,2
 
 数据库路由规则为： **block_height(区块高度) % 配置数据库数目**
 
-表路由规则为： **block_height(区块高度) % 表分片数目**
+表路由规则为： **block_height(区块高度) % 表分片数目(shardingNumberPerDatasource)**
 
 分库分表所需配置如下：
 ```
