@@ -64,6 +64,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 .. note::
       上述字段system.paramSQLType，使用格式如下：
       contractName.methodName/eventName.javaParamName.paramType, 其中javaParamName为java驼峰命名，如数据库字段名为item_name, 对应java名为itemName，去掉下划线。
+      指定字段不包括块和交易等基础字段，基础字段参考[存储模型](./model.html#id9)
 ```
 
 
@@ -131,7 +132,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.generatedOffStr | N | 指定事件或方法不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName,methodName or eventName,...] |  HelloWorld.set| - |
+| system.generatedOffStr | N | 指定事件或方法不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName,methodName or eventName,...]|  HelloWorld.set| - |
 | system.ignoreParam | N | 指定事件或方法中字段不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName.javaParamName,javaParamName],其中参数名为java驼峰命名| HelloWorld.set.n | - |
 
 
