@@ -162,7 +162,7 @@ docker stop dataexport
 docker restart dataexport
 ```
 
-删除镜像后可重新调用启动脚本，命令如下
+删除容器后可重新调用启动脚本，命令如下
 ```
 docker rm dataexport
 ```
