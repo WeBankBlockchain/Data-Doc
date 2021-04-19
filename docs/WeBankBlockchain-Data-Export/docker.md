@@ -55,11 +55,7 @@ cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./config/
 
 #### 配置文件
 
-配置文件application.properties位于config目录下，进入config
-
-```
-cd config
-```
+配置文件application.properties位于config目录下
 
 修改application.properties文件：该文件包含了所有的配置信息。以下配置信息是必须要配置的：
 
