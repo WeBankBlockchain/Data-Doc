@@ -86,7 +86,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | system.frequency | N | 所有method和event的抓取频率，默认几秒轮询一次 | 10 | 5 |
 | system.crawlBatchUnit | N | 一次任务执行完成的区块数 | 100 | 500 |
 | system.startBlockHeight | N | 开始区块高度 | - | 0 |
-| system.startDate | N | 从指定区块时间开始导出 | 2021-03-04 | - |
+| system.startDate | N | 从大于指定时间开始导出，注意本地utc时间应为当前时区时间 | 2021-03-04 | - |
 
 ```eval_rst
 .. note::
