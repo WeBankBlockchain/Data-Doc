@@ -63,7 +63,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 ```eval_rst
 .. note::
       上述字段system.paramSQLType，使用格式如下：
-      contractName.methodName/eventName.javaParamName.paramType, 其中javaParamName为java驼峰命名，如数据库字段名为item_name, 对应java名为itemName，去掉下划线。
+      contractName.methodName/eventName.paramName.sqlType,
       指定字段不包括块和交易等基础字段，基础字段参考[存储模型](./model.html#id9)
 ```
 
