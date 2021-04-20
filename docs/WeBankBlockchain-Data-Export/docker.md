@@ -130,10 +130,13 @@ See the logging command: docker logs -f dataexport
 
 ```
 
-如果打开了grafana，则可看到执行提示如下：
+如果 **bash build_export.sh -meg** 执行，则可看到提示如下：
 ```
-docker.io/grafana/grafana:latest
-c9cc7e8920c17d0f5421808b058a2f39e827234c0b781f393b8e60ef8d073d86
+7.8.0: Pulling from library/elasticsearch
+... ...
+docker run elasticsearch success...
+latest: Pulling from grafana/grafana
+... ...
 grafana run success
 ```
 
