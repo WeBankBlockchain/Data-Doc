@@ -161,9 +161,10 @@ docker stop dataexport
 docker restart dataexport
 ```
 
-删除容器后可重新调用启动脚本，命令如下
+停止和删除所有容器命令如下：
 ```
-docker rm dataexport
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
 ```
 
 #### 可视化展示配置
