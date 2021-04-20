@@ -218,10 +218,11 @@ supervisor还提供了一个功能，可以为supervisord或者每个子进程�
 ```
 //创建数据挂载目录
 mkdir -p /mydata/elasticsearch/data
+chmod -R 777 /mydata/elasticsearch/
 //拉取es镜像
 docker pull elasticsearch:7.8.0
 //启动es容器
-docker run --name elasticsearch -d -e ES_JAVA_OPTS="-Xms128m -Xmx128m" -e "discovery.type=single-node" -p 9200:9200 -p 9300:9300  -v  /mydata/elasticsearch/data:/mydata/elasticsearch/data -d  elasticsearch:7.8.0
+docker run --name elasticsearch -d -e ES_JAVA_OPTS="-Xms128m -Xmx128m" -e "discovery.type=single-node" -p 9200:9200 -p 9300:9300  -v  /mydata/elasticsearch/data:/usr/share/elasticsearch/data -d  elasticsearch:7.8.0
 ```
 
 ##### 参考官网安装
