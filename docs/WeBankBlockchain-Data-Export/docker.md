@@ -28,7 +28,7 @@ data-export-docker目录如下：
 │   │   ├── bin
 │   │   ├── application.properties
 │   ├── log
-│   ├── mysql
+│   ├── data
 │   └── build_export.sh
 ```
 
@@ -38,7 +38,7 @@ data-export-docker目录如下：
     - config包括了abi和bin两个文件夹，用于配置合约信息。
     - 运行生成的sql脚本data_export.sql和可视化脚本default_dashboard.json会保存在config目录下。
     - 运行日志保存在log目录下。
-    - mysql文件为docker安装mysql后的数据库挂载目录。
+    - data目录为docker安装mysql和es后的数据挂载目录。
 ```
 
 
@@ -88,13 +88,6 @@ system.nodeStr=127.0.0.1:20200
 合约bin和binary的获取参考[编译智能合约](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/sdk_application.html#id6)
 
 
-#### 可视化安装配置
-
-在application.properties中将grafana打开时，将在docker中自动部署grafana，通过[ip]:3000即可访问，配置如下:
-```
-system.grafanaEnable=true
-```
-
 #### 启动脚本
 
 ```
@@ -102,13 +95,23 @@ bash build_export.sh -m
 ```
 上述脚本会自动安装docker，并拉取对应镜像，进行执行。如果docker安装失败，请手动安装后重新执行脚本。
 
+**脚本参数说明**
+
+| 参数 | 说明 |
+| --- | --- |
+| -m | 自动安装mysql，数据存储在/data/mysql下 |
+| -e | 自动安装elasticsearch，数据存储在/data/elasticsearch下 |
+| -g | 自动安装grafana |
+
 ```eval_rst
 .. note::
-    - 加后缀 **-m** 启动脚本, 会通过docker自动安装mysql, 并创建一个名为**data_export**的数据库，**application.properties**中默认配置了该mysql的信息，无需另配置mysql连接信息。
-    - 不加后缀执行如: **bash build_export.sh**，这时需自行安装mysql，并配置mysql连接信息。 
+    - 加后缀 **-m** 启动脚本，会通过docker自动安装mysql, 并创建一个名为**data_export**的数据库，**application.properties**中默认配置了该mysql的信息，无需另配置mysql连接信息。
+    - 加后缀 **-e** 启动脚本，会通过docker自动安装elasticsearch，并自动修改配置文件中es相关配置。
+    - 加后缀 **-g** 启动脚本， 会通过docker自动安装grafana，并自动修改配置文件中可视化相关配置，生成可视化脚本。
+    - 不加后缀执行如: **bash build_export.sh**，这时需自行安装相关组件，并配置连接信息。 
 ```
 
-采取 **bash build_export.sh -m** 方式启动，docker安装的mysql的访问信息如下： 
+这里采取 **bash build_export.sh -m** 方式启动，docker安装的mysql的访问信息如下： 
 ```
 用户名：root
 密码：123456
