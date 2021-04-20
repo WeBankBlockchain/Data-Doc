@@ -57,16 +57,9 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | system.db.autoCreateTable | N |  自动建表 | - | true |
 | system.db.sharding | N |  开启分库分表 | - | false |
 | system.db.shardingNumberPerDatasource | N |  分表数目 | - | 0 |
-| system.paramSQLType | N | 指定数据表字段类型，针对事件或方法字段，多个配置已竖杠字符分隔| - | HelloWorld.set.name.text |
+| system.paramSQLType | N | 指定数据表字段类型，针对事件或方法字段，多个配置已竖杠字符分隔，contractName.methodName/eventName.paramName.sqlType| - | HelloWorld.set.name.text |
 
-
-```eval_rst
-.. note::
-      上述字段system.paramSQLType，使用格式如下：
-      contractName.methodName/eventName.paramName.sqlType,
-      指定字段不包括块和交易等基础字段，基础字段参考[存储模型](./model.html#id9)
-```
-
+上述配置system.paramSQLType中，指定字段不包括块和交易等基础字段，基础字段参考[存储模型](./model.html#id9)
 
 
 #### 合约配置
@@ -218,7 +211,49 @@ supervisor还提供了一个功能，可以为supervisord或者每个子进程�
 
 #### ES部署配置
 
-需要ES存储时，需先安装ES, 参考[ES部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
+需要ES存储时，需先安装ES，安装ES可通过docker和官网方式安装
+
+##### docker安装
+
+```
+//创建数据挂载目录
+mkdir -p /mydata/elasticsearch/data
+//拉取es镜像
+docker pull elasticsearch:7.8.0
+//启动es容器
+docker run --name elasticsearch -d -e ES_JAVA_OPTS="-Xms128m -Xmx128m" -e "discovery.type=single-node" -p 9200:9200 -p 9300:9300  -v  /mydata/elasticsearch/data:/mydata/elasticsearch/data -d  elasticsearch:7.8.0
+```
+
+##### 参考官网安装
+
+可参考官网[ES 7.X版本部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
+
+安装完成后，可通过以下命令查看ES安装信息
+```
+curl 127.0.0.1:9200/
+```
+
+结果如下：
+```
+{
+  "name" : "78a052fcba87",
+  "cluster_name" : "docker-cluster",
+  "cluster_uuid" : "cJoABrm_RaicXPXQKEYNdw",
+  "version" : {
+    "number" : "7.8.0",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "757314695644ea9a1dc2fecd26d1a43856725e65",
+    "build_date" : "2020-06-14T19:35:50.234439Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.5.1",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
+```
+
 
 配置参考[ES配置](./expertconfig.html#elastic-search)
 
