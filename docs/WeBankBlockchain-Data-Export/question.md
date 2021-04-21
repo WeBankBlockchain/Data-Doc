@@ -76,6 +76,7 @@ dos2unix *.sh
 
 其中inet后的ip地址，即为本机ip
 
+docker默认采用docker0桥接模式，需开启对应宿主机端口访问权限。
 
 ### centos启动脚本报yum更新失败
     
