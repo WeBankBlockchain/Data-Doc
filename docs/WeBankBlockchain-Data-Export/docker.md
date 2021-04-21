@@ -18,7 +18,7 @@ curl -#LO https://github.com/WeBankBlockchain/Data-Export/releases/download/V1.7
 ```eval_rst
 .. note::
     - 如果因为网络问题导致长时间无法下载，请尝试：
-    curl -#LO https://gitee.com/WeBankBlockchain/Data-Export/attach_files/679385/download/data-export-1.7.2.tar.gz
+    - curl -#LO https://gitee.com/WeBankBlockchain/Data-Export/attach_files/679385/download/data-export-1.7.2.tar.gz
 ```
 
 解压文件包至当前目录
@@ -111,7 +111,7 @@ bash build_export.sh -m
 
 ```eval_rst
 .. note::
-    - 加后缀 **-m** 启动脚本，会通过docker自动安装mysql, 并创建一个名为 **data_export** 的数据库, **application.properties**中默认配置了该mysql的信息，无需另配置mysql连接信息。
+    - 加后缀 **-m** 启动脚本，会通过docker自动安装mysql, 并创建一个名为 **data_export** 的数据库, **application.properties** 中默认配置了该mysql的信息，无需另配置mysql连接信息。
     - 加后缀 **-e** 启动脚本，会通过docker自动安装elasticsearch，并自动修改配置文件中es相关配置。
     - 加后缀 **-g** 启动脚本， 会通过docker自动安装grafana，并自动修改配置文件中可视化相关配置，生成可视化脚本。
     - 不加后缀执行如: **bash build_export.sh**，这时需自行安装相关组件，并配置连接信息。 
