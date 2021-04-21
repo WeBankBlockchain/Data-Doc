@@ -147,6 +147,8 @@ reconcile.business.name=webank
 #链上数据导出库表查询语句,格式：select * from table where ... and 1=1（不需要添加数据时间范围和分页条件）
 #以数据导出库表block_tx_detail_info为例：select block_height,tx_from,tx_to from block_tx_detail_info where 1=1
 reconcile.bc.reconcileQuerySql=select [field...] from [table] where 1=1
+#以数据导出库表block_tx_detail_info为例：select count(1) from block_tx_detail_info where 1=1
+reconcile.bc.reconcileCountSql=select count(1) from [table] where 1=1
 
 #数据导出库表数据查询时间范围字段 (Must)
 #数据导出表的时间字段名，如果涉及多个表操作，请指出该字段属于哪个表，即添加字段前缀，如block_tx_detail_info.block_timestamp

@@ -12,6 +12,7 @@
    :maxdepth: 3
 
    expertconfig.md
+   view.md
    sdk_spi.md
  
 ```

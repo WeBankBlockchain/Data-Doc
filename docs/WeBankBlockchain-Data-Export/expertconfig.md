@@ -13,59 +13,95 @@
 #### FISCO-BCOS节点配置
 
 FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankBlockchain-Data-Export服务能够访问连接节点，并通过该节点获取区块链网络上的数据。
+连接区块链节点包括两种方式：channel和JSON-RPC方式
+
+##### channel方式配置说明如下：
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.nodeStr | Y | 连接区块链节点的nodeStr，nodeName@[IP]:[PORT], 其中prot为channel port | node1@ip:8822 | - |
+| system.nodeStr | Y | 连接区块链节点的nodeStr,nodeName@[IP]:[PORT], 其中prot为channel port | - | - |
+| system.groupId | Y | 群组id，多群组以,分隔 | - | 1 |
+| system.certPath | Y | 证书路径 | - | ./config |
+
+##### JSON-RPC方式配置说明如下：
+
+| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| --- | --- | --- | --- | --- |
+| system.rpcUrl | Y | 连接区块链节点的rpc url, http://[IP]:[PORT], 其中prot为rpc port | http://localhost:8546 | - |
+| system.groupId | Y | 群组id，多群组以,分隔 | 1 | 1 |
+| system.cryptoTypeConfig | Y | 链密钥类型 | 0-ECDSA，1-gm | 0 |
+
+#### 数据仓库连接配置
+
+| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| --- | --- | --- | --- | --- |
+| system.jdbcUrl | Y | 数据仓库jdbc连接配置，格式：jdbc:mysql://[ip]:[port]/[database] | http://localhost:3306/stash | - |
+| system.user | Y | 用户名 | - | - |
+| system.password | Y | 密码 | - | - |
+| system.cryptoTypeConfig | Y | 链密钥类型 | 0-ECDSA，1-gm | 0 |
 
 
 #### 数据库配置
 
-数据导出组件最终会把区块链网络上的数据导出到数据存储介质中，目前版本仅支持MySQL，所以需要进行数据库配置。
+数据导出组件最终会把区块链网络上的数据导出到数据存储介质中，支持MySQL，所以需要进行数据库配置。
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.dbUrl | Y | 访问数据的URL | jdbc:mysql://[IP]:[PORT]/[DB]?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8 | - |
-| system.dbUser | Y | 数据库用户名 | admin | - |
-| system.dbPassword | Y | 数据库密码 | 123456 | - |
-| system.contractName.[methodName or eventName].shardingNO | N | 合约数据分片数：数据库指定数据表的个数 | system.Rule.NewruleEvent.shardingNO = 3 | 1 |
-| system.sys.[sysTableName].shardingNO | N | 系统数据分片数 | system.sys.BlockTxDetailInfo.shardingNO=5 | 1 |
-| system.nameStyle | N | 数据库表名和字段命名规则，支持下划线命名和原始数据命名 | system.nameStyle=rawCase | underScoreCase |
-| system.namePrefix | N | 数据库表字段命名前缀，默认为_ | system.namePrefix=_ | _ |
-| system.namePostfix | N | 数据库表字段命名后缀，默认为空 | system.namePostfix=_ | 空 |
-| system.tablePrefix | N | 数据库表名命名前缀，默认为空 | system.tablePrefix=_ | 空 |
-| system.tablePostfix | N | 数据库表名命名后缀，默认为空 | system.tablePostfix=_ | 空 |
-| system.dbIdentifierSplit | N | 是否开启自动裁剪过长的数据库表名，默认为false | system.dbIdentifierSplit=true | false |
+| system.db0.dbUrl | Y | 访问数据的URL| jdbc:mysql://[IP]:[PORT]/[DB]?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8 | - |
+| system.db0.dbUser | Y | 数据库用户名 | admin | - |
+| system.db0.dbPassword | Y | 数据库密码 | 123456 | - |
+| system.namePrefix | N | 合约导出表字段前缀设置，只针对method、event表中变量字段,字段名长度应小于64个字符 |- | 空 |
+| system.namePostfix | N | 合约导出表字段后缀设置，只针对method、event表中变量字段,字段名长度应小于64个字符  | - | 空 |
+| system.tablePrefix | N | 数据导出表名前缀设置,表名长度应小于64个字符 | -  |空 |
+| system.tablePostfix | N |  数据导出表名后缀设置,表名长度应小于64个字符 | - | 空 |
+| system.db.autoCreateTable | N |  自动建表 | - | true |
+| system.db.sharding | N |  开启分库分表 | - | false |
+| system.db.shardingNumberPerDatasource | N |  分表数目 | - | 0 |
+| system.paramSQLType | N | 指定数据表字段类型，针对事件或方法字段，多个配置已竖杠字符分隔，contractName.methodName/eventName.paramName.sqlType| - | HelloWorld.set.name.text |
+
+上述配置system.paramSQLType中，指定字段不包括块和交易等基础字段，基础字段参考[存储模型](./model.html#id9)
 
 
-其中**sysTableName**对应区块数据表和账户数据表，详情见 **数据存储模型** 章节。
+#### 合约配置
+
+数据导出组件最终会把区块链网络上的数据导出到数据存储介质中，支持MySQL，所以需要进行数据库配置。
+
+| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| --- | --- | --- | --- | --- |
+| system.abiPath | Y | 合约abi地址 | - | ./config/abi |
+| system.binPath | Y | 合约bin地址 | - | ./config/bin |
+
 
 #### 工程配置
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.group | Y | 同spring项目的group | com.example | - |
-| system.contractPackName | Y | 编译智能合约所输入的包名 | com.webank.blockchain.wecredit.contracts | - |
 | system.frequency | N | 所有method和event的抓取频率，默认几秒轮询一次 | 10 | 5 |
+| system.crawlBatchUnit | N | 一次任务执行完成的区块数 | 100 | 500 |
+| system.startBlockHeight | N | 开始区块高度 | - | 0 |
+| system.startDate | N | 从大于指定时间开始导出，注意本地utc时间应为当前时区时间 | 2021-03-04 | - |
 
-#### 线程池配置
+```eval_rst
+.. note::
+      上述 **system.startBlockHeight** 和 **system.startDate** 同时配置将优先读取前者指定块高，后者会不生效。
+```
 
-在单机部署下，必须配置线程池参数。数据导出配置用于配置数据导出的频率、线程数及启动多线程条件等。当system.multiLiving=true时，配置文件不会生成线程池相关配置。
-
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| system.multiLiving | Y | 关闭多活开关 | false | false |
-| system.crawlBatchUnit | N | 线程处理单元：多线程任务模式下单个线程一次任务执行完成的区块数 | 100 | 100 |
 
 #### 集群多活配置
 
-在集群多活部署的方案中，必须设置集群多活的配置。集群必须通过zookeeper进行服务注册和任务分发。当system.multiLiving=false时，配置文件不会生成zookeeper相关配置。
+在集群多活部署的方案中，必须设置集群多活的配置。集群必须通过zookeeper进行服务注册和任务分发。
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必输 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- | --- |
-| system.multiLiving | Y | 启动多活开关 | true | false |
+| system.multiLiving | Y | 启动多活开关 | boolean | false |
 | regcenter.serverList | N | 注册中心服务器列表 | [ip1:2181;ip2:2181] | - |
 | regcenter.namespace | N | 注册中心命名空间 | wecredit_bee | - |
+| zookeeperServiceLists | N | zk服务节点列表(,分隔),格式：[IP]:[port],[IP]:[port] | string | null |
+| zookeeperNamespace | N | zk命名空间(,分隔) | string | null |
+| prepareTaskJobCron | N | 任务准备job定时配置 ，主要用于读取当前区块链块高，将未抓取过的块高存储到数据库中| string | "0/"+ frequency + " * * * * ?" |
+| dataFlowJobCron | N | 任务分片执行job定时配置，主要用于执行区块下载任务 | string |"0/"+ frequency + " * * * * ?" |
+| dataFlowJobItemParameters | N | 分片序列号和参数用等号分隔，多个键值对用逗号分隔,分片序列号从0开始，不可大于或等于作业分片总数 | string | 如 "0=A,1=B,2=C,3=D,4=E,5=F,6=G,7=H" |
+| dataFlowJobShardingTotalCount | N | 任务分片数目 | int | 8 |
 
 #### elastic search配置
 
@@ -76,229 +112,166 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | es.ip | N | es节点ip | 127.0.0.1 |  |
 | es.port | N | es节点端口 | 9300 |  |
 
+#### 可视化配置
+
+开启可视化配置会生成grafana可视化json脚本，可在启动grafana后导入该脚本，即可完成可视化。
+
+| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| --- | --- | --- | --- | --- |
+| system.grafanaEnable | N | 是否开启可视化 | true | false |
+
+
 #### 其他高级配置
 
 | 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
-| monitor.[contractName].[methodName/eventName].generated=false | N | 是否抓取特定合约中特定method或event的数据 | on/off | on |
-| monitor.[contractName].[eventName].ignoreParam=XXX,XXX | N | 忽略特定合约特定event的特定字段不进行抓取 | xxx,xxx |  |
-| length.[contractName].[methodName or eventName].paraName | N | 指定特定字段在数据库表中的长度,当设置值大于10240时，数据库类型将为text |  | 512 |
-| button.swagger | N | 是否打开swagger功能，请务必在生成环境关闭此开关 | on/off | on |
+| system.generatedOffStr | N | 指定事件或方法不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName,methodName or eventName,...]|  HelloWorld.set| - |
+| system.ignoreParam | N | 指定事件或方法中字段不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName.paramName1,paramName2]| HelloWorld.set.n | - |
 
 
-### 配置工程
+### 配置操作说明
 
-快速启动后，主要的基础配置都将会在配置中自动生成，无需额外配置。但是，基于已生成的配置文件，你可以继续按照需求进行深入的个性化高级配置，例如配置集群部署、分库分表、读写分离等等。
+#### 多群组数据导出
 
-进入WeBankBlockchain-Data-Export-core的目录：
+首先，请配置FISCO BCOS的多群组，详情可参考[FISCO BCOS多群组部署](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/group_use_cases.html?highlight=%E5%A4%9A%E7%BE%A4%E7%BB%84#)
 
-```
-cd Data-Export/WeBankBlockchain-Data-Export-core
+其次，修改application.properties文件。多个群组使用,分隔。例如，假如存在1和2两个群组。
 
-```
+多群组将导出到相同的库中，表名将以群组id做前缀来区分，格式为：g1_tableName
 
-主要的配置文件位于src/main/resources目录下。其中，application.properties包含了除部分数据库配置外的全部配置。 application-sharding-tables.properties包含了数据库部分的配置。
-
-注意： 当修改完配置文件后，需要重新编译代码，然后再执行，编译的命令如下：
+配置如下：
 
 ```
-bash gradlew clean bootJar
-
+system.groupId=1,2
 ```
 
-#### 导出数据范围的配置
+#### 分库分表配置
 
-配置文件位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
+数据源配置中，在分库分表时可配置多个，以db0、db1..区分，如system.db0.dbUrl、system.db1.dbUrl...按组递增排列
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
-| --- | --- | --- | --- | --- |
-| system.startBlockHeight | N | 设置导出数据的起始区块号，优先以此配置为准 | 1000 | 0 |
-| system.startDate | N | 设置导出数据的起始时间，例如设置导出2019年元旦开始上链的数据；如已配置startBlockHeight，以导出数据起始区块号为准。支持的数据格式包括：yyyy-MM-dd HH:mm:ss 或 yyyy-MM-dd 或 HH:mm:ss 或 yyyy-MM-dd HH:mm  或 yyyy-MM-dd  HH:mm:ss.SSS | 2019-01-01 | - |
+数据库路由规则为： **block_height(区块高度) % 配置数据库数目**
 
-#### 单节点部署的配置
+表路由规则为： **block_height(区块高度) % 表分片数目(shardingNumberPerDatasource)**
 
-在选择单节点配置后，以下配置会自动生成。
-单节点任务调度的配置，分布式任务调度的配置默认位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
-
+分库分表所需配置如下：
 ```
-#### 当此参数为false时，进入单节点任务模式
-system.multiLiving=false
+system.db0.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+system.db0.user=
+system.db0.password=
 
-#### 多线程下载的分片数量，当完成该分片所有的下载任务后，才会统一更新下载进度。
-system.crawlBatchUnit=100
-```
+system.db1.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+system.db1.user=
+system.db1.password=
 
-#### 集群部署的配置
+system.db2.dbUrl=jdbc:mysql://[ip]:[port]/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+system.db2.user=
+system.db2.password=
 
-多节点任务调度的配置，分布式任务调度的配置默认位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application.properties
-
-```
-#### 当此参数为true时，进入多节点任务模式
-system.multiLiving=true
-
-#### zookeeper配置信息，ip和端口
-regcenter.serverList=ip:port
-#### zookeeper的命名空间
-regcenter.namespace=namespace
-
-#### prepareTaskJob任务：主要用于读取当前区块链块高，将未抓取过的块高存储到数据库中。
-#### cron表达式，用于控制作业触发时间
-prepareTaskJob.cron=0/5 * * * * ?
-### 分片总数量
-prepareTaskJob.shardingTotalCount=1
-#### 分片序列号和参数用等号分隔，多个键值对用逗号分隔,分片序列号从0开始，不可大于或等于作业分片总数
-prepareTaskJob.shardingItemParameters=0=A
-
-#### dataflowJob任务： 主要用于执行区块下载任务
-dataflowJob.cron=0/5 * * * * ?
-### 分片总数量
-dataflowJob.shardingTotalCount=3
-#### 分片序列号和参数用等号分隔，多个键值对用逗号分隔,分片序列号从0开始，不可大于或等于作业分片总数
-dataflowJob.shardingItemParameters=0=A,1=B,2=C
+system.db.sharding=true
+system.db.shardingNumberPerDatasource=3
 ```
 
-数据库配置解析，数据库的配置默认位于 Data-Export/WeBankBlockchain-Data-Export-core/src/main/resources/application-sharding-tables.properties
+#### 运行方式
 
-
-#### 分库分表的配置
-
-实践表明，当区块链上存在海量的数据时，导出到单个数据库或单个业务表会对运维造成巨大的压力，造成数据库性能的衰减。
-一般来讲，单一数据库实例的数据的阈值在1TB之内，单一数据库表的数据的阈值在10G以内，是比较合理的范围。
-
-如果数据量超过此阈值，建议对数据进行分片。将同一张表内的数据拆分到同个数据库的多张表。
-```
-spring.shardingsphere.datasource.names=ds
-# 定义数据源ds属性        
-spring.shardingsphere.datasource.ds.type=com.zaxxer.hikari.HikariDataSource
-spring.shardingsphere.datasource.ds.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.shardingsphere.datasource.ds.jdbc-url=jdbc:mysql://[ip]:3306/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-spring.shardingsphere.datasource.ds.username=
-spring.shardingsphere.datasource.ds.password=
-
-#将block_detail_info取模5路由到5张表
-spring.shardingsphere.sharding.tables.block_detail_info.actual-data-nodes=ds.block_detail_info_$->{0..4}
-spring.shardingsphere.sharding.tables.block_detail_info.table-strategy.inline.sharding-column=block_height
-spring.shardingsphere.sharding.tables.block_detail_info.table-strategy.inline.algorithm-expression=block_detail_info_$->{block_height % 5}
-spring.shardingsphere.sharding.tables.block_detail_info.key-generator-column-name=pk_id
-
- ```
-
- 将同一张表内的数据拆分到多个数据库的多张表。
+###### 选择一：直接在本机运行
 
 ```
-
-# 配置所有的数据源，如此处定义了ds,ds0,ds1 三个数据源，对应三个库
-spring.shardingsphere.datasource.names=ds,ds0,ds1
-
-# 设置默认的数据源
-spring.shardingsphere.sharding.default-datasource-name=ds0
-
-# 定义数据源ds
-spring.shardingsphere.datasource.ds.type=com.zaxxer.hikari.HikariDataSource
-spring.shardingsphere.datasource.ds.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.shardingsphere.datasource.ds.jdbc-url=jdbc:mysql://[ip]:3306/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-spring.shardingsphere.datasource.ds.username=
-spring.shardingsphere.datasource.ds.password=
-
-# 定义数据源ds0
-spring.shardingsphere.datasource.ds0.type=com.zaxxer.hikari.HikariDataSource
-spring.shardingsphere.datasource.ds0.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.shardingsphere.datasource.ds0.jdbc-url=jdbc:mysql://[ip]:3306/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-spring.shardingsphere.datasource.ds0.username=
-spring.shardingsphere.datasource.ds0.password=
-
-# 定义数据源ds1
-spring.shardingsphere.datasource.ds1.type=com.zaxxer.hikari.HikariDataSource
-spring.shardingsphere.datasource.ds1.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.shardingsphere.datasource.ds1.jdbc-url=jdbc:mysql://[ip]:3306/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-spring.shardingsphere.datasource.ds1.username=
-spring.shardingsphere.datasource.ds1.password=
-
-# 定义数据库默认分片的数量，此处分为2，以block_height取模2来路由到ds0或ds1
-spring.shardingsphere.sharding.default-database-strategy.inline.sharding-column=block_height
-spring.shardingsphere.sharding.default-database-strategy.inline.algorithm-expression=ds$->{block_height % 2}
-
-# 定义block_detail_info的分表策略，以block_height取模2来路由到ds0的block_detail_info0或ds1的block_detail_info1
-spring.shardingsphere.rules.sharding.tables.block_detail_info.actual-data-nodes=ds0.block_detail_info0,ds1.block_detail_info1
-spring.shardingsphere.rules.sharding.tables.block_detail_info.table-strategy.inline.sharding-column=block_height
-spring.shardingsphere.rules.sharding.tables.block_detail_info.table-strategy.inline.algorithm-expression=block_detail_info$->{block_height % 2}
-spring.shardingsphere.rules.sharding.tables.block_detail_info.key-generator-column-name=pk_id
-
-spring.shardingsphere.rules.sharding.tables.block_task_pool.actual-data-nodes=ds0.block_task_pool0,ds1.block_task_pool1
-spring.shardingsphere.rules.sharding.tables.block_task_pool.table-strategy.inline.sharding-column=block_height
-spring.shardingsphere.rules.sharding.tables.block_task_pool.table-strategy.inline.algorithm-expression=block_task_pool$->{block_height % 2}
-spring.shardingsphere.rules.sharding.tables.block_task_pool.key-generator-column-name=pk_id
-
-# 打印sql日志的开关
-spring.shardingsphere.props.sql.show=true
-
-
+chmod +x start.sh
+bash start.sh
 ```
 
-#### 数据库读写分离的配置
-
-数据库读写分离的主要设计目标是让用户无痛地使用主从数据库集群，就好像使用一个数据库一样。读写分离的特性支持往主库写入数据，往从库查询数据，从而减轻数据库的压力，提升服务的性能。
-
-**注意**，本组件不会实现主库和从库的数据同步、主库和从库的数据同步延迟导致的数据不一致、主库双写或多写。
-
-```
-##### 配置一主两从的数据库
-
-spring.shardingsphere.datasource.names=master,slave0,slave1
-
-spring.shardingsphere.datasource.master.type=org.apache.commons.dbcp.BasicDataSource
-spring.shardingsphere.datasource.master.driver-class-name=com.mysql.jdbc.Driver
-spring.shardingsphere.datasource.master.url=jdbc:mysql://localhost:3306/master
-spring.shardingsphere.datasource.master.username=
-spring.shardingsphere.datasource.master.password=
-
-spring.shardingsphere.datasource.slave0.type=org.apache.commons.dbcp.BasicDataSource
-spring.shardingsphere.datasource.slave0.driver-class-name=com.mysql.jdbc.Driver
-spring.shardingsphere.datasource.slave0.url=jdbc:mysql://localhost:3306/slave0
-spring.shardingsphere.datasource.slave0.username=
-spring.shardingsphere.datasource.slave0.password=
-
-spring.shardingsphere.datasource.slave1.type=org.apache.commons.dbcp.BasicDataSource
-spring.shardingsphere.datasource.slave1.driver-class-name=com.mysql.jdbc.Driver
-spring.shardingsphere.datasource.slave1.url=jdbc:mysql://localhost:3306/slave1
-spring.shardingsphere.datasource.slave1.username=
-spring.shardingsphere.datasource.slave1.password=
-
-spring.shardingsphere.masterslave.name=ms
-spring.shardingsphere.masterslave.master-data-source-name=master
-spring.shardingsphere.masterslave.slave-data-source-names=slave0,slave1
-
-spring.shardingsphere.props.sql.show=true
-
+```eval_rst
+.. important::
+    请务必按照以上命令操作，**请勿使用sudo命令来操作**，否则会导致Gradlew没有权限，导致导出数据失败。
 ```
 
-#### 数据库读写分离+分库分表的配置
-
+###### 选择二：本机编译，复制执行包到其他服务器上运行
 
 ```
+chmod +x start.sh
+bash start.sh
+```
 
-spring.shardingsphere.datasource.names=master,slave0
-        
-spring.shardingsphere.datasource.master.type=com.zaxxer.hikari.HikariDataSource
-spring.shardingsphere.datasource.master.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.shardingsphere.datasource.master.jdbc-url=jdbc:mysql://[ip]:3306/test0?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-spring.shardingsphere.datasource.master.username=
-spring.shardingsphere.datasource.master.password=
+请将此工程下的./WeBankBlockchain-Data-Export-service/dist 文件夹复制到其他服务器上，并执行：
 
-spring.shardingsphere.datasource.slave0.type=com.zaxxer.hikari.HikariDataSource
-spring.shardingsphere.datasource.slave0.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.shardingsphere.datasource.slave0.jdbc-url=jdbc:mysql://[ip]:3306/test1?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-spring.shardingsphere.datasource.slave0.username=
-spring.shardingsphere.datasource.slave0.password=
+```
+chmod +x *.sh
+bash start.sh
+tail -f *.log
+```
 
-spring.shardingsphere.sharding.master-slave-rules.ds0.master-data-source-name=master
-spring.shardingsphere.sharding.master-slave-rules.ds0.slave-data-source-names=slave0
+###### 选择三：本机编译，复制执行包到其他服务器，使用supervisor来启动。
 
-spring.shardingsphere.sharding.tables.activity_activity.actual-data-nodes=ds0.block_tx_detail_info$->{0..1}
-spring.shardingsphere.sharding.tables.activity_activity.table-strategy.inline.sharding-column=block_height
-spring.shardingsphere.sharding.tables.activity_activity.table-strategy.inline.algorithm-expression=block_tx_detail_info$->{block_height % 2}
+使用supervisor来守护和管理进程，supervisor能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。
+它是通过fork/exec的方式把这些被管理的进程当作supervisor的子进程来启动，这样只要在supervisor的配置文件中，把要管理的进程的可执行文件的路径写进去即可。也实现当子进程挂掉的时候，父进程可以准确获取子进程挂掉的信息的，可以选择是否自己启动和报警。
+supervisor还提供了一个功能，可以为supervisord或者每个子进程，设置一个非root的user，这个user就可以管理它对应的进程。
+
+使用supervisor来安装与部署的步骤请参阅[附录6](appendix.html#supervisor)
 
 
+#### ES部署配置
+
+需要ES存储时，需先安装ES，安装ES可通过docker和官网方式安装
+
+##### docker安装
+
+```
+//创建数据挂载目录
+mkdir -p /mydata/elasticsearch/data
+chmod -R 777 /mydata/elasticsearch/
+//拉取es镜像
+docker pull elasticsearch:7.8.0
+//启动es容器
+docker run --name elasticsearch -d -e ES_JAVA_OPTS="-Xms128m -Xmx128m" -e "discovery.type=single-node" -p 9200:9200 -p 9300:9300  -v  /mydata/elasticsearch/data:/usr/share/elasticsearch/data -d  elasticsearch:7.8.0
+```
+
+##### 参考官网安装
+
+可参考官网[ES 7.X版本部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
+
+安装完成后，可通过以下命令查看ES安装信息
+```
+curl 127.0.0.1:9200/
+```
+
+结果如下：
+```
+{
+  "name" : "78a052fcba87",
+  "cluster_name" : "docker-cluster",
+  "cluster_uuid" : "cJoABrm_RaicXPXQKEYNdw",
+  "version" : {
+    "number" : "7.8.0",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "757314695644ea9a1dc2fecd26d1a43856725e65",
+    "build_date" : "2020-06-14T19:35:50.234439Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.5.1",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
 ```
 
 
+配置参考[ES配置](./expertconfig.html#elastic-search)
+
+**启动成功后ES数据检查**
+
+可以通过url查询索引建立情况，http://ip:9200/_cat/indices?v，结果类似如下：
+
+```
+health status index                            uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   helloworldsetnamemethod          hvYse4rKTJuSskQPh9ac7Q   1   1          0            0       208b           208b
+yellow open   blockrawdata                     ZV6vNxfRSyGDnm_R0aR-tg   1   1         65            7      504kb          504kb
+yellow open   blockdetailinfo                  Vbv9dtdCTrK1U5p9okeCfA   1   1         65            7     33.6kb         33.6kb
+yellow open   blocktxdetailinfo                1seHyG6CQk6x8AKeqPsLqQ   1   1         35            0     43.3kb         43.3kb
+yellow open   blockrawdatabo                   hNl3wUSsQoG2h2AHdgV-NQ   1   1          0            0       208b           208b
+yellow open   txreceiptrawdata                 v-bMu_khQ8OI2TyDEhakkA   1   1         35            0    155.3kb        155.3kb
+yellow open   contractinfo                     DolSTxR9ToSMLzJ3OJU31w   1   1         27            0    162.4kb        162.4kb
+yellow open   deployaccountinfo                ET0VMMahRyqAuSHNLTVEhg   1   1         21            0     15.9kb         15.9kb
+```
+
+更多查询，参考[ES数据查询](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/search-your-data.html)
