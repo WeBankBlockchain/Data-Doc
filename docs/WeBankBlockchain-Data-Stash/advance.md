@@ -22,7 +22,6 @@ order by data_length desc;
 |进度控制表|控制进度|不用分片，或者广播表|block_task_pool等，数据量很小|
 
 ### 配置示例
-#### 分库不分表
 在application.properties中，注释原先spring.datasource相关配置，然后添加下述配置：
 
 ```
