@@ -9,18 +9,10 @@
 ```
 
 ```eval_rst
-.. image:: ../../images/overview/Data-Stash.png
-```
-
-```eval_rst
 .. admonition:: **主要特性**
 
-    - 节点账本全量备份
-    - 多维度binlog校验
-    - 备份数据的可信存储
-    - 支持断点续传
-    - 轻量级接入
-    - ...
+    - 数据裁剪
+    - 数据同步
 ```
 ```eval_rst
 .. toctree::
