@@ -26,7 +26,7 @@
 .. toctree::
    :maxdepth: 3
    
-   intro.md
    install.md
    configuration.md
+   faq.md
 ```

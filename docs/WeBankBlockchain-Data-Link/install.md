@@ -13,6 +13,5 @@
 
    data-query-install.md
    data-sync-install.md
-   faq.md
  
 ```
