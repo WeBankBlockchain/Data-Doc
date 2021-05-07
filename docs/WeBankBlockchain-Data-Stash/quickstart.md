@@ -1,15 +1,6 @@
 # 快速开始
 
-```eval_rst
-.. note::
 
-   本指引主要介绍如何通过Data-Stash为节点生成全量备份。全量备份是节点冷热分离、快速同步的基础。
-
-   若要使节点在仅保留热数据的情况下还能正常运行，需要先启动 `amdb-proxy <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#amdb-proxy>`_ ，以通过amdb访问全量数据 。
-
-   若要将数据仓库数据导回节点实现节点同步或迁移，则需要先启动 `amdb-proxy <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#amdb-proxy>`_ ，再启动 `fisco-sync <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/manual/data_governance.html#fisco-sync>`_ 。fisco-sync的运行依赖于amdb。
-
-```
 
 
 ## 前置依赖
