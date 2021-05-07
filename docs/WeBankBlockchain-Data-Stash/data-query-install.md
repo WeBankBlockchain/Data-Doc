@@ -23,7 +23,7 @@ data.query.topic=DB
 将链SDK证书拷贝到配置的证书路径下，如 **./config**下，SDK证书目录位于nodes/${ip}/sdk/目录下
 ```
 # 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
-cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
+cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./config/
 ```
 
 #### 运行程序
