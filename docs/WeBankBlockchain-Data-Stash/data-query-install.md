@@ -20,7 +20,7 @@ data.query.topic=DB
 
 连接链节点时，需配置证书或证书路径。
 
-将链SDK证书拷贝到 **./tools/config**下，SDK证书目录位于nodes/${ip}/sdk/目录下
+将链SDK证书拷贝到配置的证书路径下，如 **./config**下，SDK证书目录位于nodes/${ip}/sdk/目录下
 ```
 # 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
 cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
