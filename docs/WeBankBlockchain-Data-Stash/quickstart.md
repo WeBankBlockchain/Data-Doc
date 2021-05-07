@@ -1,9 +1,6 @@
-# 快速开始
+### 数据仓库启动
 
-
-
-
-## 前置依赖
+#### 前置依赖
 
 在使用本组件前，请确认系统环境已安装相关依赖软件，清单如下：
 
@@ -17,9 +14,9 @@
 
 如果您还未安装这些依赖，请参考[附录](appendix.md)。
 
-## 基础设置
+#### 基础设置
 
-### FISCO BCOS节点配置
+##### FISCO BCOS节点配置
 
 由于数据仓库组件用于生成节点的全量备份，所以要求节点拥有包括第一个区块在内的完整binlog日志，故需要确保该节点加入FISCO BCOS网络前就开启binlog生成选项。如果您的节点已经在运行中，请先停止该节点，并删除对应群组（以group1为例）的数据。例如：
 
@@ -50,7 +47,7 @@ binary_log=true
 0.binlog
 ```
 
-### Nginx配置
+##### Nginx配置
 
 FISCO BCOS节点的binlog日志存放在节点文件目录中，为了让外界能够访问这些binlog，现需要在节点所在服务器安装nginx并配置端口映射，这样外界即可根据该端口访问binlog。
 
@@ -113,9 +110,9 @@ nginx配置文件位于/usr/local/nginx/conf/nginx.conf。需要在http模块内
 
 ![](./picture/nginx_success.png)
 
-## 运行数据仓库组件
+#### 运行数据仓库组件
 
-### 下载源码
+##### 下载源码
 
 通过git 下载源码.
 
@@ -128,7 +125,7 @@ git clone https://github.com/WeBankBlockchain/Data-Stash.git
     - 如果因为网络问题导致长时间无法下载，请尝试：git clone https://gitee.com/WeBankBlockchain/Data-Stash.git
 ```
 
-### 编译源码
+##### 编译源码
 
 ```
 cd Data-Stash
@@ -147,7 +144,7 @@ dist
     │   ...
 ```
 
-### 启动配置
+##### 启动配置
 
 在启动之间还需要进行配置，主要包括：
 - binlog获取端口
@@ -172,7 +169,7 @@ spring.datasource.driverClassName=com.mysql.jdbc.Driver
     - Data-Stash并不会自动创建数据库，所以请预先建好数据库。
     - 若您的链是国密链，请配置system.encryptType=1. DataStash需要验证区块中的签名。
 ```
-### 运行程序
+##### 运行程序
 
 可以通过bash启动程序：
 ```
