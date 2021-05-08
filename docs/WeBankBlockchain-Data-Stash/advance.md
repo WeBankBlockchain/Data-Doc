@@ -38,14 +38,13 @@ spring.shardingsphere.datasource.stash1.driver-class-name=com.mysql.cj.jdbc.Driv
 spring.shardingsphere.datasource.stash1.jdbcUrl=jdbc:mysql://localhost:3306/stash1?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8
 spring.shardingsphere.datasource.stash1.username=root
 spring.shardingsphere.datasource.stash1.password=123456
-spring.shardingsphere.datasource.stash1.hikari.maximum-pool-size=100
 
 spring.shardingsphere.datasource.stash2.type=com.zaxxer.hikari.HikariDataSource
 spring.shardingsphere.datasource.stash2.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.shardingsphere.datasource.stash2.jdbcUrl=jdbc:mysql://localhost:3306/stash2?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8
 spring.shardingsphere.datasource.stash2.username=root
 spring.shardingsphere.datasource.stash2.password=123456
-spring.shardingsphere.datasource.stash2.maximum-pool-size=100
+
 
 #### 不做分片的表，默认存储到stash1
 spring.shardingsphere.sharding.default-data-source-name=stash1
