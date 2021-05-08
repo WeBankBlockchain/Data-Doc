@@ -21,6 +21,8 @@ order by data_length desc;
 |状态表detail|区块粒度的状态变更历史|不用分片||
 |进度控制表|控制进度|不用分片，或者广播表||
 
+因此，建议对_sys_hash_2_block_, _sys_tx_hash_2_block_及相关detail表做分库，即可满足多数场景。
+
 ### 配置示例
 在application.properties中，注释原先spring.datasource相关配置，然后添加下述配置：
 
@@ -45,24 +47,21 @@ spring.shardingsphere.datasource.stash2.jdbcUrl=jdbc:mysql://localhost:3306/stas
 spring.shardingsphere.datasource.stash2.username=root
 spring.shardingsphere.datasource.stash2.password=123456
 
-
 #### 不做分片的表，默认存储到stash1
 spring.shardingsphere.sharding.default-data-source-name=stash1
 
 #### 需分片的表，路由目标
-spring.shardingsphere.sharding.tables._sys_hash_2_block_.actual‐data‐nodes = stash$->{1..2}._sys_hash_2_block_$->{1..3}
-spring.shardingsphere.sharding.tables._sys_hash_2_block_d_.actual‐data‐nodes = stash$->{1..2}._sys_hash_2_block_d_$->{1..3}
-spring.shardingsphere.sharding.tables._sys_tx_hash_2_block_.actual‐data‐nodes = stash$->{1..2}._sys_tx_hash_2_block_$->{1..3}
-spring.shardingsphere.sharding.tables._sys_tx_hash_2_block_d_.actual‐data‐nodes = stash$->{1..2}._sys_tx_hash_2_block_d_$->{1..3}
+spring.shardingsphere.sharding.tables._sys_hash_2_block_.actual‐data‐nodes = stash$->{1..3}._sys_hash_2_block_
+spring.shardingsphere.sharding.tables._sys_hash_2_block_d_.actual‐data‐nodes = stash$->{1..3}._sys_hash_2_block_d_
+spring.shardingsphere.sharding.tables._sys_tx_hash_2_block_.actual‐data‐nodes = stash$->{1..3}._sys_tx_hash_2_block_
+spring.shardingsphere.sharding.tables._sys_tx_hash_2_block_d_.actual‐data‐nodes = stash$->{1..3}._sys_tx_hash_2_block_d_
 
 #### 需分片的表，分片策略
 spring.shardingsphere.sharding.default-database-strategy.standard.sharding-column= _num_
 spring.shardingsphere.sharding.default-database-strategy.standard.precise-algorithm-class-name=com.webank.blockchain.data.stash.db.sharding.BlockShardingAlgorithm
 spring.shardingsphere.sharding.default-database-strategy.standard.range-algorithm-class-name=com.webank.blockchain.data.stash.db.sharding.BlockShardingAlgorithm
-spring.shardingsphere.sharding.default-table-strategy.standard.sharding-column= _num_
-spring.shardingsphere.sharding.default-table-strategy.standard.precise-algorithm-class-name=com.webank.blockchain.data.stash.db.sharding.BlockShardingAlgorithm
-spring.shardingsphere.sharding.default-table-strategy.standard.range-algorithm-class-name=com.webank.blockchain.data.stash.db.sharding.BlockShardingAlgorithm
 #spring.shardingsphere.props.sql.show = false
+
 
 
 ### logback配置
