@@ -15,11 +15,11 @@ order by data_length desc;
 
 | 表类型 | 功能 | 分片建议 | 说明 |
 | --- | --- | --- | --- |
-|账本表|区块信息|建议分片|_sys_hash_2_block_, _sys_tx_hash_2_block_，_sys_block_2_nonces_，_sys_hash_2_header_|
-|账本表detail|区块变更历史|建议分片|_sys_hash_2_block_d_, _sys_tx_hash_2_block_d_,_sys_block_2_nonces_d_，_sys_hash_2_header_d_|
-|状态表|区块信息|不用分库分表|_sys_current_state_, _sys_cns_，c_xxx等，数据量很小|
-|状态表detail|状态变更历史|通常不用，按实际情况来定|_sys_current_state_d_, _sys_cns_d_,c_xxx等，数据量不大|
-|进度控制表|控制进度|不用分片，或者广播表|block_task_pool等，数据量很小|
+|账本表|区块信息|建议分片|主要是_sys_hash_2_block_, _sys_tx_hash_2_block_比较大|
+|账本表detail|区块变更历史|建议分片|主要是_sys_hash_2_block_d_, _sys_tx_hash_2_block_d_比较大|
+|状态表|区块信息|不用分片||
+|状态表detail|区块粒度的状态变更历史|不用分片||
+|进度控制表|控制进度|不用分片，或者广播表||
 
 ### 配置示例
 在application.properties中，注释原先spring.datasource相关配置，然后添加下述配置：
@@ -54,10 +54,6 @@ spring.shardingsphere.sharding.tables._sys_hash_2_block_.actual‐data‐nodes =
 spring.shardingsphere.sharding.tables._sys_hash_2_block_d_.actual‐data‐nodes = stash$->{1..2}._sys_hash_2_block_d_$->{1..3}
 spring.shardingsphere.sharding.tables._sys_tx_hash_2_block_.actual‐data‐nodes = stash$->{1..2}._sys_tx_hash_2_block_$->{1..3}
 spring.shardingsphere.sharding.tables._sys_tx_hash_2_block_d_.actual‐data‐nodes = stash$->{1..2}._sys_tx_hash_2_block_d_$->{1..3}
-spring.shardingsphere.sharding.tables._sys_block_2_nonces_.actual‐data‐nodes = stash$->{1..2}._sys_block_2_nonces_$->{1..3}
-spring.shardingsphere.sharding.tables._sys_block_2_nonces_d_.actual‐data‐nodes = stash$->{1..2}._sys_block_2_nonces_d_$->{1..3}
-spring.shardingsphere.sharding.tables._sys_hash_2_header_.actual‐data‐nodes = stash$->{1..2}._sys_hash_2_header_$->{1..3}
-spring.shardingsphere.sharding.tables._sys_hash_2_header_d_.actual‐data‐nodes = stash$->{1..2}._sys_hash_2_header_d_$->{1..3}
 
 #### 需分片的表，分片策略
 spring.shardingsphere.sharding.default-database-strategy.standard.sharding-column= _num_
