@@ -29,6 +29,7 @@
    intro.md
    quickstart.md
    configuration.md
+   advance.md
    design.md
    faq.md
    appendix.md
