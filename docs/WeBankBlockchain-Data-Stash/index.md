@@ -20,6 +20,7 @@
     - 备份数据的可信存储
     - 支持断点续传
     - 轻量级接入
+    - 数据裁剪和同步
     - ...
 ```
 ```eval_rst
@@ -27,9 +28,8 @@
    :maxdepth: 3
    
    intro.md
-   quickstart.md
+   install.md
    configuration.md
-   advance.md
    design.md
    faq.md
    appendix.md

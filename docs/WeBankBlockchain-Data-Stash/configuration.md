@@ -1,5 +1,5 @@
 # 详细配置
-
+## 数据仓库
 数据仓库组件的完整配置选项如下：
 
 | 配置项 | 说明 | 是否必需 | 说明|
@@ -17,3 +17,19 @@
 |read.blocks|每下载多少文件开始执行入库|否|默认为5|
 |read.clean|yes-入库完成后清理文件。no-不清理|否|默认清理|
 
+## 数据同步
+
+数据同步模块完整配置选项如下：
+
+| 配置项 | 说明 | 是否必需 | 默认|
+| --- | --- | --- | --- |
+|stash.ip|数据仓库数据库IP地址|必选|127.0.0.1|
+|stash.port|数据仓库数据库端口|必选|3306|
+|stash.dbname|数据仓库数据库名|必选|stash|
+|stash.username|数据仓库数据库用户名|必选|root|
+|stash.password|数据仓库数据库密码|必选|123456|
+|node.groupId|待同步群组id|必选|1|
+|node.path|节点路径|必选|默认当前路径|
+|sync.endBlockNumber|指定同步截止区块号|非必选|默认：10000|
+|sync.pageCount|指定除表_sys_hash_2_block_和表_sys_block_2_nonces_之外其他表的分页拉取行数，默认为1000行每页；|非必选|1000|
+|sync.bigTablePageCount|指定表_sys_hash_2_block_和表_sys_block_2_nonces_的分页拉取行数，默认为1000行每页|非必选|1000|
