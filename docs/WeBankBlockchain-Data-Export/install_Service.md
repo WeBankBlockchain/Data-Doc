@@ -99,6 +99,8 @@ tools目录如下：
 system.groupId=1 
 ##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200
 system.nodeStr=127.0.0.1:20200
+# ecc-0 sm-1
+system.cryptoTypeConfig=0
 
 ### 数据库的信息，暂时只支持mysql； serverTimezone 用来设置时区
 ### 请确保在运行前创建对应的database，如果分库分表，则可配置多个数据源，如system.db1.dbUrl=\system.db1.user=\system.db0.password=
@@ -132,19 +134,19 @@ system.certPath=/root/fisco/nodes/127.0.0.1/sdk
 
 ##### 配置合约
 
-将合约对应的abi和binary文件分别放置到config/abi和config/bin目录中。
+- 将要编译的合约拷贝到config/solidity目录下，目录中包含了一个HelloWorld合约示例文件，使用时请按需删除。也可直接配置合约文件所在目录的路径, 默认配置为./config/solidity，可按需修改
+- 按需配置编译器版本号，支持三种版本(0.4.25.1, 0.5.2.0, 0.6.10.0)，默认为0.4.25.1
 
-两个目录中包含了一个HelloWorld合约的abi和bin文件，使用时请按需删除。
-
-合约bin和binary的获取参考[编译智能合约](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/sdk_application.html#id6)
-
-如果是在要连接的链节点上部署数据导出，也可直接配置abi和bin的路径，无需上述复制操作，配置路径取**绝对路径**。
-
-这里采用控制台[编译智能合约](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/sdk_application.html#id6) 方式编译合约，可在控制台contracts/目录下看到编译结果，
-配置例子如下：
+配置如下：
 ```
-system.abiPath=/root/fisco/console/contracts/sdk/abi
-system.binaryPath=/root/fisco/console/contracts/sdk/bin
+system.solPath=./config/solidity
+system.solcVersion=0.4.25.1
+```
+
+
+```eval_rst
+.. note::
+   如果正确配置了合约文件及编译版本号，但出现合约方法和事件数据没有导出的情况，可删除config/solidity/下已配置的未成功导出数据的合约，并将config/solidity/bin/(非国密目录/ecc/、国密目录为/sm/)下bin文件的内容替换为合约部署位置（如WeBase）编译得到的binary，然后清理数据库表重新启动即可。
 ```
 
 
