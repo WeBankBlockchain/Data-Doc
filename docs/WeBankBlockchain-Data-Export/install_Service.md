@@ -122,7 +122,7 @@ system.db0.password=123456
 将链SDK证书拷贝到 **./tools/config**下，SDK证书目录位于nodes/${ip}/sdk/目录下
 ```
 # 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
-cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./tools/config/
+cp -r ~/fisco/nodes/127.0.0.1/sdk/* ./config/
 ```
 
 如果是在要连接的链节点上部署数据导出，也可直接配置证书路径，无需上述复制操作，配置证书路径取**绝对路径**，配置例子如下：
