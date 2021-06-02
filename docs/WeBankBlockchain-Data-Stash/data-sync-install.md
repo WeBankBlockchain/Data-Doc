@@ -57,12 +57,14 @@ sync.endBlockNumber=10000
 ```
 bash data_sync.sh
 ```
-```eval_rst
-    .. note::
 
-    上述脚本会自动拉取对应系统的data-sync包，并自动读取节点群组的配置，同步数据到对应的节点存储源中，节点存储模式包括rocksdb/mysql/scalable三种。其中scalable模式，只同步状态数据，区块数据需要通过数据仓库获取。
+```eval_rst
+.. note::
+         上述脚本会自动拉取对应系统的data-sync包，并自动读取节点群组的配置，同步数据到对应的节点存储源中，节点存储模式包括rocksdb/mysql/scalable三种。
+         rocksdb/mysql模式为全量数据同步；scalable模式下，只同步状态数据，区块数据需要通过数据仓库获取。
 
 ```
+
 
 看到如下日志，则表示执行成功：
 
