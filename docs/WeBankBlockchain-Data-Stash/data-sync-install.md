@@ -2,6 +2,8 @@
 
 请在要同步数据的节点上执行以下步骤，同步前新节点保持在未启动状态，并清空节点data目录。
 
+扩容新节点参考[扩容节点](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/tutorial/add_new_node.html?highlight=%E6%96%B0%E8%8A%82%E7%82%B9#id1)
+
 #### 获取启动脚本和配置文件
 
 ```
