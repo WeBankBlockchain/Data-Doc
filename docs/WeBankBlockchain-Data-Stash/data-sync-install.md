@@ -8,6 +8,14 @@
 curl -#LO https://github.com/WeBankBlockchain/Data-Stash/releases/download/V1.2.0/data-sync-bash.tar.gz
 ```
 
+```eval_rst
+.. note::
+    - 如果因为网络问题导致长时间无法下载，请尝试：
+    - curl -#LO https://gitee.com/WeBankBlockchain/Data-Stash/attach_files/730064/download/data-sync-bash.tar.gz
+
+```
+
+
 解压文件包至当前目录
 ```
 tar -zxvf data-sync-bash.tar.gz && cd data-sync-bash && chmod -x data_sync.sh
