@@ -72,7 +72,7 @@ bash data_sync.sh
 .. note::
     - 上述脚本会自动拉取对应系统的data-sync包，并自动读取节点群组的配置，同步数据到对应的节点存储源中，节点存储模式包括rocksdb/mysql/scalable三种。
     - rocksdb/mysql模式同步数据包括区块和状态数据。
-    - scalable模式下，只同步状态数据，区块数据需要通过数据仓库获取，参考[数据裁剪查询](./data-query-install.md)
+    - scalable模式下，只同步状态数据，区块数据需要通过数据仓库获取，参考数据裁剪查询
 
 ```
 
