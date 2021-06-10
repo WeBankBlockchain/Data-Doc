@@ -87,13 +87,16 @@ WeBankBlockchain-Data 技术文档
 
     企业间对账：Data-Reconcile可以帮助开发者快速构建跨机构间的对账应用系统。例如，在结算时，A企业定期将自身业务系统交易数据导出为对账文件，发送至与文件存储中心。B企业可借助Data-Reconcile定期拉取A企业对账文件，配合Data-Export，与企业内部的链上数据进行对账处理。Data-Reconcile在保证对账结果可信的同时提升了对账的效率，可实现准实时对账。
 
+
 .. toctree::
+   :hidden:
    :maxdepth: 3
    :caption: 组件介绍
 
    ./docs/WeBankBlockchain-Data-Stash/index.md
    ./docs/WeBankBlockchain-Data-Export/index.md
    ./docs/WeBankBlockchain-Data-Reconcile/index.md
+   ./docs/all_projects.rst
 .. 
 
 
