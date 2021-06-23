@@ -127,7 +127,33 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | --- | --- | --- | --- | --- |
 | system.generatedOffStr | N | 指定事件或方法不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName,methodName or eventName,...]|  HelloWorld.set| - |
 | system.ignoreParam | N | 指定事件或方法中字段不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName.paramName1,paramName2]| HelloWorld.set.n | - |
+| system.dataTypeBlackList | N | 指定数据类型表不导出，多个以竖杠,分隔分隔| block_detail_info,block_raw_data, | - |
+| system.ignoreBasicDataTableParams | N | 原始数据表指定字段导出过滤，多个以竖杠字符分隔分隔，[tablename.paramName1,paramName2]| tx_raw_data.from,to | - |
 
+system.dataTypeBlackList配置支持以下数据类型配置：
+```
+block_detail_info
+block_raw_data
+block_tx_detail_info
+tx_raw_data
+tx_receipt_raw_data
+deployed_account_info
+contract_info
+event
+method
+```
+
+上述中system.ignoreBasicDataTableParams配置支持以下基础数据表配置：
+```
+block_raw_data表支持以下字段过滤：
+db_hash,extra_data,gas_limit,gas_used,logs_bloom,parent_hash,receipts_root,sealer,sealer_list,signature_list,state_root,transaction_list,transactions_root
+
+tx_raw_data表支持以下字段过滤：
+from,gas,gas_price,input,nonce,value,to
+
+tx_receipt_raw_data表支持以下字段过滤：
+from,gas_used,logs,input,message,output,logs_bloom,root,to,tx_index,tx_proof,receipt_proof
+```
 
 ### 配置操作说明
 
