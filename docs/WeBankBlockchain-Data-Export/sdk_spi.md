@@ -104,6 +104,23 @@ stop(DataExportExecutor exportExecutor)
 | tablePostfix | 数据导出表名前缀设置 | String | 空 |
 | namePrefix | 合约导出表字段前缀设置，只针对method、event表中变量字段 | String | 空 |
 | namePostfix | 合约导出表字段后缀设置，只针对method、event表中变量字段 | String | 空 |
+| ignoreBasicDataTableParam | 原始数据表指定字段导出过滤,如: Map<表名, List<字段名>>| Map | empty map |
+
+ignoreBasicDataTableParam 参考例子如下，支持过滤表和字段参考 IgnoreBasicDataParam 枚举类：
+```
+    ExportConfig config = new ExportConfig();
+    List<String> params = new ArrayList<>();
+    params.add(IgnoreBasicDataParam.BlockRawDataParams.EXTRA_DATA.name());
+    params.add(IgnoreBasicDataParam.BlockRawDataParams.LOGS_BLOOM.name());
+    params.add(IgnoreBasicDataParam.BlockRawDataParams.RECEIPTS_ROOT.name());
+    params.add(IgnoreBasicDataParam.BlockRawDataParams.TRANSACTION_LIST.name());
+    params.add(IgnoreBasicDataParam.BlockRawDataParams.GAS_USED.name());
+    //添加block_raw_data表字段过滤配置
+    config.getIgnoreBasicDataTableParam()
+          .put(IgnoreBasicDataParam.IgnoreBasicDataTable.BLOCK_RAW_DATA_TABLE.name(), params);
+```
+
+
 
 #### 功能说明
 
