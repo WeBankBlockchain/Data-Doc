@@ -127,8 +127,8 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 | --- | --- | --- | --- | --- |
 | system.generatedOffStr | N | 指定事件或方法不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName,methodName or eventName,...]|  HelloWorld.set| - |
 | system.ignoreParam | N | 指定事件或方法中字段不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName.paramName1,paramName2]| HelloWorld.set.n | - |
-| system.dataTypeBlackList | N | 指定数据类型表不导出，多个以,分隔| block_detail_info,block_raw_data, | - |
-| system.ignoreBasicDataTableParams | N | 原始数据表指定字段导出过滤，多表之间以竖杠字符分隔，[tablename.paramName1,paramName2]| tx_raw_data.from,to | - |
+| system.dataTypeBlackList | N | 指定数据类型表不导出，多个以,分隔（docker方式启动目前不支持该配置）| block_detail_info,block_raw_data, | - |
+| system.ignoreBasicDataTableParams | N | 原始数据表指定字段导出过滤，多表之间以竖杠字符分隔，（docker方式启动目前不支持该配置）| tx_raw_data.from,to | - |
 
 system.dataTypeBlackList配置支持以下数据类型配置：
 ```
