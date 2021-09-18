@@ -6,7 +6,7 @@
 
 #### Springboot服务配置
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | server.port | N | 启动WeBankBlockchain-Data-Export组件实例的服务端口 | 8082 | 5200 |
 
@@ -17,7 +17,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 ##### channel方式配置说明如下：
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.nodeStr | Y | 连接区块链节点的nodeStr,nodeName@[IP]:[PORT], 其中prot为channel port | - | - |
 | system.groupId | Y | 群组id，多群组以,分隔 | - | 1 |
@@ -25,7 +25,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 ##### JSON-RPC方式配置说明如下：
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.rpcUrl | Y | 连接区块链节点的rpc url, http://[IP]:[PORT], 其中prot为rpc port | http://localhost:8546 | - |
 | system.groupId | Y | 群组id，多群组以,分隔 | 1 | 1 |
@@ -33,7 +33,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 #### 数据仓库连接配置
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.jdbcUrl | Y | 数据仓库jdbc连接配置，格式：jdbc:mysql://[ip]:[port]/[database] | http://localhost:3306/stash | - |
 | system.user | Y | 用户名 | - | - |
@@ -45,7 +45,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 数据导出组件最终会把区块链网络上的数据导出到数据存储介质中，支持MySQL，所以需要进行数据库配置。
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.db0.dbUrl | Y | 访问数据的URL| jdbc:mysql://[IP]:[PORT]/[DB]?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8 | - |
 | system.db0.dbUser | Y | 数据库用户名 | admin | - |
@@ -66,7 +66,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 数据导出组件最终会把区块链网络上的数据导出到数据存储介质中，支持MySQL，所以需要进行数据库配置。
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.abiPath | Y | 合约abi地址 | - | ./config/abi |
 | system.binPath | Y | 合约bin地址 | - | ./config/bin |
@@ -74,7 +74,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 #### 工程配置
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.frequency | N | 所有method和event的抓取频率，默认几秒轮询一次 | 10 | 5 |
 | system.crawlBatchUnit | N | 一次任务执行完成的区块数 | 100 | 500 |
@@ -91,7 +91,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 在集群多活部署的方案中，必须设置集群多活的配置。集群必须通过zookeeper进行服务注册和任务分发。
 
-| 配置项 | 是否必输 | 说明 | 类型 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.multiLiving | Y | 启动多活开关 | boolean | false |
 | regcenter.serverList | N | 注册中心服务器列表 | [ip1:2181;ip2:2181] | - |
@@ -105,7 +105,7 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 #### elastic search配置
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | es.enabled | Y | 启动ES开关 | true | false |
 | es.clusterName | N | 集群名称 | my-application | my-application |
@@ -116,19 +116,19 @@ FISCO-BCOS节点配置用于配置服务连接的区块链节点，使得WeBankB
 
 开启可视化配置会生成grafana可视化json脚本，可在启动grafana后导入该脚本，即可完成可视化。
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.grafanaEnable | N | 是否开启可视化 | true | false |
 
 
 #### 其他高级配置
 
-| 配置项 | 是否必输 | 说明 | 举例 | 默认值 |
+| 配置项 | 是否必须 | 说明 | 举例 | 默认值 |
 | --- | --- | --- | --- | --- |
 | system.generatedOffStr | N | 指定事件或方法不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName,methodName or eventName,...]|  HelloWorld.set| - |
 | system.ignoreParam | N | 指定事件或方法中字段不导出，多个以竖杠字符分隔分隔，[contractName.methodName/eventName.paramName1,paramName2]| HelloWorld.set.n | - |
-| system.dataTypeBlackList | N | 指定数据类型表不导出，多个以,分隔| block_detail_info,block_raw_data, | - |
-| system.ignoreBasicDataTableParams | N | 原始数据表指定字段导出过滤，多表之间以竖杠字符分隔，[tablename.paramName1,paramName2]| tx_raw_data.from,to | - |
+| system.dataTypeBlackList | N | 指定数据类型表不导出，多个以,分隔（docker方式启动目前不支持该配置）| block_detail_info,block_raw_data, | - |
+| system.ignoreBasicDataTableParams | N | 原始数据表指定字段导出过滤，多表之间以竖杠字符分隔，（docker方式启动目前不支持该配置）| tx_raw_data.from,to | - |
 
 system.dataTypeBlackList配置支持以下数据类型配置：
 ```
