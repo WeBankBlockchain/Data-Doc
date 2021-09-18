@@ -259,6 +259,8 @@ docker run --name elasticsearch -d -e ES_JAVA_OPTS="-Xms128m -Xmx128m" -e "disco
 
 可参考官网[ES 7.X版本部署](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index.html)
 
+**因ElasticSearch相关开源协议变更，相关服务用于商用场景时需自行去ElasticSearch官网下载或采购。该行为与微众区块链无关。**
+
 安装完成后，可通过以下命令查看ES安装信息
 ```
 curl 127.0.0.1:9200/
