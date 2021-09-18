@@ -115,6 +115,7 @@ bash build_export.sh -m
     - 加后缀 **-e** 启动脚本，会通过docker自动安装elasticsearch，并自动修改配置文件中es相关配置。
     - 加后缀 **-g** 启动脚本， 会通过docker自动安装grafana，并自动修改配置文件中可视化相关配置，生成可视化脚本。
     - 不加后缀执行如: **bash build_export.sh**，这时需自行安装相关组件，并配置连接信息。 
+    - ElasticSearch用于商用场景时需自行去ElasticSearch官网下载或采购。该行为与微众区块链无关。
 ```
 
 这里采取 **bash build_export.sh -m** 方式启动，docker安装的mysql的访问信息如下： 
