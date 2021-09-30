@@ -105,6 +105,7 @@ stop(DataExportExecutor exportExecutor)
 | namePrefix | 合约导出表字段前缀设置，只针对method、event表中变量字段 | String | 空 |
 | namePostfix | 合约导出表字段后缀设置，只针对method、event表中变量字段 | String | 空 |
 | ignoreBasicDataTableParam | 原始数据表指定字段导出过滤,如: Map<表名, List<字段名>>| Map | empty map |
+| topicRegistry | 自定义处理逻辑，支持区块、交易、交易回执、函数、事件| SubscriberInterface | empty  |
 
 ignoreBasicDataTableParam 参考例子如下，支持过滤表和字段参考 IgnoreBasicDataParam 枚举类：
 ```
@@ -119,7 +120,22 @@ ignoreBasicDataTableParam 参考例子如下，支持过滤表和字段参考 Ig
     config.getIgnoreBasicDataTableParam()
           .put(IgnoreBasicDataParam.IgnoreBasicDataTable.BLOCK_RAW_DATA_TABLE.name(), params);
 ```
+自定义事件处理逻辑示例
+```
+    ExportConfig config = new ExportConfig();
+    //添加区块自定义处理逻辑
+    exportConfig.getTopicRegistry().getBlockTopic().addSubscriber(new SubscriberInterface<BlockInfoBO>() {
+        @Override
+        public boolean shouldProcess(BlockInfoBO blockInfoBO, Object context) {
+            return blockInfoBO.getBlockDetailInfo().getBlockHeight() >= 10;
+        }
 
+        @Override
+        public void process(BlockInfoBO blockInfoBO) {
+            System.out.println(blockInfoBO.getBlockDetailInfo().getBlockHash());
+        }
+    });
+```
 
 
 #### 功能说明
