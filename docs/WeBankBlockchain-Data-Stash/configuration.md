@@ -11,9 +11,12 @@
 |spring.datasource.driverClassName | JDBC驱动|是 |示例：com.mysql.cj.jdbc.Driver|
 |system.encryptType|0-非国密，1-国密。binlog中签名验证时需要使用与链一致的哈希。|否|默认非国密|
 |system.localBinlogPath|binlog的下载位置，支持相对地址和绝对地址|否|示例：~/binlogs|
-|system.batchCount|数据库批量插入条数|否|默认为5|
-|system.binlogVerify|1-开启binlog校验，0-不开启|否|默认开启|
-|system.checkPointVerify|1-开启检查点校验，0-不开启|否|默认开启|
+|system.batchCount|数据库批量插入条数|否|默认为50|
+|system.ledgerThreads|账本表插入线程池大小|否|默认为10|
+|system.ledgerQueueSize|账本表插入队列大小|否|默认为10|
+|system.stateThreads|状态表插入线程池大小|否|默认为10|
+|system.stateQueueSize|状态表插入队列大小|否|默认10|
+|system.binlogVerify|1-开启binlog校验，0-不开启|否|默认关闭|
 |read.blocks|每下载多少文件开始执行入库|否|默认为5|
 |read.clean|yes-入库完成后清理文件。no-不清理|否|默认清理|
 
