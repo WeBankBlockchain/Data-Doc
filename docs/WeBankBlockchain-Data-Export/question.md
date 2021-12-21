@@ -36,6 +36,26 @@ Run with --stacktrace option to get the stack trace. Run with --info or --debug 
 
 > A：下载jar包失败。请首先检查报错的链接能否正常打开下载。如果正常，在项目根目录下执行下 `bash gradlew clean bootJar --refresh-dependencies` 强制重新刷新依赖。
 
+### 数据导出的时候报错,"Row size too large. The maximum row size for the used table type, not counting BLOBs, is 65535. "，无法传跟进表运行，错误信息参考如下：
+```
+2021-12-21 12:00:19.779 [pool-2-thread-1] ERROR c.w.b.d.export.tools.DataSourceUtils - export data table create failed, reason is : 
+java.sql.SQLSyntaxErrorException: Row size too large. The maximum row size for the used table type, not counting BLOBs, is 65535. This includes storage overhead, check the manual. You have to change some columns to TEXT or BLOBs
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLarge
+```
+
+> A：这通常是因为创建表的时候，单行的容量超过了mysql限制，例如在一个函数具有很大string类型参数，而数据导出中string类型默认对应varchar(2048)，因此一行数据总体上便超出了mysql对单行容量的限制。
+解决方法是在配置文件中指定每个字段对应的类型，可参考[数据库配置](https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Export/expertconfig.html#id9)中的system.paramSQLType配置项。例如下面示例中，HelloWorld有set和set2两个函数，它们的参数都是string，希望均按text类型存入mysql：
+
+```
+system.paramSQLType=HelloWorld.set.n.text|HelloWorld.set2.n.text
+```
+
 
 ### 假如我的合约升级了怎么办，能否导出历史和更新后的合约数据？
 
