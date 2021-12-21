@@ -36,7 +36,7 @@ Run with --stacktrace option to get the stack trace. Run with --info or --debug 
 
 > A：下载jar包失败。请首先检查报错的链接能否正常打开下载。如果正常，在项目根目录下执行下 `bash gradlew clean bootJar --refresh-dependencies` 强制重新刷新依赖。
 
-### 数据导出的时候报错,"Row size too large. The maximum row size for the used table type, not counting BLOBs, is 65535. "，无法传跟进表运行，错误信息参考如下：
+### 数据导出的时候报错,"Row size too large. The maximum row size for the used table type, not counting BLOBs, is 65535. "，无法创建表，错误信息参考如下：
 ```
 2021-12-21 12:00:19.779 [pool-2-thread-1] ERROR c.w.b.d.export.tools.DataSourceUtils - export data table create failed, reason is : 
 java.sql.SQLSyntaxErrorException: Row size too large. The maximum row size for the used table type, not counting BLOBs, is 65535. This includes storage overhead, check the manual. You have to change some columns to TEXT or BLOBs
