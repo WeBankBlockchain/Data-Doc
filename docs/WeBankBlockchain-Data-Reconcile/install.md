@@ -165,10 +165,10 @@ reconcile.field.business.uniqueColumn=busId
 #数据导出数据唯一键，与业务唯一键对应 (Must)
 reconcile.field.bc.uniqueColumn=block_height
 #两方数据字段匹配规则 (Must)
-#格式以reconcile.fieldMapping作为前缀，reconcile.fieldMapping.业务方字段名=数据导出表字段名（唯一键映射无需再配），如下
-#reconcile.fieldMapping.busId=block_height
-#reconcile.fieldMapping.busFrom=tx_from
-#reconcile.fieldMapping.busTo=tx_to
+#格式以reconcile.fieldMapping作为前缀，reconcile.fieldMapping.数据导出表字段名=业务方字段名（唯一键映射无需再配），如下
+#reconcile.fieldMapping.block_height=busId
+#reconcile.fieldMapping.tx_from=busFrom
+#reconcile.fieldMapping.tx_to=busTo
 ```
 ```eval_rst
 .. important::
