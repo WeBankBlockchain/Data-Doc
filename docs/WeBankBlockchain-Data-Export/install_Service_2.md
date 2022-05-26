@@ -90,8 +90,6 @@ tools目录如下：
 ```
 ### 数据导出支持以下方式:
 ### 1, Channel
-### 2, JsonRPC
-### 选择其中一种方式配置即可，默认Channel方式
 
 # Channel方式启动，与java sdk一致，需配置证书
 ## GROUP_ID必须与FISCO-BCOS中配置的groupId一致, 多群组以,分隔，如1,2
@@ -103,8 +101,6 @@ system.cryptoTypeConfig=0
 
 
 ```
-
-数据导出除支持上述的Channel方式导出数据外，还支持[JSON-RPC方式](./expertconfig.html#json-rpc)和[数据仓库方式](./expertconfig.html#id3)
 
 其中多群组数据导出，参照[多群组数据导出](./expertconfig.html#id11)
 
