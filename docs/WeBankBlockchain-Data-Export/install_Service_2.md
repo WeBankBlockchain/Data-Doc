@@ -24,6 +24,8 @@
 
 ```shell
 git clone https://github.com/WeBankBlockchain/Data-Export.git
+cd Data-Export
+git checkout 2.0.0
 ```
 
 ```eval_rst
@@ -59,7 +61,7 @@ tools中包括了服务方式启动所需配置文件和启动脚本。
 ###### 进入安装路径
 
 ```shell
-cd Data-Export/tools
+cd tools
 
 ```
 
