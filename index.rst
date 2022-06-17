@@ -2,10 +2,9 @@
 WeBankBlockchain-Data 技术文档
 ##############################################################
 
-```eval_rst
 .. important::
-    FISCO-BCOS 2.0与3.0对比、JDK版本、WeBASE及其他子系统的兼容版本说明！`请查看 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/compatibility.html>`_
-```
+    FISCO-BCOS 2.0与3.0对比、JDK版本、WeBank-Data及其他子系统的兼容版本说明！`请查看 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/compatibility.html>`_
+
 
 .. admonition:: 什么是 WeBankBlockchain-Data 
 

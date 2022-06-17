@@ -13,10 +13,9 @@
 | MySQL      | \>= mysql-community-server[5.7]                              |      |
 | FTP        | 需要时安装                                                     |      |
 
-```eval_rst
 .. important::
     FISCO-BCOS 2.0与3.0对比、JDK版本、WeBank-Data及其他子系统的兼容版本说明！`请查看 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/compatibility.html>`_
-```
+
 
 ## 项目准备
 
