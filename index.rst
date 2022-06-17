@@ -2,9 +2,6 @@
 WeBankBlockchain-Data 技术文档
 ##############################################################
 
-.. important::
-    FISCO-BCOS 2.0与3.0对比、JDK版本、WeBankBlockchain-Data及其他子系统的 `兼容版本说明 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/compatibility.html>`_
-
 .. admonition:: 什么是 WeBankBlockchain-Data 
 
     WeBankBlockchain-Data 是一套稳定、高效、安全的区块链数据治理组件解决方案，可无缝适配FISCO BCOS区块链底层平台。
@@ -49,6 +46,9 @@ WeBankBlockchain-Data 技术文档
     `Gitee地址 <https://gitee.com/WeBankBlockchain/Data-Reconcile>`_
     `文档 <https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/index.html>`_
     `快速开始 <https://data-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Data-Reconcile/install.html>`_
+
+.. important::
+    FISCO-BCOS 2.0与3.0对比、JDK版本、WeBankBlockchain-Data及其他子系统的 `兼容版本说明 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/compatibility.html>`_
 
 
 .. admonition:: 总体设计
