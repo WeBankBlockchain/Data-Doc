@@ -1,4 +1,4 @@
-### 服务方式2.x版本(对应链3.x版本)启动
+### 服务方式3.x版本(对应链3.x版本)启动
 
 #### 前置依赖
 
@@ -15,8 +15,10 @@
 | zookeeper | >= zookeeper[3.4] | 只有在进行集群部署的时候需要安装|
 | docker    | >= docker[18.0.0] | 只有需要可视化监控页面的时候才需要安装，docker的安装可参考[gitee docker安装手册](https://docker_practice.gitee.io/install/centos.html) |
 
+```eval_rst
 .. important::
     FISCO-BCOS 2.0与3.0对比、JDK版本、WeBank-Data及其他子系统的 `兼容版本说明 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/compatibility.html>`_
+```
 
 #### 部署步骤
 
