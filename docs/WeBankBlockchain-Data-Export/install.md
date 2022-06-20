@@ -13,10 +13,7 @@
 .. toctree::
    :maxdepth: 3
 
-   install_Service.md
    install_Service_2.md
-   docker.md
-   install_SDK.md
    install_SDK_2.md
  
 ```
