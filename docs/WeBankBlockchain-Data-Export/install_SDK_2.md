@@ -6,7 +6,7 @@
 
 | 依赖软件 | 说明 |备注|
 | --- | --- | --- |
-| FISCO-BCOS | 3.x版本， 1.x版本请参考V0.5版本 |
+| FISCO-BCOS | 3.x版本 |
 | Java | JDK[1.8] | |
 | MySQL | >= mysql-community-server[5.7] | |
 | ElasticSearch | >= elasticsearch [7.0] | 只有在需要ES存储时安装 |

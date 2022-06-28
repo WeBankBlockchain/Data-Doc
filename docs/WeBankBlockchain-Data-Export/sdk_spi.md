@@ -57,7 +57,7 @@ stop(DataExportExecutor exportExecutor)
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | ---|
-| groupId | 分组id (必配)| int | null |
+| groupId | 分组id (必配)| string | null |
 | nodeStr | 链节点ip和端口port，格式：[ip]:[port] (channel通道连接时设置) | string | null |
 | certPath | 链节点连接所需证书路径 (channel通道连接时设置)| string | null |
 | rpcUrl | rpc连接url，格式：http://[ip]:[port]，如：http://127.0.0.1:8546；（使用rpc连接时设置）| string | null |

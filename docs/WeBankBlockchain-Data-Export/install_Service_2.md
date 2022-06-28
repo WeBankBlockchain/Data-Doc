@@ -6,14 +6,13 @@
 
 | 依赖软件 | 说明 |备注|
 | --- | --- | --- |
-| FISCO-BCOS | 3.x版本， 1.x版本请参考V0.5版本 |
+| FISCO-BCOS | 3.x版本 |
 | Bash | 需支持Bash（理论上来说支持所有ksh、zsh等其他unix shell，但未测试）|
 | Java | JDK[1.8] | |
 | Git | 下载的安装包使用Git | |
 | MySQL | >= mysql-community-server[5.7] | |
 | ElasticSearch | >= elasticsearch [7.0] | 只有在需要ES存储时安装 |
 | zookeeper | >= zookeeper[3.4] | 只有在进行集群部署的时候需要安装|
-| docker    | >= docker[18.0.0] | 只有需要可视化监控页面的时候才需要安装，docker的安装可参考[gitee docker安装手册](https://docker_practice.gitee.io/install/centos.html) |
 
 ```eval_rst
 .. important::
