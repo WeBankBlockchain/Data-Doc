@@ -28,7 +28,7 @@
 ```shell
 git clone https://github.com/WeBankBlockchain/Data-Export.git
 cd Data-Export
-git checkout 2.0.0
+git checkout 3.0.0
 ```
 
 ```eval_rst
