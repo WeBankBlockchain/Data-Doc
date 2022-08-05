@@ -4,13 +4,13 @@
 
 在使用本组件前，请确认系统环境已安装相关依赖软件，清单如下：
 
-| 依赖软件 | 说明 |备注|
-| --- | --- | --- |
-| FISCO-BCOS | >= 2.0， 1.x版本请参考V0.5版本 |
-| Java | JDK[1.8] | |
-| MySQL | >= mysql-community-server[5.7] | |
-| ElasticSearch | >= elasticsearch [7.0] | 只有在需要ES存储时安装 |
-| zookeeper | >= zookeeper[3.4] | 只有在进行集群部署的时候需要安装|
+| 依赖软件 | 说明                                                                                                                                                        |备注|
+| --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------| --- |
+| FISCO-BCOS | 支持2.x版本， 1.x版本请参考V0.5版本, 3.x版本请参考[3.x版本SDK调用](https://data-doc.readthedocs.io/zh_CN/data_export_3.0/docs/WeBankBlockchain-Data-Export/install_SDK_2.html) |
+| Java | JDK[1.8]                                                                                                                                                  | |
+| MySQL | >= mysql-community-server[5.7]                                                                                                                            | |
+| ElasticSearch | >= elasticsearch [7.0]                                                                                                                                    | 只有在需要ES存储时安装 |
+| zookeeper | >= zookeeper[3.4]                                                                                                                                         | 只有在进行集群部署的时候需要安装|
 
 
 #### 部署步骤
@@ -20,7 +20,7 @@
 ###### 建立依赖
 ```
 dependencies {
-    compile 'com.webank:data-export-sdk:1.7.3'
+    compile 'com.webank:data-export-sdk:1.7.8'
 }
 ```
 
