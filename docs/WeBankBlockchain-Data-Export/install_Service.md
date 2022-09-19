@@ -4,17 +4,21 @@
 
 在使用本组件前，请确认系统环境已安装相关依赖软件，清单如下：
 
-| 依赖软件 | 说明 |备注|
-| --- | --- | --- |
-| FISCO-BCOS | >= 2.0， 1.x版本请参考V0.5版本 |
-| Bash | 需支持Bash（理论上来说支持所有ksh、zsh等其他unix shell，但未测试）|
-| Java | JDK[1.8] | |
-| Git | 下载的安装包使用Git | |
-| MySQL | >= mysql-community-server[5.7] | |
-| ElasticSearch | >= elasticsearch [7.0] | 只有在需要ES存储时安装 |
-| zookeeper | >= zookeeper[3.4] | 只有在进行集群部署的时候需要安装|
-| docker    | >= docker[18.0.0] | 只有需要可视化监控页面的时候才需要安装，docker的安装可参考[gitee docker安装手册](https://docker_practice.gitee.io/install/centos.html) |
+| 依赖软件 | 说明                                                                                                                                                        |备注|
+| --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------| --- |
+| FISCO-BCOS | 支持2.x， 1.x版本请参考V0.5版本，3.x版本请参考[3.x版本服务调用](https://data-doc.readthedocs.io/zh_CN/data_export_3.0/docs/WeBankBlockchain-Data-Export/install_Service_2.html) |
+| Bash | 需支持Bash（理论上来说支持所有ksh、zsh等其他unix shell，但未测试）                                                                                                               |
+| Java | JDK[1.8]                                                                                                                                                  | |
+| Git | 下载的安装包使用Git                                                                                                                                               | |
+| MySQL | >= mysql-community-server[5.7]                                                                                                                            | |
+| ElasticSearch | >= elasticsearch [7.0]                                                                                                                                    | 只有在需要ES存储时安装 |
+| zookeeper | >= zookeeper[3.4]                                                                                                                                         | 只有在进行集群部署的时候需要安装|
+| docker    | >= docker[18.0.0]                                                                                                                                         | 只有需要可视化监控页面的时候才需要安装，docker的安装可参考[gitee docker安装手册](https://docker_practice.gitee.io/install/centos.html) |
 
+```eval_rst
+.. important::
+    FISCO-BCOS 2.0与3.0对比、JDK版本、WeBankBlockchain-Data及其他子系统的 `兼容版本说明 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/compatibility.html>`_
+```
 
 #### 部署步骤
 

@@ -13,6 +13,11 @@
 | MySQL      | \>= mysql-community-server[5.7]                              |      |
 | FTP        | 需要时安装                                                     |      |
 
+```eval_rst
+.. important::
+    FISCO-BCOS 2.0与3.0对比、JDK版本、WeBankBlockchain-Data及其他子系统的 `兼容版本说明 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/compatibility.html>`_
+```
+
 ## 项目准备
 
 ### 下载代码：
@@ -165,10 +170,10 @@ reconcile.field.business.uniqueColumn=busId
 #数据导出数据唯一键，与业务唯一键对应 (Must)
 reconcile.field.bc.uniqueColumn=block_height
 #两方数据字段匹配规则 (Must)
-#格式以reconcile.fieldMapping作为前缀，reconcile.fieldMapping.业务方字段名=数据导出表字段名（唯一键映射无需再配），如下
-#reconcile.fieldMapping.busId=block_height
-#reconcile.fieldMapping.busFrom=tx_from
-#reconcile.fieldMapping.busTo=tx_to
+#格式以reconcile.fieldMapping作为前缀，reconcile.fieldMapping.数据导出表字段名=业务方字段名（唯一键映射无需再配），如下
+#reconcile.fieldMapping.block_height=busId
+#reconcile.fieldMapping.tx_from=busFrom
+#reconcile.fieldMapping.tx_to=busTo
 ```
 ```eval_rst
 .. important::
