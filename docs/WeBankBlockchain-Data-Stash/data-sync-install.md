@@ -7,7 +7,7 @@
 #### 获取启动脚本和配置文件
 
 ```
-curl -#LO https://github.com/WeBankBlockchain/Data-Stash/releases/tag/v1.2.4/data-sync-bash.tar.gz
+curl -#LO https://github.com/WeBankBlockchain/Data-Stash/releases/download/v1.2.4/data-sync-bash.tar.gz
 ```
 
 ```eval_rst
