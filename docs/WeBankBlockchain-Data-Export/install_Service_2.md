@@ -1,24 +1,20 @@
-### 服务方式启动
+### 服务方式2.x版本启动
 
 #### 前置依赖
 
 在使用本组件前，请确认系统环境已安装相关依赖软件，清单如下：
 
-| 依赖软件 | 说明                                                                                                                                                        |备注|
-| --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------| --- |
-| FISCO-BCOS | 支持2.x， 1.x版本请参考V0.5版本，3.x版本请参考[3.x版本服务调用](https://data-doc.readthedocs.io/zh_CN/data_export_3.0/docs/WeBankBlockchain-Data-Export/install_Service_2.html) |
-| Bash | 需支持Bash（理论上来说支持所有ksh、zsh等其他unix shell，但未测试）                                                                                                               |
-| Java | JDK[1.8]                                                                                                                                                  | |
-| Git | 下载的安装包使用Git                                                                                                                                               | |
-| MySQL | >= mysql-community-server[5.7]                                                                                                                            | |
-| ElasticSearch | >= elasticsearch [7.0]                                                                                                                                    | 只有在需要ES存储时安装 |
-| zookeeper | >= zookeeper[3.4]                                                                                                                                         | 只有在进行集群部署的时候需要安装|
-| docker    | >= docker[18.0.0]                                                                                                                                         | 只有需要可视化监控页面的时候才需要安装，docker的安装可参考[gitee docker安装手册](https://docker_practice.gitee.io/install/centos.html) |
+| 依赖软件 | 说明 |备注|
+| --- | --- | --- |
+| FISCO-BCOS | >= 3.0， 1.x版本请参考V0.5版本 |
+| Bash | 需支持Bash（理论上来说支持所有ksh、zsh等其他unix shell，但未测试）|
+| Java | JDK[1.8] | |
+| Git | 下载的安装包使用Git | |
+| MySQL | >= mysql-community-server[5.7] | |
+| ElasticSearch | >= elasticsearch [7.0] | 只有在需要ES存储时安装 |
+| zookeeper | >= zookeeper[3.4] | 只有在进行集群部署的时候需要安装|
+| docker    | >= docker[18.0.0] | 只有需要可视化监控页面的时候才需要安装，docker的安装可参考[gitee docker安装手册](https://docker_practice.gitee.io/install/centos.html) |
 
-```eval_rst
-.. important::
-    FISCO-BCOS 2.0与3.0对比、JDK版本、WeBankBlockchain-Data及其他子系统的 `兼容版本说明 <https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/compatibility.html>`_
-```
 
 #### 部署步骤
 
@@ -92,25 +88,19 @@ tools目录如下：
 修改application.properties文件：该文件包含了所有的配置信息。以下配置信息是必须要配置的：
 
 ```
-### 数据导出支持以下三种方式:
+### 数据导出支持以下方式:
 ### 1, Channel
 ### 2, JsonRPC
-### 3, Data-Stash (支持1.x版本)
 ### 选择其中一种方式配置即可，默认Channel方式
 
 # Channel方式启动，与java sdk一致，需配置证书
 ## GROUP_ID必须与FISCO-BCOS中配置的groupId一致, 多群组以,分隔，如1,2
-system.groupId=1 
+system.groupId=group0
 ##IP为节点运行的IP，PORT为节点运行的channel_port，默认为20200
 system.nodeStr=127.0.0.1:20200
 # ecc-0 sm-1
 system.cryptoTypeConfig=0
 
-### 数据库的信息，暂时只支持mysql； serverTimezone 用来设置时区
-### 请确保在运行前创建对应的database，如果分库分表，则可配置多个数据源，如system.db1.dbUrl=\system.db1.user=\system.db0.password=
-system.db0.dbUrl=jdbc:mysql://127.0.0.1:3306/[db]?autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
-system.db0.user=root
-system.db0.password=123456
 
 ```
 
@@ -139,13 +129,13 @@ system.certPath=/root/fisco/nodes/127.0.0.1/sdk
 ##### 配置合约
 
 - 将要编译的合约拷贝到config/solidity目录下，目录中包含了一个HelloWorld合约示例文件，使用时请按需删除。也可直接配置合约文件所在目录的路径, 默认配置为./config/solidity，可按需修改
-- 按需配置编译器版本号，支持三种版本(0.4.25.1, 0.5.2.0, 0.6.10.0)，默认为0.4.25.1。
+- 按需配置编译器版本号，支持版本(0.4.25.1, 0.5.2.0, 0.6.10.0,0.8.11.0)，默认为0.4.25.1。
 - 2.x版本支持0.8.11.0,默认配置为0.8.11.0
 
 配置如下：
 ```
 system.solPath=./config/solidity
-system.solcVersion=0.4.25.1
+system.solcVersion=0.8.11.0
 ```
 
 
