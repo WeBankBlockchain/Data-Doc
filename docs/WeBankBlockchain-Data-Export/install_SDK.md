@@ -20,7 +20,7 @@
 ###### 建立依赖
 ```
 dependencies {
-    compile 'com.webank:data-export-sdk:1.7.8'
+    compile 'com.webank:data-export-sdk:1.7.9'
 }
 ```
 
